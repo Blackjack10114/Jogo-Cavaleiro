@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // <- necessário para usar o novo Input System
+using UnityEngine.InputSystem;
 
 public class PlayerMov : MonoBehaviour
 {
@@ -7,7 +7,7 @@ public class PlayerMov : MonoBehaviour
     private Vector3 distancia;
     public bool NaEsquerda, NoCentro, NaDireita;
 
-    private Vector2 movimento; // <- entrada vinda do Input System
+    private Vector2 movimento; 
 
     private void Start()
     {
@@ -24,12 +24,12 @@ public class PlayerMov : MonoBehaviour
         if (movimento.x > 0.5f && (NoCentro || NaEsquerda))
         {
             transform.position += distancia;
-            AtualizarPosicao(true); // direita
+            AtualizarPosicao(true); 
         }
         else if (movimento.x < -0.5f && (NoCentro || NaDireita))
         {
             transform.position -= distancia;
-            AtualizarPosicao(false); // esquerda
+            AtualizarPosicao(false); 
         }
 
   
