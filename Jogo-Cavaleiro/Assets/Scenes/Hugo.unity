@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabelo_escalavel_2
       objectReference: {fileID: 0}
+    - target: {fileID: 1009686046391347967, guid: ea9900557781ae84f83ec2be016056e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3904138084961600353, guid: ea9900557781ae84f83ec2be016056e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8
@@ -536,6 +540,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1039651490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039651491}
+  m_Layer: 0
+  m_Name: PontoAtaqueEsquerda
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1039651491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039651490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1840931696}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1510965027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -547,6 +582,10 @@ PrefabInstance:
     - target: {fileID: 1009686046391347967, guid: ea9900557781ae84f83ec2be016056e1, type: 3}
       propertyPath: m_Name
       value: Cabelo_escalavel_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009686046391347967, guid: ea9900557781ae84f83ec2be016056e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3904138084961600353, guid: ea9900557781ae84f83ec2be016056e1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -680,7 +719,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 537599600523786382, guid: 4c1a7645c8365cb40be9a798728d6bfd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1737143431}
+    - targetCorrespondingSourceObject: {fileID: 537599600523786382, guid: 4c1a7645c8365cb40be9a798728d6bfd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1921684569}
+    - targetCorrespondingSourceObject: {fileID: 537599600523786382, guid: 4c1a7645c8365cb40be9a798728d6bfd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1039651491}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2204434951602594118, guid: 4c1a7645c8365cb40be9a798728d6bfd, type: 3}
       insertIndex: -1
@@ -691,7 +739,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2204434951602594118, guid: 4c1a7645c8365cb40be9a798728d6bfd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1840931697}
+    - targetCorrespondingSourceObject: {fileID: 2204434951602594118, guid: 4c1a7645c8365cb40be9a798728d6bfd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1840931698}
   m_SourcePrefab: {fileID: 100100000, guid: 4c1a7645c8365cb40be9a798728d6bfd, type: 3}
+--- !u!1 &1737143430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1737143431}
+  m_Layer: 0
+  m_Name: PontoAtaqueCima
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1737143431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737143430}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1840931696}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1840931692 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2204434951602594118, guid: 4c1a7645c8365cb40be9a798728d6bfd, type: 3}
@@ -713,6 +795,7 @@ MonoBehaviour:
   NaEsquerda: 0
   NoCentro: 0
   NaDireita: 0
+  direcaoInput: {x: 1, y: 0}
 --- !u!61 &1840931694
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -759,6 +842,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &1840931696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 537599600523786382, guid: 4c1a7645c8365cb40be9a798728d6bfd, type: 3}
+  m_PrefabInstance: {fileID: 1682230466}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1840931697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -798,17 +886,108 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1840931698}
+        m_TargetAssemblyTypeName: PlayerAtaque, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 44fa35d6-427a-4444-aded-eb8e10496639
     m_ActionName: 'Gameplay/Move[/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1840931698}
+        m_TargetAssemblyTypeName: PlayerAtaque, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 44f59c29-359b-4522-8dce-d00ebf345f5b
     m_ActionName: Gameplay/Attack
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1840931698}
+        m_TargetAssemblyTypeName: PlayerAtaque, Assembly-CSharp
+        m_MethodName: OnAttackUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 40320432-ed4c-4299-b43b-7191ea824bc5
+    m_ActionName: 'Gameplay/AttackUp[/Keyboard/w,/Keyboard/upArrow]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1840931698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840931692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20dff5f3050a67b438520daabb226d11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alcanceAtaque: 1
+  dano: 1
+  inimigoLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  pontoAtaqueCima: {fileID: 1737143431}
+  pontoAtaqueDireita: {fileID: 1921684569}
+  pontoAtaqueEsquerda: {fileID: 1039651491}
+--- !u!1 &1921684568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1921684569}
+  m_Layer: 0
+  m_Name: PontoAtaqueDireita
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1921684569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921684568}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1840931696}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8109569060308743247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -820,6 +999,10 @@ PrefabInstance:
     - target: {fileID: 1009686046391347967, guid: ea9900557781ae84f83ec2be016056e1, type: 3}
       propertyPath: m_Name
       value: Cabelo_escalavel_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009686046391347967, guid: ea9900557781ae84f83ec2be016056e1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3904138084961600353, guid: ea9900557781ae84f83ec2be016056e1, type: 3}
       propertyPath: m_LocalPosition.x

@@ -6,8 +6,10 @@ public class PlayerMov : MonoBehaviour
     public float velocidade = 2f;
     private Vector3 distancia;
     public bool NaEsquerda, NoCentro, NaDireita;
+    public Vector2 direcaoInput = Vector2.right; // Torne público para Ataque acessar
+    private bool mirandoParaCima = false;
 
-    private Vector2 movimento; 
+    private Vector2 movimento;
 
     private void Start()
     {
@@ -17,22 +19,22 @@ public class PlayerMov : MonoBehaviour
 
     private void Update()
     {
-        
         transform.Translate(Vector3.up * velocidade * Time.deltaTime);
 
-        
-        if (movimento.x > 0.5f && (NoCentro || NaEsquerda))
+        if (!mirandoParaCima) // Só permite mover se não estiver mirando para cima
         {
-            transform.position += distancia;
-            AtualizarPosicao(true); 
-        }
-        else if (movimento.x < -0.5f && (NoCentro || NaDireita))
-        {
-            transform.position -= distancia;
-            AtualizarPosicao(false); 
+            if (movimento.x > 0.5f && (NoCentro || NaEsquerda))
+            {
+                transform.position += distancia;
+                AtualizarPosicao(true);
+            }
+            else if (movimento.x < -0.5f && (NoCentro || NaDireita))
+            {
+                transform.position -= distancia;
+                AtualizarPosicao(false);
+            }
         }
 
-  
         movimento = Vector2.zero;
     }
 
@@ -40,7 +42,31 @@ public class PlayerMov : MonoBehaviour
     {
         if (context.performed)
         {
-            movimento = context.ReadValue<Vector2>();
+            Vector2 input = context.ReadValue<Vector2>();
+            if (input.y > 0.3f)
+            {
+                mirandoParaCima = true;
+                direcaoInput = Vector2.up;
+            }
+            else if (input.x > 0.5f)
+            {
+                mirandoParaCima = false;
+                direcaoInput = Vector2.right;
+            }
+            else if (input.x < -0.5f)
+            {
+                mirandoParaCima = false;
+                direcaoInput = Vector2.left;
+            }
+            else
+            {
+                mirandoParaCima = false;
+            }
+            movimento = input;
+        }
+        else if (context.canceled)
+        {
+            mirandoParaCima = false;
         }
     }
 
