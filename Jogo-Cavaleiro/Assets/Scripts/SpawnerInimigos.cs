@@ -1,48 +1,57 @@
 using UnityEngine;
 
-public class SpawnerDeInimigos : MonoBehaviour
+public class SpawnerDinâmico : MonoBehaviour
 {
     public GameObject prefabInimigo;
-    public float intervaloEntreSpawns = 2f;
-    public float alturaSpawn = 20f;
+    public Transform jogador;
+    public float intervaloEntreSpawns = 1.5f;
 
-    public float distanciaEntreLinhas = 8f;
-    public float xCentro = 0f;
+    public float distanciaVertical = 10f;
+    public float chanceSpawn = 0.5f; // 50%
 
     private float tempoProximoSpawn = 0f;
-    public enum DirecaoSpawn { Cima, Baixo }
-    public DirecaoSpawn direcaoSpawn = DirecaoSpawn.Cima;
+
+    public int minimoPorSpawn = 1;
+    public int maximoPorSpawn = 3;
 
     void Update()
     {
-        if (Time.time >= tempoProximoSpawn)
+        if (Time.time >= tempoProximoSpawn && jogador != null)
         {
-            SpawnInimigoAleatorio();
+            if (Random.value < chanceSpawn)
+            {
+                SpawnProximoDoJogador();
+            }
+
             tempoProximoSpawn = Time.time + intervaloEntreSpawns;
         }
     }
 
-    void SpawnInimigoAleatorio()
+    void SpawnProximoDoJogador()
     {
-        LinhasController.Linha linhaAleatoria = (LinhasController.Linha)Random.Range(0, 3);
-        float x = LinhasController.Instance.PosicaoX(linhaAleatoria);
+        int quantidade = Random.Range(minimoPorSpawn, maximoPorSpawn + 1);
 
-        float y = (direcaoSpawn == DirecaoSpawn.Cima) ? alturaSpawn : -alturaSpawn;
-        Vector3 posicao = new Vector3(x, y, 0f);
-
-        GameObject inimigo = Instantiate(prefabInimigo, posicao, Quaternion.identity);
-        inimigo.name = "Inimigo_" + linhaAleatoria;
-
-        // Define a linha e direção no script do inimigo
-        InimigoLinha scriptLinha = inimigo.GetComponent<InimigoLinha>();
-        if (scriptLinha != null)
+        for (int i = 0; i < quantidade; i++)
         {
-            scriptLinha.linhaAtual = linhaAleatoria;
-            scriptLinha.direcao = (direcaoSpawn == DirecaoSpawn.Cima) ?
-                                  InimigoLinha.DirecaoMovimento.Descendo :
-                                  InimigoLinha.DirecaoMovimento.Subindo;
+            // linha aleatória
+            LinhasController.Linha linha = (LinhasController.Linha)Random.Range(0, 3);
+            float x = LinhasController.Instance.PosicaoX(linha);
+
+            // decide cima ou baixo
+            float offsetY = Random.value < 0.5f ? distanciaVertical : -distanciaVertical;
+            float y = jogador.position.y + offsetY;
+
+            Vector3 posicao = new Vector3(x, y, 0);
+            GameObject inimigo = Instantiate(prefabInimigo, posicao, Quaternion.identity);
+
+            InimigoLinha script = inimigo.GetComponent<InimigoLinha>();
+            if (script != null)
+            {
+                script.linhaAtual = linha;
+                script.direcao = offsetY > 0 ?
+                    InimigoLinha.DirecaoMovimento.Descendo :
+                    InimigoLinha.DirecaoMovimento.Subindo;
+            }
         }
     }
-
-
 }
