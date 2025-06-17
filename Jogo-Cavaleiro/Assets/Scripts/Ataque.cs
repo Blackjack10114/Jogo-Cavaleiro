@@ -11,56 +11,46 @@ public class PlayerAtaque : MonoBehaviour
     public Transform pontoAtaqueDireita;
     public Transform pontoAtaqueEsquerda;
 
-    private Vector2 direcaoMovimentoAtual = Vector2.right;
     private Vector2 ultimaDirecaoAtaque = Vector2.right;
-
     private float tempoGizmosAtivado = 0f;
     private float duracaoGizmos = 0.15f;
 
-    // Atualiza a direção com base no movimento (suporte a teclado, setas, controle)
-    public void OnMove(InputAction.CallbackContext context)
+    private PlayerMov playerMov;
+
+    public bool EstaAtacando { get; private set; } = false;
+    void Start()
     {
-        Vector2 input = context.ReadValue<Vector2>();
-        if (input != Vector2.zero)
-            direcaoMovimentoAtual = input.normalized;
+        playerMov = GetComponent<PlayerMov>();
     }
 
-    // Adicione um novo método para detectar um botão específico para ataque para cima
-    public void OnAttackUp(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            ultimaDirecaoAtaque = Vector2.up;
-            tempoGizmosAtivado = Time.time + duracaoGizmos;
-            Atacar(Vector2.up);
-        }
-    }
-
-    // Modifique o método OnAttack para permitir ataque para cima mesmo sem input direcional
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Vector2 dir = direcaoMovimentoAtual;
+            EstaAtacando = true; // <- Ativando o ataque
 
-            // Se não houver input direcional, ataque para cima por padrão
-            if (dir == Vector2.zero)
+            Vector2 dir = Vector2.right;
+
+            if (playerMov.mirandoParaCima)
                 dir = Vector2.up;
-            else if (dir.y > 0.3f)
-                dir = Vector2.up;
-            else if (dir.x > 0.5f)
+            else if (playerMov.direcaoInput.x > 0.5f)
                 dir = Vector2.right;
-            else if (dir.x < -0.5f)
+            else if (playerMov.direcaoInput.x < -0.5f)
                 dir = Vector2.left;
-            else
-                dir = Vector2.up; // padrão: para cima
 
             ultimaDirecaoAtaque = dir;
             tempoGizmosAtivado = Time.time + duracaoGizmos;
             Atacar(dir);
+            Debug.Log($"Atacou na direção: {dir}, mirandoParaCima: {playerMov.mirandoParaCima}, direcaoInput: {playerMov.direcaoInput}");
+            // Desativa o ataque após 0.2s
+            Invoke(nameof(FinalizarAtaque), 0.2f);
         }
     }
 
+    private void FinalizarAtaque()
+    {
+        EstaAtacando = false;
+    }
 
     private void Atacar(Vector2 direcao)
     {

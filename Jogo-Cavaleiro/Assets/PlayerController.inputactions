@@ -22,15 +22,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "AttackUp",
-                    "type": "Button",
-                    "id": "40320432-ed4c-4299-b43b-7191ea824bc5",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -68,8 +59,52 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
+                    "name": "Up",
                     "id": "20dfe32a-781e-4be0-b869-885ad22bbd22",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Up",
+                    "id": "3f10dbc5-c067-427e-8a90-fd6edfeda8de",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Up",
+                    "id": "9ba32c58-f41d-48d2-ba0a-a7a5a483cc51",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Up",
+                    "id": "c01c6cdb-3146-430c-b816-07c3bab9aee5",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "b0b6c026-f4bc-4707-bb7b-dd2070cc5f57",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -113,6 +148,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fd725f5c-7a70-46b4-8c9d-e8f31e6e5d76",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0a9b1b2a-78b2-42ac-b5a2-59fcce3ac010",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -141,50 +187,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4d923715-24b6-47da-a730-aafb92af762a",
-                    "path": "<Gamepad>/leftStick/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AttackUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7e7eabe7-0053-452a-b761-65e38a15b760",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AttackUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7d6b2bf1-b968-4d60-bfe5-1d1f110b0d81",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AttackUp",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "600552e7-2cc8-4b11-98e0-3b5a83605394",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "AttackUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
