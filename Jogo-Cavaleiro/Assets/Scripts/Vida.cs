@@ -19,6 +19,7 @@ public class Vida : MonoBehaviour
 
         if (vidaAtual <= 0)
         {
+            Morreu = true;
             Morrer();
         }
     }
