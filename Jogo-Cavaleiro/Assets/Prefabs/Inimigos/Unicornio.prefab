@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -716324228522107278}
   - component: {fileID: 5383762595007852696}
   - component: {fileID: 4300688413852098320}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Unicornio
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
