@@ -35,7 +35,8 @@ public class SpawnerUnicornio : MonoBehaviour
         Transform player = GameObject.FindWithTag("Player")?.transform;
         if (player == null) return;
 
-        float y = player.position.y + alturaSpawn;
+        float y = player.position.y + Random.Range(alturaSpawn * 0.8f, alturaSpawn * 1.4f);
+
 
         Vector3 posicao = new Vector3(x, y, 0f);
 

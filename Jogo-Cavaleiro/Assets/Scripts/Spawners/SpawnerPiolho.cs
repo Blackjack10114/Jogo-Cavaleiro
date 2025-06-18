@@ -38,7 +38,8 @@ public class SpawnerDinâmico : MonoBehaviour
             float x = LinhasController.Instance.PosicaoX(linha);
 
             //Random.value < 0.5f ? distanciaVertical : -distanciaVertical;
-            float offsetY = distanciaVertical;
+            float offsetY = Random.Range(distanciaVertical * 0.8f, distanciaVertical * 1.4f);
+
             float y = jogador.position.y + (offsetY);
 
             Vector3 posicao = new Vector3(x, y, 0);
