@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1361728044456343669}
   - component: {fileID: -716324228522107278}
   - component: {fileID: 5383762595007852696}
+  - component: {fileID: 4300688413852098320}
   m_Layer: 0
   m_Name: Unicornio
   m_TagString: Untagged
@@ -164,4 +165,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9181bed58d3cfcc4e95705494f026041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanciaMaxima: 100
+  distanciaMaxima: 60
+--- !u!114 &4300688413852098320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764274566547786123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7529d03685f8bc14388fea1fa16a37c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 1
+  Morreu: 0
