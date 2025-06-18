@@ -24,6 +24,7 @@ public class Inimigo_Cavaleiro : MonoBehaviour
             if (vida != null)
             {
                 vida.LevarDano(dano);
+                Destroy(gameObject);
             }
         }
     }
