@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections;
+using Unity.VisualScripting;
+using System.Runtime.CompilerServices;
 
 public class InimigoLinha : MonoBehaviour
 {
@@ -8,7 +11,9 @@ public class InimigoLinha : MonoBehaviour
     public int dano = 1;
 
     private float tempoProximoAtaque = 0f;
-    private Transform player;
+    private Transform playertransform;
+    GameObject Player;
+    private Vector3 PosicaoInimigo;
     private Vida vida;
 
     public enum DirecaoSpawn { Cima, Baixo }
@@ -18,8 +23,8 @@ public class InimigoLinha : MonoBehaviour
     public DirecaoMovimento direcao;
     private void Start()
     {
-        player = GameObject.FindWithTag("Player")?.transform;
-
+        playertransform = GameObject.FindWithTag("Player")?.transform;
+        Player = GameObject.FindWithTag("Player");
         // Usa LinhasController para posicionar na linha correta
         float x = LinhasController.Instance.PosicaoX(linhaAtual);
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
@@ -37,42 +42,49 @@ public class InimigoLinha : MonoBehaviour
 
     private void Update()
     {
-        if (player == null || vida == null || vida.Morreu) 
-        {
-            Debug.Log("semata");
-        }
+        if (playertransform == null || vida == null || vida.Morreu) return;
         
 
-        Vector2 distancia = player.position - transform.position;
+        Vector2 distancia = playertransform.position - transform.position;
 
         bool naMesmaLinhaVertical = Mathf.Abs(distancia.x) < 0.5f;
-        bool aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) < alcanceAtaque;
+        bool aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) <= alcanceAtaque;
 
-       /* if (Time.time >= tempoProximoAtaque)
+        /* if (Time.time >= tempoProximoAtaque)
+         {
+             if (naMesmaLinhaVertical || aoLadoNaMesmaAltura)
+             {               
+                 tempoProximoAtaque = Time.time + tempoEntreAtaques;
+
+                 Vida vidaJogador = player.GetComponent<Vida>();
+                 if (vidaJogador != null)
+                 {
+                     vidaJogador.LevarDano(dano);
+                     Destroy(gameObject);
+                 }
+             }
+         }
+        */
+        if (Time.time >= tempoProximoAtaque)
         {
-            if (naMesmaLinhaVertical || aoLadoNaMesmaAltura)
-            {               
-                tempoProximoAtaque = Time.time + tempoEntreAtaques;
-
-                Vida vidaJogador = player.GetComponent<Vida>();
-                if (vidaJogador != null)
-                {
-                    vidaJogador.LevarDano(dano);
-                    Destroy(gameObject);
-                }
+            if (aoLadoNaMesmaAltura)
+            {
+                PosicaoInimigo = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
+                this.transform.position = PosicaoInimigo;
+                StartCoroutine(Atacar());     
             }
         }
-       */
-        if (aoLadoNaMesmaAltura)
-        {
-            tempoProximoAtaque = Time.time + tempoEntreAtaques;
+    }
+    private IEnumerator Atacar()
+    {
+        yield return new WaitForSeconds(1f);
+        tempoProximoAtaque = Time.time + tempoEntreAtaques;
 
-            Vida vidaJogador = player.GetComponent<Vida>();
-            if (vidaJogador != null)
-            {
-                vidaJogador.LevarDano(dano);
-                Destroy(gameObject);
-            }
+        Vida vidaJogador = playertransform.GetComponent<Vida>();
+        if (vidaJogador != null)
+        {
+            vidaJogador.LevarDano(dano);
+            Destroy(gameObject);
         }
     }
 }
