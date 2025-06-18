@@ -1,9 +1,12 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Chiclete : MonoBehaviour
 {
     int dano = 1;
 
+    public float distanciaMaximaPlayer = 20f;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Qualquer colisão: " + collision.name);
@@ -16,7 +19,5 @@ public class Chiclete : MonoBehaviour
                 Debug.Log(collision.name + "Colidiu Chiclete");
             }
         }
-
     }
-
 }

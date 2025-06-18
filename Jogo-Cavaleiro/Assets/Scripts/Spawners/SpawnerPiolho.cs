@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class SpawnerDinâmico : MonoBehaviour
 {
+    [Header("Configuração do Spawner")]
     public GameObject prefabInimigo;
     public Transform jogador;
     public float intervaloEntreSpawns = 1.5f;
-
-    public float distanciaVertical = 10f;
-    public float chanceSpawn = 0.5f; // 50%
-
     private float tempoProximoSpawn = 0f;
-
     public int minimoPorSpawn = 1;
     public int maximoPorSpawn = 3;
+    public float chanceSpawn = 0.5f; // 50%
+    public float distanciaVertical = 10f;
 
+    [Header("Layer")]
+    public LayerMask layerInimigos;
     void Update()
     {
         if (Time.time >= tempoProximoSpawn && jogador != null)
@@ -42,16 +42,30 @@ public class SpawnerDinâmico : MonoBehaviour
             float y = jogador.position.y + (offsetY);
 
             Vector3 posicao = new Vector3(x, y, 0);
-            GameObject inimigo = Instantiate(prefabInimigo, posicao, Quaternion.identity);
-
-            InimigoLinha script = inimigo.GetComponent<InimigoLinha>();
-            if (script != null)
+            if (PodeSpawnar(posicao, 3f)) //raio mínimo entre inimigos
             {
-                script.linhaAtual = linha;
-                script.direcao = offsetY > 0 ?
-                    InimigoLinha.DirecaoMovimento.Descendo :
-                    InimigoLinha.DirecaoMovimento.Subindo;
+                GameObject inimigo = Instantiate(prefabInimigo, posicao, Quaternion.identity);
+
+                InimigoLinha script = inimigo.GetComponent<InimigoLinha>();
+                if (script != null)
+                {
+                    script.linhaAtual = linha;
+                    script.direcao = offsetY > 0 ?
+                        InimigoLinha.DirecaoMovimento.Descendo :
+                        InimigoLinha.DirecaoMovimento.Subindo;
+                }
             }
+            else
+            {
+                Debug.Log("Spawn cancelado: inimigo já próximo");
+            }
+
+            bool PodeSpawnar(Vector3 posicaoDesejada, float raio)
+            {
+                Collider2D[] colisores = Physics2D.OverlapCircleAll(posicaoDesejada, raio, layerInimigos);
+                return colisores.Length == 0;
+            }
+
         }
     }
 }

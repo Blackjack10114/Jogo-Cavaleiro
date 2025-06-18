@@ -46,8 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabInimigo: {fileID: 4393980046791100209, guid: aea8ffcaf7ef3784cb35fadf9c0cae20, type: 3}
   jogador: {fileID: 6884262827576373535, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
-  intervaloEntreSpawns: 2
-  distanciaVertical: 10
-  chanceSpawn: 0.9
+  intervaloEntreSpawns: 5
   minimoPorSpawn: 1
   maximoPorSpawn: 3
+  chanceSpawn: 0.9
+  distanciaVertical: 10
+  layerInimigos:
+    serializedVersion: 2
+    m_Bits: 128

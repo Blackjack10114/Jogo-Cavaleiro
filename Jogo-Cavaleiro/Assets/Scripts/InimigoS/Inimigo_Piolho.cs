@@ -42,6 +42,9 @@ public class InimigoLinha : MonoBehaviour
 
     private void Update()
     {
+  
+
+
         if (playertransform == null || vida == null || vida.Morreu) return;
         
 
