@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
-    public int vidaMaxima = 3;
+    public int vidaMaxima;
     private int vidaAtual;
 
-    public bool Morreu = true;
+    public bool Morreu;
 
     void Start()
     {

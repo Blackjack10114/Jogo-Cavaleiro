@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMaxima: 2
-  Morreu: 1
+  Morreu: 0
 --- !u!114 &2135825389510488990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linhaAtual: 0
-  alcanceAtaque: 1
+  alcanceAtaque: 8
   tempoEntreAtaques: 1.5
   dano: 1
   direcaoSpawn: 0

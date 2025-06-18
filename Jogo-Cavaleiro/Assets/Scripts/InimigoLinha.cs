@@ -3,7 +3,7 @@ using UnityEngine;
 public class InimigoLinha : MonoBehaviour
 {
     public LinhasController.Linha linhaAtual;
-    public float alcanceAtaque = 1f;
+    public float alcanceAtaque;
     public float tempoEntreAtaques = 1.5f;
     public int dano = 1;
 
@@ -37,25 +37,41 @@ public class InimigoLinha : MonoBehaviour
 
     private void Update()
     {
-        if (player == null || vida == null || vida.Morreu) return;
+        if (player == null || vida == null || vida.Morreu) 
+        {
+            Debug.Log("semata");
+        }
+        
 
         Vector2 distancia = player.position - transform.position;
 
         bool naMesmaLinhaVertical = Mathf.Abs(distancia.x) < 0.5f;
         bool aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) < alcanceAtaque;
 
-        if (Time.time >= tempoProximoAtaque)
+       /* if (Time.time >= tempoProximoAtaque)
         {
             if (naMesmaLinhaVertical || aoLadoNaMesmaAltura)
-            {
+            {               
                 tempoProximoAtaque = Time.time + tempoEntreAtaques;
 
                 Vida vidaJogador = player.GetComponent<Vida>();
                 if (vidaJogador != null)
                 {
                     vidaJogador.LevarDano(dano);
-                    Debug.Log("Jogador levou dano do inimigo!");
+                    Destroy(gameObject);
                 }
+            }
+        }
+       */
+        if (aoLadoNaMesmaAltura)
+        {
+            tempoProximoAtaque = Time.time + tempoEntreAtaques;
+
+            Vida vidaJogador = player.GetComponent<Vida>();
+            if (vidaJogador != null)
+            {
+                vidaJogador.LevarDano(dano);
+                Destroy(gameObject);
             }
         }
     }
