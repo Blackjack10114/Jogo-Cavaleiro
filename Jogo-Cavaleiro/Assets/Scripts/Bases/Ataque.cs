@@ -15,41 +15,41 @@ public class PlayerAtaque : MonoBehaviour
     private float tempoGizmosAtivado = 0f;
     private float duracaoGizmos = 0.15f;
 
-    private PlayerMov playerMov;
-
     public bool EstaAtacando { get; private set; } = false;
-    void Start()
-    {
-        playerMov = GetComponent<PlayerMov>();
-    }
-
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            EstaAtacando = true; // <- Ativando o ataque
-
-            Vector2 dir = Vector2.right;
-
-            if (playerMov.mirandoParaCima)
-                dir = Vector2.up;
-            else if (playerMov.direcaoInput.x > 0.5f)
-                dir = Vector2.right;
-            else if (playerMov.direcaoInput.x < -0.5f)
-                dir = Vector2.left;
-
-            ultimaDirecaoAtaque = dir;
-            tempoGizmosAtivado = Time.time + duracaoGizmos;
-            Atacar(dir);
-            Debug.Log($"Atacou na direção: {dir}, mirandoParaCima: {playerMov.mirandoParaCima}, direcaoInput: {playerMov.direcaoInput}");
-            // Desativa o ataque após 0.2s
-            Invoke(nameof(FinalizarAtaque), 0.2f);
-        }
-    }
 
     private void FinalizarAtaque()
     {
         EstaAtacando = false;
+    }
+
+    // Chamada via InputAction: AttackUp
+    public void OnAttackUp(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            AtacarComDirecao(Vector2.up);
+    }
+
+    // Chamada via InputAction: AttackRight
+    public void OnAttackRight(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            AtacarComDirecao(Vector2.right);
+    }
+
+    // Chamada via InputAction: AttackLeft
+    public void OnAttackLeft(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            AtacarComDirecao(Vector2.left);
+    }
+
+    private void AtacarComDirecao(Vector2 direcao)
+    {
+        EstaAtacando = true;
+        ultimaDirecaoAtaque = direcao;
+        tempoGizmosAtivado = Time.time + duracaoGizmos;
+        Atacar(direcao);
+        Invoke(nameof(FinalizarAtaque), 0.2f);
     }
 
     private void Atacar(Vector2 direcao)

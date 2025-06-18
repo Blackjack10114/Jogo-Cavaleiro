@@ -299,7 +299,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2392559156064816516}
         m_TargetAssemblyTypeName: PlayerAtaque, Assembly-CSharp
-        m_MethodName: OnAttack
+        m_MethodName: OnAttackLeft
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -311,6 +311,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 44f59c29-359b-4522-8dce-d00ebf345f5b
     m_ActionName: Gameplay/Attack
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d54dc369-6a28-4c1e-aa80-ebe3f5feb545
+    m_ActionName: 'Gameplay/RightAttack[/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8092584728298421878}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 39d82b06-f7ec-498a-b893-c4fd5bcfc7ed
+    m_ActionName: 'Gameplay/UpAttack[/Keyboard/w]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

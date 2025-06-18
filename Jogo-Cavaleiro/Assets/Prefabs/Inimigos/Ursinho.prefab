@@ -139,12 +139,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 630e212fd39dbcb47b571d6e5c71ad59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 2
-  distanciaRecuo: 2
-  tempoEntreMovimentos: 0.3
+  velocidadeBase: 2
+  velocidadeAcelerada: 8
+  distanciaParaAcelerar: 10
+  offsetPosicao: 2
+  toleranciaAlvo: 0.5
+  distanciaMinimaAproximacao: 5
   dano: 1
   tempoEntreAtaques: 1.5
   alcanceAtaque: 0.5
+  tempoRecuo: 0.15
+  velocidadeRecuo: 10
+  tempoParadoAposRecuo: 1
 --- !u!114 &8627957728916206139
 MonoBehaviour:
   m_ObjectHideFlags: 0
