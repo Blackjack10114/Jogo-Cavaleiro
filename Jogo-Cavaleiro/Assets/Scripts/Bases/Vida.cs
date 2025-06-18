@@ -17,6 +17,9 @@ public class Vida : MonoBehaviour
         vidaAtual -= dano;
         Debug.Log($"{gameObject.name} levou {dano} de dano. Vida restante: {vidaAtual}");
 
+        GetComponent<Inimigo_Ursinho>()?.LevarDanoRecuo();
+
+
         if (vidaAtual <= 0)
         {
             Morreu = true;

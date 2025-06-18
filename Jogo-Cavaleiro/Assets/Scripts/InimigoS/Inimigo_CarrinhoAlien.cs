@@ -43,8 +43,6 @@ public class CarrinhoAlien : MonoBehaviour
             {
                 vida.LevarDano(dano);
             }
-
-            Destroy(gameObject);
         }
     }
 }
