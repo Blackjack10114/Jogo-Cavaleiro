@@ -24,6 +24,12 @@ public class Vida : MonoBehaviour
         }
     }
 
+    public int VidaAtual()
+    {
+        return vidaAtual;
+    }
+
+
     protected void Morrer()
     {
         Debug.Log($"{gameObject.name} morreu!");

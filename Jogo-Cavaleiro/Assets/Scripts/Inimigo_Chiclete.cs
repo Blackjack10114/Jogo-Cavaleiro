@@ -13,7 +13,7 @@ public class Chiclete : MonoBehaviour
             if (vida != null)
             {
                 vida.LevarDano(dano);
-                Debug.Log("Colidiu Chiclete");
+                Debug.Log(collision.name + "Colidiu Chiclete");
             }
         }
 
