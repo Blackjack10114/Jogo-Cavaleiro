@@ -978,33 +978,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1673453175}
-  - component: {fileID: 1673453174}
+  - component: {fileID: 1673453176}
   m_Layer: 0
-  m_Name: Spawner_morcego
+  m_Name: Spawner_morcego_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1673453174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673453173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f1d64a3db2d5254b818be9762f04ff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabInimigo: {fileID: 6546455054798135848, guid: 9e01de32c2abdc44fa97dbf6f561a581, type: 3}
-  jogador: {fileID: 926971632}
-  intervaloEntreSpawns: 2
-  distanciaVertical: 10
-  chanceSpawn: 0.9
-  minimoPorSpawn: 1
-  maximoPorSpawn: 3
 --- !u!4 &1673453175
 Transform:
   m_ObjectHideFlags: 0
@@ -1014,7 +995,73 @@ Transform:
   m_GameObject: {fileID: 1673453173}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.9, y: 7.0329137, z: -0.28643838}
+  m_LocalPosition: {x: -25, y: 0, z: -0.28643838}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673453176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673453173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc427557c3226264bba8365f9fe8ed87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabMorcego: {fileID: 4376942943791702966, guid: 195d5a21effb7154894cd54634fc0ce5, type: 3}
+  jogador: {fileID: 926971632}
+  intervaloEntreSpawns: 1.5
+  distanciaVertical: 0
+  chanceSpawn: 0.5
+--- !u!1 &2008439352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2008439354}
+  - component: {fileID: 2008439353}
+  m_Layer: 0
+  m_Name: Spawner_morcego_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2008439353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008439352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc427557c3226264bba8365f9fe8ed87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabMorcego: {fileID: 4376942943791702966, guid: 195d5a21effb7154894cd54634fc0ce5, type: 3}
+  jogador: {fileID: 926971632}
+  intervaloEntreSpawns: 1.5
+  distanciaVertical: 0
+  chanceSpawn: 0.5
+--- !u!4 &2008439354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008439352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 25, y: 0, z: -0.28643838}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1102,4 +1149,5 @@ SceneRoots:
   - {fileID: 484332822}
   - {fileID: 112978013}
   - {fileID: 1673453175}
+  - {fileID: 2008439354}
   - {fileID: 1023920197}
