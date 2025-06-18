@@ -9,8 +9,13 @@ public class InimigoLinha : MonoBehaviour
     public float alcanceAtaque;
     public float tempoEntreAtaques = 1.5f;
     public int dano = 1;
-
     private float tempoProximoAtaque = 0f;
+    // coisas de laço
+    public float chancelaco = 0.3f;
+    public bool comlaco;
+    private bool lacoinsta;
+    private GameObject prefabLaco;
+
     private Transform playertransform;
     GameObject Player;
     private Vector3 PosicaoInimigo;
@@ -23,6 +28,7 @@ public class InimigoLinha : MonoBehaviour
     public DirecaoMovimento direcao;
     private void Start()
     {
+        prefabLaco = Resources.Load <GameObject>("Laco_Rosa");
         playertransform = GameObject.FindWithTag("Player")?.transform;
         Player = GameObject.FindWithTag("Player");
         // Usa LinhasController para posicionar na linha correta
@@ -38,43 +44,45 @@ public class InimigoLinha : MonoBehaviour
 
             vida = GetComponent<Vida>();
         }
+        // verificar se tem laço
+        if (Random.value < chancelaco)
+        {
+            comlaco = true;
+        }
     }
 
     private void Update()
     {
-  
-
-
         if (playertransform == null || vida == null || vida.Morreu) return;
-        
-
-        Vector2 distancia = playertransform.position - transform.position;
-
-        bool naMesmaLinhaVertical = Mathf.Abs(distancia.x) < 0.5f;
-        bool aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) <= alcanceAtaque;
-
-        /* if (Time.time >= tempoProximoAtaque)
-         {
-             if (naMesmaLinhaVertical || aoLadoNaMesmaAltura)
-             {               
-                 tempoProximoAtaque = Time.time + tempoEntreAtaques;
-
-                 Vida vidaJogador = player.GetComponent<Vida>();
-                 if (vidaJogador != null)
-                 {
-                     vidaJogador.LevarDano(dano);
-                     Destroy(gameObject);
-                 }
-             }
-         }
-        */
-        if (Time.time >= tempoProximoAtaque)
+        // instancia o laço
+        if (comlaco && !lacoinsta)
         {
-            if (aoLadoNaMesmaAltura)
+            GameObject laco = Instantiate(prefabLaco, transform.position, Quaternion.identity);
+            lacoinsta = true;
+            laco.transform.parent = this.transform;
+        }
+        if (!comlaco)
+        {
+            Vector2 distancia = playertransform.position - transform.position;
+
+            bool naMesmaLinhaVertical = Mathf.Abs(distancia.x) < 0.5f;
+            bool aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) <= alcanceAtaque;
+            if (Time.time >= tempoProximoAtaque)
             {
-                PosicaoInimigo = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
-                this.transform.position = PosicaoInimigo;
-                StartCoroutine(Atacar());     
+                if (aoLadoNaMesmaAltura)
+                {
+                    PosicaoInimigo = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
+                    this.transform.position = PosicaoInimigo;
+                    StartCoroutine(Atacar());
+                }
+            }
+        }
+        else
+        {
+            Vector2 distancia = playertransform.position - transform.position;
+            if (distancia.y > 20)
+            {
+                Destroy(gameObject);
             }
         }
     }

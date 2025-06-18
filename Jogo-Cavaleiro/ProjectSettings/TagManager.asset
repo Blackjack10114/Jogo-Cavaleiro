@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Inimigo
   - Carrinho
+  - Cavaleiro
   layers:
   - Default
   - TransparentFX
@@ -51,6 +52,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2214083797
+    locked: 0
+  - name: "La\xE7o"
+    uniqueID: 716689837
     locked: 0
   m_RenderingLayers:
   - Default

@@ -657,6 +657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner_Miragem
       objectReference: {fileID: 0}
+    - target: {fileID: 1098521663849462691, guid: 70d31f4c96718b943acd3e1a99845378, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8750189858272917226, guid: 70d31f4c96718b943acd3e1a99845378, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.007342
@@ -739,7 +743,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000d53cf8838b9d528a
+  m_ApplyToSortingLayers: 00000000d53cf8838b9d528aadd1b72a
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -896,7 +900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757526702337944367, guid: 10e78ef3d3c49f04a9621545f43ab580, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
