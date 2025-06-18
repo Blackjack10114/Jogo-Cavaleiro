@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabInimigo: {fileID: 6546455054798135848, guid: 9e01de32c2abdc44fa97dbf6f561a581, type: 3}
   jogador: {fileID: 6884262827576373535, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
-  intervaloEntreSpawns: 5
+  intervaloEntreSpawns: 2
   minimoPorSpawn: 1
   maximoPorSpawn: 3
   chanceSpawn: 0.9

@@ -327,11 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364c6805cf9c9f84686bed5b0b2de108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dano: 1
-  raioDeteccaoLateral: 0.6
-  layerJogador:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &484332818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +848,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3635264372371886152, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
+      propertyPath: vidaMaxima
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6884262827576373535, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.95
