@@ -37,9 +37,9 @@ public class SpawnerDinâmico : MonoBehaviour
             LinhasController.Linha linha = (LinhasController.Linha)Random.Range(0, 3);
             float x = LinhasController.Instance.PosicaoX(linha);
 
-            // decide cima ou baixo
-            float offsetY = Random.value < 0.5f ? distanciaVertical : -distanciaVertical;
-            float y = jogador.position.y + offsetY;
+            //Random.value < 0.5f ? distanciaVertical : -distanciaVertical;
+            float offsetY = distanciaVertical;
+            float y = jogador.position.y + (offsetY);
 
             Vector3 posicao = new Vector3(x, y, 0);
             GameObject inimigo = Instantiate(prefabInimigo, posicao, Quaternion.identity);
