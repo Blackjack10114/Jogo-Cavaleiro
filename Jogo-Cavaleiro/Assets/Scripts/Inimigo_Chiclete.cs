@@ -6,6 +6,7 @@ public class Chiclete : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Qualquer colisão: " + collision.name);
         if (collision.CompareTag("Player"))
         {
             Vida vida = collision.GetComponent<Vida>();
