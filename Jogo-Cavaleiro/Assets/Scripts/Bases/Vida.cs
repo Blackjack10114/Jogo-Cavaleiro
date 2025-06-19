@@ -3,7 +3,7 @@ using UnityEngine;
 public class Vida : MonoBehaviour
 {
     public int vidaMaxima;
-    private int vidaAtual;
+    [HideInInspector] public int vidaAtual;
 
     public bool Morreu;
 
