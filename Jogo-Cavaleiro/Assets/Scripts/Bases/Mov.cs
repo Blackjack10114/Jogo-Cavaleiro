@@ -105,3 +105,4 @@ public class PlayerMov : MonoBehaviour
         }
     }
 }
+ ti
