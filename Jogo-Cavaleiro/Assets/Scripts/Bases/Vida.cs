@@ -4,7 +4,7 @@ public class Vida : MonoBehaviour
 {
     [Header("Configuração vida")]
     public int vidaMaxima;
-    private int vidaAtual;
+    [HideInInspector] public int vidaAtual;
 
     public bool Morreu;
 
