@@ -9,6 +9,7 @@ TagManager:
   - Cavaleiro
   - Undefined
   - Ursinho
+  - Canvas
   layers:
   - Default
   - TransparentFX

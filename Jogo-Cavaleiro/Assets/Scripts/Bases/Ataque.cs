@@ -14,6 +14,7 @@ public class PlayerAtaque : MonoBehaviour
     private Vector2 ultimaDirecaoAtaque = Vector2.right;
     private float tempoGizmosAtivado = 0f;
     private float duracaoGizmos = 0.15f;
+    public int kills;
 
     public bool EstaAtacando { get; private set; } = false;
 
@@ -82,6 +83,7 @@ public class PlayerAtaque : MonoBehaviour
             foreach (Collider2D inimigo in inimigos)
             {
                 inimigo.GetComponent<Vida>()?.LevarDano(dano);
+                kills++;
             }
 
             Debug.Log("Atacou em direção: " + direcao);
