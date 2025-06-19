@@ -178,3 +178,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaMaxima: 3
   Morreu: 0
+  prefabVidaDropavel: {fileID: 4312072084463839718, guid: c2c44f889c01cbc4f8c8521d04b3a804, type: 3}
+  chanceDrop: 0.15
