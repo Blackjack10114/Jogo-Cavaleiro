@@ -11,6 +11,7 @@ public class SpawnerCarrinhoAlien : MonoBehaviour
     public LayerMask layerInimigos;
     public float distanciaVerificacao = 2f;
     public int maximoCarrinhos = 2;
+    public Vector3 offsetaviso;
 
     private float tempoProximoSpawn = 0f;
 
@@ -32,7 +33,8 @@ public class SpawnerCarrinhoAlien : MonoBehaviour
         // Escolhe linha aleatória
         LinhasController.Linha linha = (LinhasController.Linha)Random.Range(0, 3);
         float x = LinhasController.Instance.PosicaoX(linha);
-        float y = jogador.position.y + Random.Range(alturaSpawn * 0.8f, alturaSpawn * 1.3f);
+        float y = jogador.position.y + alturaSpawn;
+         //Random.Range(alturaSpawn * 0.8f, alturaSpawn * 1.3f);
 
         Vector3 posicao = new Vector3(x, y, 0f);
 
@@ -41,7 +43,7 @@ public class SpawnerCarrinhoAlien : MonoBehaviour
             // Primeiro o aviso (!)
             if (prefabAviso != null)
             {
-                GameObject aviso = Instantiate(prefabAviso, posicao, Quaternion.identity);
+                GameObject aviso = Instantiate(prefabAviso, posicao + offsetaviso, Quaternion.identity);
                 Destroy(aviso, 0.6f); // destrói o aviso após 0.6 segundos
             }
 
