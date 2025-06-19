@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6459241981255239989}
   - component: {fileID: 7236944812557561544}
   - component: {fileID: -4621701046314113713}
+  - component: {fileID: -1160166083630492170}
   m_Layer: 7
   m_Name: Miragem
   m_TagString: Untagged
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMaxima: 1
+  vidaAtual: 0
   Morreu: 0
   prefabVidaDropavel: {fileID: 4312072084463839718, guid: c2c44f889c01cbc4f8c8521d04b3a804, type: 3}
   chanceDrop: 0.15
@@ -165,3 +167,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dano: 1
+--- !u!114 &-1160166083630492170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603811524316239678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9181bed58d3cfcc4e95705494f026041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanciaMaxima: 60

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8065484609188599101}
   - component: {fileID: -5921831448956136364}
   - component: {fileID: -6658892532086778686}
+  - component: {fileID: -3367814344695517437}
   m_Layer: 7
   m_Name: Fantasma
   m_TagString: Untagged
@@ -168,6 +169,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMaxima: 1
+  vidaAtual: 0
   Morreu: 0
   prefabVidaDropavel: {fileID: 4312072084463839718, guid: c2c44f889c01cbc4f8c8521d04b3a804, type: 3}
   chanceDrop: 0.15
+--- !u!114 &-3367814344695517437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151310775676488729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9181bed58d3cfcc4e95705494f026041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanciaMaxima: 60

@@ -11,6 +11,10 @@ public class PlayerAtaque : MonoBehaviour
     public Transform pontoAtaqueDireita;
     public Transform pontoAtaqueEsquerda;
 
+    public float tempoEntreAtaques = 0.4f;
+    private float proximoAtaquePermitido = 0f;
+
+
     private Vector2 ultimaDirecaoAtaque = Vector2.right;
     private float tempoGizmosAtivado = 0f;
     private float duracaoGizmos = 0.15f;
@@ -55,13 +59,20 @@ public class PlayerAtaque : MonoBehaviour
     {
         if (PauseController.JogoPausado) return;
 
+        if (Time.time < proximoAtaquePermitido)
+            return; // está em cooldown
+
+        proximoAtaquePermitido = Time.time + tempoEntreAtaques;
 
         EstaAtacando = true;
         ultimaDirecaoAtaque = direcao;
         tempoGizmosAtivado = Time.time + duracaoGizmos;
+
         Atacar(direcao);
+
         Invoke(nameof(FinalizarAtaque), 0.2f);
     }
+
 
     private void Atacar(Vector2 direcao)
     {
