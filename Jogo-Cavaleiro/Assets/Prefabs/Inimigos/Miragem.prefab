@@ -104,6 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaMaxima: 1
   Morreu: 0
+  prefabVidaDropavel: {fileID: 4312072084463839718, guid: c2c44f889c01cbc4f8c8521d04b3a804, type: 3}
+  chanceDrop: 0.15
 --- !u!61 &7236944812557561544
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -162,3 +164,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e886d3cd6763f3b4e9ff64c26b6e30db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dano: 1
