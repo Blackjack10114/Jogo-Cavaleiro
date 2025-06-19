@@ -44,4 +44,10 @@ public class Vida : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Update()
+    {
+        if (PauseController.JogoPausado) return;
+
+    }
 }

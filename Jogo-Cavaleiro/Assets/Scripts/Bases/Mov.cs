@@ -28,6 +28,9 @@ public class PlayerMov : MonoBehaviour
 
     private void Update()
     {
+        if (PauseController.JogoPausado) return;
+
+
         transform.Translate(Vector3.up * velocidade * Time.deltaTime);
 
         if (playerAtaque != null && playerAtaque.EstaAtacando)

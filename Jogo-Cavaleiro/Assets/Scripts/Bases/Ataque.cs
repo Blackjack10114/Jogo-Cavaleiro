@@ -25,6 +25,8 @@ public class PlayerAtaque : MonoBehaviour
     // Chamada via InputAction: AttackUp
     public void OnAttackUp(InputAction.CallbackContext context)
     {
+        if (PauseController.JogoPausado) return;
+
         if (context.performed)
             AtacarComDirecao(Vector2.up);
     }
@@ -32,6 +34,8 @@ public class PlayerAtaque : MonoBehaviour
     // Chamada via InputAction: AttackRight
     public void OnAttackRight(InputAction.CallbackContext context)
     {
+        if (PauseController.JogoPausado) return;
+
         if (context.performed)
             AtacarComDirecao(Vector2.right);
     }
@@ -39,12 +43,18 @@ public class PlayerAtaque : MonoBehaviour
     // Chamada via InputAction: AttackLeft
     public void OnAttackLeft(InputAction.CallbackContext context)
     {
+        if (PauseController.JogoPausado) return;
+
+
         if (context.performed)
             AtacarComDirecao(Vector2.left);
     }
 
     private void AtacarComDirecao(Vector2 direcao)
     {
+        if (PauseController.JogoPausado) return;
+
+
         EstaAtacando = true;
         ultimaDirecaoAtaque = direcao;
         tempoGizmosAtivado = Time.time + duracaoGizmos;
@@ -54,6 +64,9 @@ public class PlayerAtaque : MonoBehaviour
 
     private void Atacar(Vector2 direcao)
     {
+        if (PauseController.JogoPausado) return;
+
+
         Transform pontoDeAtaque = null;
 
         if (direcao == Vector2.up)
