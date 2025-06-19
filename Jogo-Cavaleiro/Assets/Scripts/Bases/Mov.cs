@@ -9,10 +9,10 @@ public class PlayerMov : MonoBehaviour
     public Vector2 direcaoInput = Vector2.right;
 
     private Vector2 movimento;
-    public bool mirandoParaCima = false;
 
-    private float tempoUltimoToqueDireita = -2f;
-    private float tempoUltimoToqueEsquerda = -2f;
+    private bool inputReset = true;
+
+
     public float intervaloDuploToque = 2f;
 
     private PlayerAtaque playerAtaque;
@@ -32,40 +32,21 @@ public class PlayerMov : MonoBehaviour
 
         if (playerAtaque != null && playerAtaque.EstaAtacando)
         {
-            return; // está atacando, então não movimenta para os lados
+            return; 
         }
 
-        // Movimento lateral permitido mesmo mirando para cima
-        float agora = Time.time;
-
-        
-
-        if (movimento.x > 0.5f)
+       
+        if (movimento.x > 0.5f && (NoCentro || NaEsquerda))
         {
-            if (agora - tempoUltimoToqueDireita <= intervaloDuploToque && (NoCentro || NaEsquerda))
-            {
-                transform.position += distancia;
-                AtualizarPosicao(true);
-                tempoUltimoToqueDireita = -1f; // reseta
-            }
-            else
-            {
-                tempoUltimoToqueDireita = agora;
-            }
+            transform.position += distancia;
+            AtualizarPosicao(true);
         }
-        else if (movimento.x < -0.5f)
+        else if (movimento.x < -0.5f && (NoCentro || NaDireita))
         {
-            if (agora - tempoUltimoToqueEsquerda <= intervaloDuploToque && (NoCentro || NaDireita))
-            {
-                transform.position -= distancia;
-                AtualizarPosicao(false);
-                tempoUltimoToqueEsquerda = -1f; // reseta
-            }
-            else
-            {
-                tempoUltimoToqueEsquerda = agora;
-            }
+            transform.position -= distancia;
+            AtualizarPosicao(false);
         }
+
 
 
         movimento = Vector2.zero;
@@ -77,24 +58,32 @@ public class PlayerMov : MonoBehaviour
         {
             Vector2 input = context.ReadValue<Vector2>();
 
-            mirandoParaCima = input.y > 0.3f;
+            // Se estiver no centro, libera trocar de lado
+            if (Mathf.Abs(input.x) < 0.3f)
+            {
+                inputReset = true;
+            }
 
-            if (input.x > 0.5f)
+            // Só permite mudar de direção se soltou antes (inputReset = true)
+            if (inputReset)
             {
-                direcaoInput = Vector2.right;
-            }
-            else if (input.x < -0.5f)
-            {
-                direcaoInput = Vector2.left;
-            }
-            else if (mirandoParaCima)
-            {
-                direcaoInput = Vector2.up;
+                if (input.x > 0.5f)
+                {
+                    direcaoInput = Vector2.right;
+                    inputReset = false;
+                }
+                else if (input.x < -0.5f)
+                {
+                    direcaoInput = Vector2.left;
+                    inputReset = false;
+                }
             }
 
             movimento = input;
         }
     }
+
+
 
 
     private void AtualizarPosicao(bool direita)
