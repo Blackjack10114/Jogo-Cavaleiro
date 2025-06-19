@@ -196,6 +196,8 @@ MonoBehaviour:
   alcanceAtaque: 10
   tempoEntreAtaques: 1.5
   dano: 1
+  chancelaco: 0.2
+  comlaco: 0
   direcaoSpawn: 0
   direcao: 0
 --- !u!114 &2472750040779524644
