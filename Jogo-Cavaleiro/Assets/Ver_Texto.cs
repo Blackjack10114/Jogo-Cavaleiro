@@ -1,57 +1,67 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class TextoCondicional
+{
+    [TextArea]
+    public string frase;
+    public int killsNecessarios;
+    public bool jaMostrado = false;
+}
 public class Ver_Texto : MonoBehaviour
 {
     private TextMeshProUGUI texto;
     private PlayerAtaque contador_kills;
     private GameObject Player;
-    public float tempotexto;
-    [TextArea] public string primeira_frase, segunda_frase, terceira_frase;
-    private string texto_vazio;
-    private bool Trocoutexto, primeira, segunda, terceira;
-    private float time;
+
+    public float tempotexto = 3f;
+    private float tempoAtual = 0f;
+    private bool Trocoutexto = false;
+
+    [TextArea]
+    private string texto_vazio = "";
+    public List<TextoCondicional> frasesCondicionais = new List<TextoCondicional>();
+
     void Start()
     {
-        texto = this.gameObject.GetComponent<TextMeshProUGUI>();
+        texto = GetComponent<TextMeshProUGUI>();
         Player = GameObject.FindWithTag("Player");
         contador_kills = Player.GetComponent<PlayerAtaque>();
-        texto_vazio = "";
     }
+
     void Update()
     {
-        chamartextos();
+        VerificarFrases();
+
         if (Trocoutexto)
         {
-            time += Time.deltaTime;
-        }
-        if (time >= tempotexto)
-        {
-            texto.text = texto_vazio;
-            Trocoutexto = false;
-            time = 0;
-            contador_kills.kills = 0;
+            tempoAtual += Time.deltaTime;
+
+            if (tempoAtual >= tempotexto)
+            {
+                texto.text = texto_vazio;
+                Trocoutexto = false;
+                tempoAtual = 0f;
+                contador_kills.kills = 0;
+            }
         }
     }
-    private void chamartextos()
+
+    void VerificarFrases()
     {
-        if (texto != null && !Trocoutexto && !primeira && contador_kills.kills >= 2)
+        if (Trocoutexto) return;
+
+        foreach (var frase in frasesCondicionais)
         {
-            texto.text = primeira_frase;
-            Trocoutexto = true;
-            primeira = true;
-        }
-        if (texto != null && !Trocoutexto && primeira && !segunda && contador_kills.kills >= 4)
-        {
-            texto.text = segunda_frase;
-            Trocoutexto = true;
-            segunda = true;
-        }
-        if (texto != null && !Trocoutexto && primeira && segunda && !terceira && contador_kills.kills >= 3)
-        {
-            texto.text = terceira_frase;
-            Trocoutexto = true;
-            terceira = true;
+            if (!frase.jaMostrado && contador_kills.kills >= frase.killsNecessarios)
+            {
+                texto.text = frase.frase;
+                frase.jaMostrado = true;
+                Trocoutexto = true;
+                break;
+            }
         }
     }
 }
