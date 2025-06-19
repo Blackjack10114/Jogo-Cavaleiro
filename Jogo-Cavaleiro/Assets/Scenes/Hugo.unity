@@ -1345,6 +1345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaMaxima: 2
   Morreu: 1
+  prefabVidaDropavel: {fileID: 0}
+  chanceDrop: 0.15
 --- !u!50 &484332819
 Rigidbody2D:
   serializedVersion: 5
@@ -3374,7 +3376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703469213732099397, guid: d088f530339cfc5478ad95f87824f553, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2693993989339049897, guid: d088f530339cfc5478ad95f87824f553, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6685,7 +6687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1705316104285394253, guid: 2d6aea514ebc50e4bae22bcc3e83c206, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8512132070194041574, guid: 2d6aea514ebc50e4bae22bcc3e83c206, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7219,6 +7221,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2300743293820932995, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
+      propertyPath: painelFalha
+      value: 
+      objectReference: {fileID: 1785562716}
     - target: {fileID: 2392559156064816516, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
       propertyPath: alcanceAtaque
       value: 4
@@ -7872,7 +7878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757526702337944367, guid: 10e78ef3d3c49f04a9621545f43ab580, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 2392559156064816516}
   - component: {fileID: 2271881932719104823}
   - component: {fileID: 3635264372371886152}
+  - component: {fileID: -2300743293820932995}
   m_Layer: 8
   m_Name: Cavaleiro
   m_TagString: Player
@@ -252,7 +253,6 @@ MonoBehaviour:
   NoCentro: 0
   NaDireita: 0
   direcaoInput: {x: 1, y: 0}
-  mirandoParaCima: 0
   intervaloDuploToque: 2
 --- !u!114 &8301462239779767001
 MonoBehaviour:
@@ -331,6 +331,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 39d82b06-f7ec-498a-b893-c4fd5bcfc7ed
     m_ActionName: 'Gameplay/UpAttack[/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 182903d5-2ae9-46cb-8c59-53ada3a46166
+    m_ActionName: 'Gameplay/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -356,6 +360,7 @@ MonoBehaviour:
   pontoAtaqueCima: {fileID: 6498836572029682736}
   pontoAtaqueDireita: {fileID: 4838463712565962060}
   pontoAtaqueEsquerda: {fileID: 8090965752437612539}
+  kills: 0
 --- !u!50 &2271881932719104823
 Rigidbody2D:
   serializedVersion: 5
@@ -397,3 +402,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaMaxima: 3
   Morreu: 0
+  prefabVidaDropavel: {fileID: 0}
+  chanceDrop: 0.15
+--- !u!114 &-2300743293820932995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8092584728298421878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f845418d9e356d4eb036f8acff20144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  painelFalha: {fileID: 0}

@@ -12,6 +12,8 @@ public class Vida : MonoBehaviour
     public GameObject prefabVidaDropavel;
     [Range(0f, 1f)] public float chanceDrop = 0.15f; // 15%
 
+    public System.Action OnMorrer;
+
     void Start()
     {
         vidaAtual = vidaMaxima;
@@ -19,11 +21,13 @@ public class Vida : MonoBehaviour
 
     public void LevarDano(int dano)
     {
+        if (Morreu) return;
+
         vidaAtual -= dano;
         Debug.Log($"{gameObject.name} levou {dano} de dano. Vida restante: {vidaAtual}");
 
+        // Reação especial de inimigos
         GetComponent<Inimigo_Ursinho>()?.LevarDanoRecuo();
-
 
         if (vidaAtual <= 0)
         {
@@ -37,13 +41,14 @@ public class Vida : MonoBehaviour
         return vidaAtual;
     }
 
-
     protected void Morrer()
     {
         Debug.Log($"{gameObject.name} morreu!");
 
-        // Verifica chance de drop
-        if (prefabVidaDropavel != null && Random.value < chanceDrop)
+        OnMorrer?.Invoke(); // Notifica scripts conectados
+
+        // Drop de cura (somente para inimigos)
+        if (!CompareTag("Player") && prefabVidaDropavel != null && Random.value < chanceDrop)
         {
             GameObject player = GameObject.FindWithTag("Player");
             if (player != null)
@@ -56,7 +61,8 @@ public class Vida : MonoBehaviour
             }
         }
 
-        if (Morreu)
+        // Somente inimigos são destruídos automaticamente
+        if (!CompareTag("Player"))
         {
             Destroy(gameObject);
         }
@@ -73,6 +79,5 @@ public class Vida : MonoBehaviour
     private void Update()
     {
         if (PauseController.JogoPausado) return;
-
     }
 }
