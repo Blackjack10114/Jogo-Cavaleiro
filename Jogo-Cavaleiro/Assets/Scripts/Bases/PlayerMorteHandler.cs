@@ -1,0 +1,20 @@
+using UnityEngine;
+
+public class PlayerMorteHandler : MonoBehaviour
+{
+    public GameObject painelFalha;
+    private Vida vida;
+
+    void Start()
+    {
+        vida = GetComponent<Vida>();
+        if (vida != null)
+            vida.OnMorrer += MostrarPainel;
+    }
+
+    private void MostrarPainel()
+    {
+        Time.timeScale = 0f;
+        painelFalha.SetActive(true);
+    }
+}
