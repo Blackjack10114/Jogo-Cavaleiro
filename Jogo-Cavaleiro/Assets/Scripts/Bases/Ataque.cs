@@ -20,7 +20,14 @@ public class PlayerAtaque : MonoBehaviour
     private float duracaoGizmos = 0.15f;
     public int kills;
 
+    private Animator anim;
+
     public bool EstaAtacando { get; private set; } = false;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     private void FinalizarAtaque()
     {
@@ -69,6 +76,16 @@ public class PlayerAtaque : MonoBehaviour
         tempoGizmosAtivado = Time.time + duracaoGizmos;
 
         Atacar(direcao);
+
+        // Dispara a animação certa conforme direção
+        if (anim != null)
+        {
+            if (direcao == Vector2.right)
+                anim.SetTrigger("AtacarDireita");
+            else if (direcao == Vector2.left)
+                anim.SetTrigger("AtacarEsquerda");
+        }
+
 
         Invoke(nameof(FinalizarAtaque), 0.2f);
     }
