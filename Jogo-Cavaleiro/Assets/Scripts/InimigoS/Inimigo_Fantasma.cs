@@ -9,10 +9,13 @@ public class Inimigo_Fantasma : MonoBehaviour
     public float tempoEntreAtaques = 1.5f;
     public int dano = 1;
     public int distanciadisaparece;
+    public float duracaoDoFade = 1.0f;
+    private Color corOriginal;
 
     private float tempoProximoAtaque = 0f;
     private Transform playertransform;
     GameObject Player;
+    private SpriteRenderer sr;
     private Vector3 PosicaoFantasma;
     private Vida vida;
     public float tempoparaatacar;
@@ -36,7 +39,6 @@ public class Inimigo_Fantasma : MonoBehaviour
 
         Vector2 distancia = playertransform.position - transform.position;
         bool aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) <= alcanceAtaque;
-        Debug.Log(-distancia.y);
         /* if (Time.time >= tempoProximoAtaque)
          {
              if (naMesmaLinhaVertical || aoLadoNaMesmaAltura)
@@ -54,16 +56,22 @@ public class Inimigo_Fantasma : MonoBehaviour
         */
         if (-distancia.y <  distanciadisaparece && !aoLadoNaMesmaAltura)
         {
-            GetComponent<SpriteRenderer>().enabled = false;
+            StartCoroutine(FadeOut());
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
         if (Time.time >= tempoProximoAtaque)
         {
             if (aoLadoNaMesmaAltura)
             {
-                GetComponent<SpriteRenderer>().enabled = true;
-                PosicaoFantasma = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
-                this.transform.position = PosicaoFantasma;
-                StartCoroutine(Atacar());
+                sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, 255f);
+                bool podeatacar = true;
+                if (podeatacar)
+                {
+                    gameObject.layer = LayerMask.NameToLayer("Inimigo");
+                    PosicaoFantasma = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
+                    this.transform.position = PosicaoFantasma;
+                    StartCoroutine(Atacar());
+                }
             }
         }
     }
@@ -90,5 +98,23 @@ public class Inimigo_Fantasma : MonoBehaviour
             vidaJogador.LevarDano(dano);
             Destroy(gameObject);
         }
+    }
+    IEnumerator FadeOut()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        corOriginal = sr.color;
+
+        float tempo = 0f;
+
+        while (tempo < duracaoDoFade)
+        {
+            float alpha = Mathf.Lerp(1f, 0f, tempo / duracaoDoFade);
+            sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, alpha);
+
+            tempo += Time.deltaTime;
+            yield return null;
+        }
+
+        sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, 0f);
     }
 }

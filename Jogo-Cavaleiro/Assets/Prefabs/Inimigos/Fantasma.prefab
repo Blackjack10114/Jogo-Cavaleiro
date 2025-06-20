@@ -154,7 +154,8 @@ MonoBehaviour:
   tempoEntreAtaques: 1.5
   dano: 1
   distanciadisaparece: 11
-  tempoparaatacar: 1.5
+  duracaoDoFade: 1
+  tempoparaatacar: 2
   direcaoSpawn: 0
 --- !u!114 &-6658892532086778686
 MonoBehaviour:
