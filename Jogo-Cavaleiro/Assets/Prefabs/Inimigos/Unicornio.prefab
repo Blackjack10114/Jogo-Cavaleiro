@@ -107,6 +107,9 @@ MonoBehaviour:
   velocidadeHorizontal: 5
   intervaloTrocaLinha: 1.5
   linhaAtual: 0
+  chancelaco: 0.5
+  comlaco: 0
+  AutoDestruircomlaco: 0
 --- !u!61 &-716324228522107278
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +140,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -165,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9181bed58d3cfcc4e95705494f026041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanciaMaxima: 60
+  distanciaMaxima: 20
 --- !u!114 &4300688413852098320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMaxima: 1
+  vidaAtual: 0
   Morreu: 0
   prefabVidaDropavel: {fileID: 4312072084463839718, guid: c2c44f889c01cbc4f8c8521d04b3a804, type: 3}
   chanceDrop: 0.15
