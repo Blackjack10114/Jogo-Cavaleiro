@@ -139,6 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 630e212fd39dbcb47b571d6e5c71ad59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chancelaco: 1
+  comlaco: 0
+  AutoDestruircomlaco: 0.5
   velocidadeBase: 2
   velocidadeAcelerada: 8
   distanciaParaAcelerar: 10
@@ -177,6 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMaxima: 3
+  vidaAtual: 0
   Morreu: 0
   prefabVidaDropavel: {fileID: 4312072084463839718, guid: c2c44f889c01cbc4f8c8521d04b3a804, type: 3}
   chanceDrop: 0.15
