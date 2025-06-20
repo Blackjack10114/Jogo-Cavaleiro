@@ -883,6 +883,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212200012}
   m_CullTransparentMesh: 1
+--- !u!1 &213023507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8092584728298421878, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
+  m_PrefabInstance: {fileID: 2060953120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &215550189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3385,6 +3390,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918260790}
   m_CullTransparentMesh: 1
+--- !u!1 &926968446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926968447}
+  m_Layer: 0
+  m_Name: Cavaleiro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &926968447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926968446}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.46216, y: -74.954384, z: -0.9534989}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1003543089
 GameObject:
   m_ObjectHideFlags: 0
@@ -8054,6 +8090,18 @@ PrefabInstance:
       propertyPath: vidaMaxima
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4557983026998932793, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3831111048161214815, guid: 115ea7aafbe03e14ba3642b6359dd9c0, type: 3}
+    - target: {fileID: 4557983026998932793, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557983026998932793, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4838463712565962060, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -8213,14 +8261,17 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8092584728298421878, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2060953131}
   m_SourcePrefab: {fileID: 100100000, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
 --- !u!114 &2060953121 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3635264372371886152, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
   m_PrefabInstance: {fileID: 2060953120}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 213023507}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7529d03685f8bc14388fea1fa16a37c2, type: 3}
@@ -8236,12 +8287,34 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2392559156064816516, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
   m_PrefabInstance: {fileID: 2060953120}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 213023507}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20dff5f3050a67b438520daabb226d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2060953131
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213023507}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca56ade9962e12d4888bef177b5707ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2069980466
 GameObject:
   m_ObjectHideFlags: 0
@@ -9157,3 +9230,4 @@ SceneRoots:
   - {fileID: 907626060}
   - {fileID: 544901658}
   - {fileID: 1422920292}
+  - {fileID: 926968447}
