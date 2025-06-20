@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 2472750040779524644}
   - component: {fileID: 6162206269302789963}
   m_Layer: 7
-  m_Name: InimigoLinha
-  m_TagString: Untagged
+  m_Name: Piolho
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMaxima: 1
+  vidaAtual: 0
   Morreu: 0
   prefabVidaDropavel: {fileID: 4312072084463839718, guid: c2c44f889c01cbc4f8c8521d04b3a804, type: 3}
   chanceDrop: 0.15

@@ -51,4 +51,4 @@ MonoBehaviour:
   distanciaVertical: 20
   layerInimigos:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128

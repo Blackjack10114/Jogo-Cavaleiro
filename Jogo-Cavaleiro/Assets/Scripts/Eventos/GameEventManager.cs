@@ -23,6 +23,7 @@ public class GameEventManager : MonoBehaviour
     private void Start()
     {
         checkpointManager = Object.FindFirstObjectByType<CheckpointManager>();
+        MudarParaFase(faseAtual);
     }
     public void MudarParaFase(FaseJogo novaFase)
     {

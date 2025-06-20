@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1160166083630492170}
   m_Layer: 7
   m_Name: Miragem
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,6 +167,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dano: 1
+  chancelaco: 0.3
+  comlaco: 0
+  AutoDestruircomlaco: 0
 --- !u!114 &-1160166083630492170
 MonoBehaviour:
   m_ObjectHideFlags: 0
