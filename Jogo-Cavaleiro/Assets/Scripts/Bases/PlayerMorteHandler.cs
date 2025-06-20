@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMorteHandler : MonoBehaviour
 {
     public GameObject painelFalha;
+    public GameObject painelTexto;
     private Vida vida;
 
     void Start()
@@ -15,6 +16,7 @@ public class PlayerMorteHandler : MonoBehaviour
     private void MostrarPainel()
     {
         Time.timeScale = 0f;
+        painelTexto.SetActive(false);
         painelFalha.SetActive(true);
     }
 }

@@ -4,6 +4,7 @@ public class GameEventManager : MonoBehaviour
 {
     public enum FaseJogo { Introducao, Meio, Sombria, Final, Boss }
     public FaseJogo faseAtual;
+    public GameObject panelTexto;
 
     [Header("Spawners")]
     public SpawnerPiolho spawnerPiolho;

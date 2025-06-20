@@ -6,6 +6,7 @@ public class PauseController : MonoBehaviour
 {
     public GameObject painelPause;
     public GameObject painelConfirmacao;
+    public GameObject painelTexto;
 
     private bool pausado = false;
     private System.Action acaoConfirmada;
@@ -28,16 +29,16 @@ public class PauseController : MonoBehaviour
         pausado = true;
         
         painelPause.SetActive(true);
-        painelConfirmacao.SetActive(false);
+        painelTexto.SetActive(false);
     }
 
     public void FecharPause()
     {
         Time.timeScale = 1f;
         pausado = false;
-        
         painelPause.SetActive(false);
-        painelConfirmacao.SetActive(false);
+        painelTexto.SetActive(true);
+
     }
 
     public void BotaoContinuar() => FecharPause();

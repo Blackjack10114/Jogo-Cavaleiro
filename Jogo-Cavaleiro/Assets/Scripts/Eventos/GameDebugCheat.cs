@@ -25,6 +25,8 @@ public class GameDebugCheat : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.F4))
                 gerenciador.MudarParaFase(GameEventManager.FaseJogo.Final);
+            if (Input.GetKeyDown(KeyCode.F5))
+                gerenciador.MudarParaFase(GameEventManager.FaseJogo.Boss);
             if (Input.GetKeyDown(KeyCode.Delete))
             {
                 PlayerPrefs.DeleteAll();
