@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6938120198474062927}
   - component: {fileID: 464805012645607878}
-  m_Layer: 0
+  - component: {fileID: -945267650430785852}
+  m_Layer: 8
   m_Name: Laco_Rosa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,3 +88,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-945267650430785852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8115254501923583660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1d5a33207df054e8e2500a84c1427d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

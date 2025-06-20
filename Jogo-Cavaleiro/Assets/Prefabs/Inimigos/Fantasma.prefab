@@ -156,6 +156,9 @@ MonoBehaviour:
   distanciadisaparece: 11
   duracaoDoFade: 1
   tempoparaatacar: 2
+  chancelaco: 1
+  comlaco: 0
+  AutoDestruircomlaco: 2
   direcaoSpawn: 0
 --- !u!114 &-6658892532086778686
 MonoBehaviour:

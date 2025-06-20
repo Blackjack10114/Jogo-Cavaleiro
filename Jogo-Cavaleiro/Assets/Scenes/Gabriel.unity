@@ -1248,6 +1248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner_Cavaleiro
       objectReference: {fileID: 0}
+    - target: {fileID: 5765350098375307119, guid: de0cc7d6097b24f439f5652cae84c982, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6705637060317662171, guid: de0cc7d6097b24f439f5652cae84c982, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.960163
@@ -1929,7 +1933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 449795397711996382, guid: d93233d9ac6d15d43bda7142fe5c3408, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 717026578735140205, guid: d93233d9ac6d15d43bda7142fe5c3408, type: 3}
       propertyPath: m_LocalPosition.x
