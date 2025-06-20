@@ -14,15 +14,34 @@ public class Inimigo_Cavaleiro : MonoBehaviour
 
     private bool acompanhando = false;
     private Vector3 distanciaLinha = new Vector3(8f, 0f, 0f); // usado na troca de linha (opcional)
+    // coisas do laço
+    public float chancelaco = 0.3f;
+    public bool comlaco;
+    private bool lacoinsta;
+    private GameObject prefabLaco;
+    public float AutoDestruircomlaco;
 
     void Start()
     {
         jogador = GameObject.FindWithTag("Player")?.transform;
         playerMov = jogador?.GetComponent<PlayerMov>();
+        // verificar se tem laço
+        if (Random.value < chancelaco)
+        {
+            comlaco = true;
+        }
+        prefabLaco = Resources.Load<GameObject>("Laco_Rosa");
     }
 
     void Update()
     {
+        // instancia o laço
+        if (comlaco && !lacoinsta)
+        {
+            GameObject laco = Instantiate(prefabLaco, transform.position, Quaternion.identity);
+            lacoinsta = true;
+            laco.transform.parent = this.transform;
+        }
         if (jogador == null) return;
 
         float distanciaVertical = jogador.position.y - transform.position.y;
@@ -43,7 +62,14 @@ public class Inimigo_Cavaleiro : MonoBehaviour
         {
             // Sobe junto com o jogador
             transform.Translate(Vector3.up * velocidadeAcompanhamento * Time.deltaTime);
-            StartCoroutine(Atacar());
+            if (!comlaco)
+            {
+                StartCoroutine(Atacar());
+            }
+            else
+            {
+                StartCoroutine(AutoDestruir());
+            }
         }
         else
         {
@@ -51,7 +77,7 @@ public class Inimigo_Cavaleiro : MonoBehaviour
             transform.Translate(Vector3.up * velocidadeInicial * Time.deltaTime);
         }
 
-        
+
         //Troca de linha se estiver na mesma linha
         if (Mathf.Abs(jogador.position.x - transform.position.x) < distanciaTrocaLinha)
         {
@@ -73,6 +99,7 @@ public class Inimigo_Cavaleiro : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (comlaco) return;
         if (other.CompareTag("Player"))
         {
             Vida vida = other.GetComponent<Vida>();
@@ -92,5 +119,10 @@ public class Inimigo_Cavaleiro : MonoBehaviour
             vidaJogador.LevarDano(dano);
             Destroy(gameObject);
         }
+    }
+    private IEnumerator AutoDestruir()
+    {
+        yield return new WaitForSeconds(AutoDestruircomlaco);
+        Destroy(gameObject);
     }
 }
