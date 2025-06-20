@@ -1,7 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class Inimigo_Ursinho : MonoBehaviour
 {
+    // coisas do laço
+    public float chancelaco = 0.3f;
+    public bool comlaco;
+    private bool lacoinsta;
+    private GameObject prefabLaco;
+    public float AutoDestruircomlaco;
     [Header("Movimento")]
     public float velocidadeBase = 2f;
     public float velocidadeAcelerada = 4f;
@@ -34,11 +41,23 @@ public class Inimigo_Ursinho : MonoBehaviour
     {
         jogador = GameObject.FindWithTag("Player")?.transform;
         sr = GetComponent<SpriteRenderer>();
+        if (Random.value < chancelaco)
+        {
+            comlaco = true;
+        }
+        prefabLaco = Resources.Load<GameObject>("Laco_Rosa");
     }
 
     void Update()
     {
         if (jogador == null || !podeMover) return;
+        // instancia o laço
+        if (comlaco && !lacoinsta)
+        {
+            GameObject laco = Instantiate(prefabLaco, transform.position, Quaternion.identity);
+            lacoinsta = true;
+            laco.transform.parent = this.transform;
+        }
 
         // Verifica se está muito abaixo e não está pulando nem recuando
         if (!pulando && !recuando && transform.position.y < jogador.position.y - 1.5f)
@@ -60,7 +79,7 @@ public class Inimigo_Ursinho : MonoBehaviour
         }
 
         // Ataque
-        if (distanciaDoJogador < alcanceAtaque && Time.time >= proximoAtaque)
+        if (distanciaDoJogador < alcanceAtaque && Time.time >= proximoAtaque && !comlaco)
         {
             Vida vida = jogador.GetComponent<Vida>();
             if (vida != null)
@@ -68,6 +87,10 @@ public class Inimigo_Ursinho : MonoBehaviour
                 vida.LevarDano(dano);
                 proximoAtaque = Time.time + tempoEntreAtaques;
             }
+        }
+        if (distanciaDoJogador < alcanceAtaque && Time.time >= proximoAtaque && comlaco)
+        {
+            StartCoroutine(AutoDestruir());
         }
     }
 
@@ -133,5 +156,9 @@ public class Inimigo_Ursinho : MonoBehaviour
         podeMover = true;
         pulando = false;
     }
-
+    private IEnumerator AutoDestruir()
+    {
+        yield return new WaitForSeconds(AutoDestruircomlaco);
+        Destroy(gameObject);
+    }
 }

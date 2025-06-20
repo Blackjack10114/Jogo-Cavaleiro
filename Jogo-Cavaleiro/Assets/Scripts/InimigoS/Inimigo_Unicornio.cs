@@ -10,6 +10,13 @@ public class Unicornio : MonoBehaviour
     public LinhasController.Linha linhaAtual;
     private float targetX;
 
+    // coisas do laço
+    public float chancelaco = 0.3f;
+    public bool comlaco;
+    private bool lacoinsta;
+    private GameObject prefabLaco;
+    public float AutoDestruircomlaco;
+
 
     private int trocaDirecao = 1;
 
@@ -17,10 +24,22 @@ public class Unicornio : MonoBehaviour
     {
         targetX = LinhasController.Instance.PosicaoX(linhaAtual);
         transform.position = new Vector3(targetX, transform.position.y, 0f);
+        if (Random.value < chancelaco)
+        {
+            comlaco = true;
+        }
+        prefabLaco = Resources.Load<GameObject>("Laco_Rosa");
     }
 
     void Update()
     {
+        // instancia o laço
+        if (comlaco && !lacoinsta)
+        {
+            GameObject laco = Instantiate(prefabLaco, transform.position, Quaternion.identity);
+            lacoinsta = true;
+            laco.transform.parent = this.transform;
+        }
         // Movimento vertical constante
         transform.Translate(Vector3.up * velocidadeVertical * Time.deltaTime);
 
@@ -57,14 +76,15 @@ public class Unicornio : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !comlaco)
         {
             Vida vida = other.GetComponent<Vida>();
             if (vida != null)
             {
                 vida.LevarDano(1);
-                Debug.Log("Jogador levou dano do unicórnio!");
+                Destroy(gameObject);
             }
         }
+        if (other.CompareTag("Player") && comlaco) return;
     }
 }
