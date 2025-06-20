@@ -11,6 +11,7 @@ public class Inimigo_Fantasma : MonoBehaviour
     public int distanciadisaparece;
     public float duracaoDoFade = 1.0f;
     private Color corOriginal;
+    [HideInInspector] public bool podeatacar;
 
     private float tempoProximoAtaque = 0f;
     private Transform playertransform;
@@ -19,23 +20,44 @@ public class Inimigo_Fantasma : MonoBehaviour
     private Vector3 PosicaoFantasma;
     private Vida vida;
     public float tempoparaatacar;
+    // coisas do laço
+    public float chancelaco = 0.3f;
+    public bool comlaco;
+    private bool lacoinsta;
+    private GameObject prefabLaco;
+    public float AutoDestruircomlaco;
+    [HideInInspector] public bool Comecarfade;
+    private bool estaFadeando = false;
 
     public enum DirecaoSpawn { Cima, Baixo }
     public DirecaoSpawn direcaoSpawn = DirecaoSpawn.Cima;
     private void Start()
     {
+        prefabLaco = Resources.Load<GameObject>("Laco_Rosa");
         playertransform = GameObject.FindWithTag("Player")?.transform;
         Player = GameObject.FindWithTag("Player");
         // Usa LinhasController para posicionar na linha correta
         float x = LinhasController.Instance.PosicaoX(linhaAtual);
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
         vida = GetComponent<Vida>();
+        // verificar se tem laço
+        if (Random.value < chancelaco)
+        {
+            comlaco = true;
+        }
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
         if (playertransform == null || vida == null || vida.Morreu) return;
-
+        // instancia o laço
+        if (comlaco && !lacoinsta)
+        {
+            GameObject laco = Instantiate(prefabLaco, transform.position, Quaternion.identity);
+            lacoinsta = true;
+            laco.transform.parent = this.transform;
+        }
 
         Vector2 distancia = playertransform.position - transform.position;
         bool aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) <= alcanceAtaque;
@@ -54,30 +76,57 @@ public class Inimigo_Fantasma : MonoBehaviour
              }
          }
         */
-        if (-distancia.y <  distanciadisaparece && !aoLadoNaMesmaAltura)
+        if (-distancia.y <  distanciadisaparece && !aoLadoNaMesmaAltura && !estaFadeando)
         {
             StartCoroutine(FadeOut());
             gameObject.layer = LayerMask.NameToLayer("Default");
         }
-        if (Time.time >= tempoProximoAtaque)
+        if (!comlaco)
+        {
+           if (aoLadoNaMesmaAltura)
+           {
+                if (estaFadeando)
+                {
+                    StopAllCoroutines();
+                    estaFadeando = false;
+                    Comecarfade = false;
+                }
+                sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, 1f);
+             podeatacar = true;
+              if (podeatacar)
+              {
+                 gameObject.layer = LayerMask.NameToLayer("Inimigo");
+                 PosicaoFantasma = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
+                 this.transform.position = PosicaoFantasma;
+                 StartCoroutine(Atacar());
+              }
+           }
+        }
+        else
         {
             if (aoLadoNaMesmaAltura)
             {
-                sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, 255f);
-                bool podeatacar = true;
+                if (estaFadeando)
+                {
+                    StopAllCoroutines();
+                    estaFadeando = false;
+                    Comecarfade = false;
+                }
+                sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, 1f);
+                podeatacar = true;
                 if (podeatacar)
                 {
                     gameObject.layer = LayerMask.NameToLayer("Inimigo");
                     PosicaoFantasma = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
                     this.transform.position = PosicaoFantasma;
-                    StartCoroutine(Atacar());
+                    StartCoroutine(AutoDestruir());
                 }
             }
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !comlaco)
         {
             Vida vidaJogador = collision.GetComponent<Vida>();
             if (vidaJogador != null)
@@ -86,6 +135,7 @@ public class Inimigo_Fantasma : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else return;
     }
     private IEnumerator Atacar()
     {
@@ -101,6 +151,8 @@ public class Inimigo_Fantasma : MonoBehaviour
     }
     IEnumerator FadeOut()
     {
+        Comecarfade = true;
+        estaFadeando = true;
         sr = GetComponent<SpriteRenderer>();
         corOriginal = sr.color;
 
@@ -116,5 +168,10 @@ public class Inimigo_Fantasma : MonoBehaviour
         }
 
         sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, 0f);
+    }
+    private IEnumerator AutoDestruir()
+    {
+        yield return new WaitForSeconds(AutoDestruircomlaco);
+        Destroy(gameObject);
     }
 }
