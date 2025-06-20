@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5230569629768845866}
-  - component: {fileID: 2308604572083217383}
+  - component: {fileID: -3845589145259691902}
   m_Layer: 0
   m_Name: Spawner_Chiclete
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2308604572083217383
+--- !u!114 &-3845589145259691902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,11 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8721603705386293486}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f1d64a3db2d5254b818be9762f04ff5, type: 3}
+  m_Script: {fileID: 11500000, guid: e02fe87a64402e348b2fdbcf1594758f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefabInimigo: {fileID: 4393980046791100209, guid: aea8ffcaf7ef3784cb35fadf9c0cae20, type: 3}
-  jogador: {fileID: 6884262827576373535, guid: 8369b2969b88a604d88caf7237f88c1b, type: 3}
+  jogador: {fileID: 0}
   intervaloEntreSpawns: 5
   minimoPorSpawn: 1
   maximoPorSpawn: 2

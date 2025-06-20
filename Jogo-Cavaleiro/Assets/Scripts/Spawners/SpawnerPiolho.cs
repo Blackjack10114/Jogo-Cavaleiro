@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnerDinâmico : MonoBehaviour
+public class SpawnerPiolho : MonoBehaviour
 {
     [Header("Configuração do Spawner")]
     public GameObject prefabInimigo;
