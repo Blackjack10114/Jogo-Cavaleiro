@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Inimigo_Cavaleiro : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class Inimigo_Cavaleiro : MonoBehaviour
         {
             // Sobe junto com o jogador
             transform.Translate(Vector3.up * velocidadeAcompanhamento * Time.deltaTime);
+            StartCoroutine(Atacar());
         }
         else
         {
@@ -79,6 +81,16 @@ public class Inimigo_Cavaleiro : MonoBehaviour
                 vida.LevarDano(dano);
                 Destroy(gameObject);
             }
+        }
+    }
+    private IEnumerator Atacar()
+    {
+        yield return new WaitForSeconds(1f);
+        Vida vidaJogador = jogador.GetComponent<Vida>();
+        if (vidaJogador != null)
+        {
+            vidaJogador.LevarDano(dano);
+            Destroy(gameObject);
         }
     }
 }
