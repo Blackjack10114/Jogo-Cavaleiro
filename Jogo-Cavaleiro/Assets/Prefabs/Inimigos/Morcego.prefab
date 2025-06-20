@@ -105,9 +105,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidade: 5
   alcanceAtaque: 8
+  AutoDestruircomlaco: 2
   tempoEntreAtaques: 1.5
   dano: 1
   seguindo: 1
+  chancelaco: 0.6
+  comlaco: 0
 --- !u!114 &-415804555963657845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMaxima: 1
+  vidaAtual: 0
   Morreu: 0
   prefabVidaDropavel: {fileID: 4312072084463839718, guid: c2c44f889c01cbc4f8c8521d04b3a804, type: 3}
   chanceDrop: 0.15
