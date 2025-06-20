@@ -44,13 +44,13 @@ public class SpawnerFantasma : MonoBehaviour
             {
                 GameObject inimigo = Instantiate(prefabfantasma, posicao, Quaternion.identity);
 
-                InimigoLinha script = inimigo.GetComponent<InimigoLinha>();
+                Inimigo_Piolho script = inimigo.GetComponent<Inimigo_Piolho>();
                 if (script != null)
                 {
                     script.linhaAtual = linha;
                     script.direcao = offsetY > 0 ?
-                        InimigoLinha.DirecaoMovimento.Descendo :
-                        InimigoLinha.DirecaoMovimento.Subindo;
+                        Inimigo_Piolho.DirecaoMovimento.Descendo :
+                        Inimigo_Piolho.DirecaoMovimento.Subindo;
                 }
             }
             else

@@ -3,7 +3,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using System.Runtime.CompilerServices;
 
-public class InimigoLinha : MonoBehaviour
+public class Inimigo_Piolho : MonoBehaviour
 {
     public LinhasController.Linha linhaAtual;
     public float alcanceAtaque;
@@ -86,6 +86,21 @@ public class InimigoLinha : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (comlaco) return; // não ataca se estiver com laço
+
+        if (collision.CompareTag("Player"))
+        {
+            Vida vida = collision.GetComponent<Vida>();
+            if (vida != null)
+            {
+                vida.LevarDano(dano);
+                Destroy(gameObject); // piolho se autodestrói após causar dano
+            }
+        }
+    }
+
     private IEnumerator Atacar()
     {
         yield return new WaitForSeconds(1f);
