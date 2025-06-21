@@ -48,51 +48,60 @@ public class ControladorNarrativa : MonoBehaviour
         if (checkpointManager != null)
             faseAtual = checkpointManager.CarregarCheckpoint();
 
+        kills = checkpointManager != null ? checkpointManager.CarregarKillsSalvas() : 0;
+
         MudarParaFase(faseAtual);
 
         switch (faseAtual)
         {
             case FaseJogo.Introducao:
                 etapa = 0;
+                kills = 0; // começa zerado
                 StartCoroutine(IntroducaoNarrativa());
                 break;
+
             case FaseJogo.IntroducaoAvancada:
                 etapa = 1;
-                kills = metas[0]; // = 5
+                kills = 5; 
                 StartCoroutine(Etapa0());
                 break;
+
             case FaseJogo.Meio:
                 etapa = 2;
-                kills = metas[1]; // = 20
+                kills = 20;
                 StartCoroutine(Etapa1());
                 break;
+
             case FaseJogo.MeioAvancado:
                 etapa = 3;
-                kills = metas[2]; // = 30
+                kills = 30;
                 StartCoroutine(Etapa2());
                 break;
+
             case FaseJogo.ComecoFinal:
                 etapa = 4;
-                kills = metas[3]; // = 50
+                kills = 50;
                 StartCoroutine(Etapa3());
                 break;
+
             case FaseJogo.Final:
                 etapa = 5;
-                kills = metas[4]; // = 60
+                kills = 60;
                 StartCoroutine(Etapa4Final());
                 break;
         }
+
     }
 
 
     private IEnumerator IntroducaoNarrativa()
     {
         TextoNarrativa.Instance.Narrador("Mas o mago não encolhe o cavaleiro. Você não pode mudar a história assim!");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Por que não? Já ouvi essa história diversas vezes! E assim fica mais divertido!");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("*Argh* Enfim! O cavaleiro depois de ser encolhido pelo mago, iniciou sua escalada que agora será ainda mais longa entre os cabelos da princesa para resgatá-lá.");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Mas o cabelo da princesa estava cheio de... de ... PIOLHOS E CHICLETE! Que vão para cima do cavaleiro!");
         Fase_Introducao();
     }
@@ -141,9 +150,10 @@ public class ControladorNarrativa : MonoBehaviour
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("É o cabelo de uma princesa! Por que teria chiclete e piolho no cabelo dela?");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Porque eu gosto de chiclete e acho piolhos legais, mas pensando bem, acho que nem todos seriam ruins, acho que deve ter alguns que são amigos. Né?");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        yield return new WaitForSeconds(2f);
         MudarParaFase(FaseJogo.IntroducaoAvancada);
     }
 
@@ -151,14 +161,15 @@ public class ControladorNarrativa : MonoBehaviour
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("Não sei onde chicletes e piolhos são legais ou que sejam amigos, mas enfim, depois de uma longa... e bastante problemática escalada, nosso cavaleiro se encontra no topo do cas-");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Mas o cavaleiro não imaginaria que teria sido uma jornada de DIAS! Ele levaria muito mais tempo para chegar no topo do castelo, anoiteceu e ele mal percebeu!");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Quando ele menos percebe começa a surgir outros cavaleiros! De outros reinos! QUERENDO MATAR A PRINCESA!");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("Estou começando a sentir pena dessa princesa...");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("*Risadinha*");
+        yield return new WaitForSeconds(2f);
         MudarParaFase(FaseJogo.Meio);
     }
 
@@ -166,12 +177,13 @@ public class ControladorNarrativa : MonoBehaviour
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("*Respira Fundo* Conforme escalava, a torre ficava cada vez mais sombria, inimigos se espreitavam entre as mechas de cabelo e cercavam o cavaleiro, morcegos, fantasmas e clones espelhados do cavaleiro que surgem por comando do mago, para botar um fim em sua bravura.");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("Nenhuma interrupção?");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Eu gosto desses monstros. *risadinha*");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("*Alívio* Finalmente...");
+        yield return new WaitForSeconds(2f);
         MudarParaFase(FaseJogo.MeioAvancado);
     }
 
@@ -179,12 +191,13 @@ public class ControladorNarrativa : MonoBehaviour
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("A FESTA DO CASTELO COMEÇOU!");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("TODOS ESTAVAM ESPERANDO O CAVALEIRO PARA DAR UMA GRANDE FESTA DE COMEMORAÇÃO!");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("QUÊ?!!");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("YEAAAAAAA");
+        yield return new WaitForSeconds(2f);
         MudarParaFase(FaseJogo.ComecoFinal);
     }
 
@@ -192,16 +205,17 @@ public class ControladorNarrativa : MonoBehaviour
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("Ok, ok, essa história já foi longe demais! Hora de ir dormir!");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Ah, mas paaai. A gente estava quase na parte do dra-");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Mae("Gente que barulheira é essa? Querido, eu não te pedi para colocar nosso filho para dormir?");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.NarradorPai("S-Sim, mas é que ele ficou atrapalhando a história...");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("* Criança fingindo que está dormindo* ZZZZZZzzzZZ");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Mae("*risadinha* desliga as luzes e vá dormir você também, e então amanhã... conte uma nova história para ele.");
+        yield return new WaitForSeconds(2f);
         MudarParaFase(FaseJogo.Final);
     }
 
