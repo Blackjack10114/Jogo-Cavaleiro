@@ -12,6 +12,9 @@ public class VidaColetavel : MonoBehaviour
             if (vida != null && vida.VidaAtual() < vida.vidaMaxima)
             {
                 vida.Curar(valorCura);
+                SomPlayer som = other.GetComponent<SomPlayer>();
+                if (som != null)
+                    som.Tocar(som.somCura);
                 Destroy(gameObject);
             }
         }

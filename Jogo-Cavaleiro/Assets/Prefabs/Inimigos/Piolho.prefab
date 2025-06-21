@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2135825389510488990}
   - component: {fileID: 2472750040779524644}
   - component: {fileID: 6162206269302789963}
+  - component: {fileID: -6579207491189263481}
   m_Layer: 7
   m_Name: Piolho
   m_TagString: Inimigo
@@ -196,13 +197,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linhaAtual: 0
-  alcanceAtaque: 10
+  alcanceAtaque: 1.5
   tempoEntreAtaques: 1.5
   dano: 1
-  chancelaco: 0.2
   comlaco: 0
+  AutoDestruircomlaco: 10
   direcaoSpawn: 0
-  direcao: 0
+  direcao: 1
 --- !u!114 &2472750040779524644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c04a6ebd9a380b4887653f8d1194172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direcao: 0
+  direcao: 1
   velocidade: 2
 --- !u!114 &6162206269302789963
 MonoBehaviour:
@@ -229,4 +230,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9181bed58d3cfcc4e95705494f026041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanciaMaxima: 60
+  distanciaMaxima: 20
+--- !u!114 &-6579207491189263481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6546455054798135848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df865d86e91191e41a092c6c64243dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  somTrocarLinha: {fileID: 0}
+  somAtaque: {fileID: 0}
+  somDano: {fileID: 0}
+  somCura: {fileID: 0}
+  somMorte: {fileID: 8300000, guid: c9cc99b5abe686e4da9d20e2127b103e, type: 3}

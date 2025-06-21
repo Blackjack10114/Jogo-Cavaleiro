@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7236944812557561544}
   - component: {fileID: -4621701046314113713}
   - component: {fileID: -1160166083630492170}
+  - component: {fileID: -2411387898722549857}
   m_Layer: 7
   m_Name: Miragem
-  m_TagString: Inimigo
+  m_TagString: Miragem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,3 +184,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanciaMaxima: 60
+--- !u!114 &-2411387898722549857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603811524316239678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df865d86e91191e41a092c6c64243dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  somTrocarLinha: {fileID: 0}
+  somAtaque: {fileID: 0}
+  somDano: {fileID: 0}
+  somCura: {fileID: 0}
+  somMorte: {fileID: 8300000, guid: c9cc99b5abe686e4da9d20e2127b103e, type: 3}

@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameDebugCheat : MonoBehaviour
 {
-    private GameEventManager gerenciador;
+    private ControladorNarrativa controlador;
 
     void Start()
     {
-        gerenciador = Object.FindFirstObjectByType<GameEventManager>();
+        controlador = Object.FindFirstObjectByType<ControladorNarrativa>();
     }
 
     void Update()
@@ -15,25 +15,30 @@ public class GameDebugCheat : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             if (Input.GetKeyDown(KeyCode.F1))
-                gerenciador.MudarParaFase(GameEventManager.FaseJogo.Introducao);
+                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.Introducao);
 
             if (Input.GetKeyDown(KeyCode.F2))
-                gerenciador.MudarParaFase(GameEventManager.FaseJogo.Meio);
+                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.IntroducaoAvancada);
 
             if (Input.GetKeyDown(KeyCode.F3))
-                gerenciador.MudarParaFase(GameEventManager.FaseJogo.Sombria);
+                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.Meio);
 
             if (Input.GetKeyDown(KeyCode.F4))
-                gerenciador.MudarParaFase(GameEventManager.FaseJogo.Final);
+                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.MeioAvancado);
+
             if (Input.GetKeyDown(KeyCode.F5))
-                gerenciador.MudarParaFase(GameEventManager.FaseJogo.Boss);
+                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.ComecoFinal);
+            if (Input.GetKeyDown(KeyCode.F6))
+                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.Final);
+
+            //if (Input.GetKeyDown(KeyCode.F7))
+            //controlador.MudarParaFase(ControladorNarrativa.FaseJogo.Boss);
+
             if (Input.GetKeyDown(KeyCode.Delete))
             {
                 PlayerPrefs.DeleteAll();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
-
-
         }
     }
 }

@@ -45,9 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabCavaleiro: {fileID: 0}
-  intervalo: 5
   jogador: {fileID: 0}
+  intervalo: 5
+  chanceSpawn: 0.5
+  maximoCavaleiros: 2
   distanciaVerificacao: 2
   camadaInimigos:
     serializedVersion: 2
     m_Bits: 128
+  chanceDeLaco: 0.3
+  prefabLacoRosa: {fileID: 8115254501923583660, guid: 47a648c02499f0d4cac807b55657f645, type: 3}
+  tempoAutoDestruirComLaco: 9

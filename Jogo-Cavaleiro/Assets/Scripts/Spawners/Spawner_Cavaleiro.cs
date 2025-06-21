@@ -6,11 +6,16 @@ public class Spawner_Cavaleiro : MonoBehaviour
     public GameObject prefabCavaleiro;
     public Transform jogador;
     public float intervalo = 5f;
-    public float chanceSpawn = 0.5f; // 50%
+    public float chanceSpawn = 0.5f;
     public int maximoCavaleiros = 2;
 
     public float distanciaVerificacao = 2f;
     public LayerMask camadaInimigos;
+
+    [Header("Controle do Laço")]
+    [Range(0f, 1f)] public float chanceDeLaco = 0.3f;
+    public GameObject prefabLacoRosa;
+    public float tempoAutoDestruirComLaco = 10f;
 
     private float proximoSpawn = 0f;
 
@@ -36,32 +41,36 @@ public class Spawner_Cavaleiro : MonoBehaviour
             LinhasController.Linha.Direita
         };
 
-        // Remove linhas já ocupadas por outros cavaleiros
-        foreach (GameObject cav in GameObject.FindGameObjectsWithTag("Cavaleiro"))
+        foreach (GameObject cavaleiro in GameObject.FindGameObjectsWithTag("Cavaleiro"))
         {
-            float xCav = cav.transform.position.x;
-
+            float xCav = cavaleiro.transform.position.x;
             foreach (var linha in linhasDisponiveis.ToArray())
             {
                 float xLinha = LinhasController.Instance.PosicaoX(linha);
-                if (Mathf.Abs(xCav - xLinha) < 0.1f) // margem de erro
+                if (Mathf.Abs(xCav - xLinha) < 0.1f)
                     linhasDisponiveis.Remove(linha);
             }
         }
 
-        if (linhasDisponiveis.Count == 0) return; // nenhuma linha disponível
+        if (linhasDisponiveis.Count == 0) return;
 
-        // Escolhe uma linha restante aleatória
         LinhasController.Linha linhaEscolhida = linhasDisponiveis[Random.Range(0, linhasDisponiveis.Count)];
         float x = LinhasController.Instance.PosicaoX(linhaEscolhida);
-        float y = jogador.position.y - Random.Range(9f, 13f); // nascendo abaixo
+        float y = jogador.position.y - Random.Range(9f, 13f);
 
         Vector3 posicao = new Vector3(x, y, 0f);
 
-        if (PodeSpawnar(posicao))
+        if (!PodeSpawnar(posicao)) return;
+
+        GameObject novoCavaleiro = Instantiate(prefabCavaleiro, posicao, Quaternion.identity);
+        novoCavaleiro.tag = "Cavaleiro";
+
+        Inimigo_Cavaleiro script = novoCavaleiro.GetComponent<Inimigo_Cavaleiro>();
+        if (script != null)
         {
-            GameObject cav = Instantiate(prefabCavaleiro, posicao, Quaternion.identity);
-            cav.tag = "Cavaleiro"; // necessário para a verificação funcionar
+            script.chancelaco = chanceDeLaco;
+            script.AutoDestruircomlaco = tempoAutoDestruirComLaco;
+            script.prefabLaco = prefabLacoRosa;
         }
     }
 

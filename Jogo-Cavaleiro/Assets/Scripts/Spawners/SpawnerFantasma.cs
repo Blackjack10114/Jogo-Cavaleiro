@@ -12,6 +12,11 @@ public class SpawnerFantasma : MonoBehaviour
 
     [Header("Layer")]
     public LayerMask layerInimigos;
+
+    [Header("Laço Rosa")]
+    [Range(0f, 1f)] public float chanceDeLaco = 0.3f;
+    public float tempoAutoDestruirComLaco = 10f;
+
     void Update()
     {
         if (Time.time >= tempoProximoSpawn && jogador != null)
@@ -40,9 +45,17 @@ public class SpawnerFantasma : MonoBehaviour
             float y = jogador.position.y + (offsetY);
 
             Vector3 posicao = new Vector3(x, y, 0);
-            if (PodeSpawnar(posicao, 3f)) //raio mínimo entre inimigos
+            if (PodeSpawnar(posicao, 3f, "Fantasma")) //raio mínimo entre inimigos
             {
                 GameObject inimigo = Instantiate(prefabfantasma, posicao, Quaternion.identity);
+
+                var verLaco = inimigo.GetComponent<Inimigo_Fantasma>();
+                if (verLaco != null)
+                {
+                    verLaco.chancelaco = chanceDeLaco;
+                    verLaco.AutoDestruircomlaco = tempoAutoDestruirComLaco;
+                }
+
 
                 Inimigo_Piolho script = inimigo.GetComponent<Inimigo_Piolho>();
                 if (script != null)
@@ -58,11 +71,17 @@ public class SpawnerFantasma : MonoBehaviour
                 Debug.Log("Spawn cancelado: inimigo já próximo");
             }
 
-            bool PodeSpawnar(Vector3 posicaoDesejada, float raio)
+            bool PodeSpawnar(Vector3 posicaoDesejada, float raio, string tagAlvo)
             {
                 Collider2D[] colisores = Physics2D.OverlapCircleAll(posicaoDesejada, raio, layerInimigos);
-                return colisores.Length == 0;
+                foreach (var col in colisores)
+                {
+                    if (col.CompareTag(tagAlvo))
+                        return false;
+                }
+                return true;
             }
+
         }
     }
 }

@@ -14,6 +14,11 @@ public class SpawnerUnicornio : MonoBehaviour
     [Header("Layer")]
     public LayerMask layerInimigos;
 
+    [Header("Laço Rosa")]
+    [Range(0f, 1f)] public float chanceDeLaco = 0.3f;
+    public float tempoAutoDestruirComLaco = 10f;
+
+
     private float tempoProximoSpawn = 0f;
 
     void Update()
@@ -50,6 +55,8 @@ public class SpawnerUnicornio : MonoBehaviour
             if (script != null)
             {
                 script.linhaAtual = linha;
+                script.chancelaco = chanceDeLaco;
+                script.AutoDestruircomlaco = tempoAutoDestruirComLaco;
             }
         }
         else

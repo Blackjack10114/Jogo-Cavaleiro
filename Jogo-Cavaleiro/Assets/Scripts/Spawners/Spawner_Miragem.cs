@@ -12,6 +12,11 @@ public class Spawner_Miragem : MonoBehaviour
 
     [Header("Layer")]
     public LayerMask layerInimigos;
+
+    [Header("Laço Rosa")]
+    [Range(0f, 1f)] public float chanceDeLaco = 0.3f;
+    public float tempoAutoDestruirComLaco = 2.5f;
+
     void Update()
     {
         if (Time.time >= tempoProximoSpawn && jogador != null)
@@ -42,13 +47,11 @@ public class Spawner_Miragem : MonoBehaviour
             {
                 GameObject inimigo = Instantiate(prefabMiragem, posicao, Quaternion.identity);
 
-                Inimigo_Piolho script = inimigo.GetComponent<Inimigo_Piolho>();
+                var script = inimigo.GetComponent<Inimigo_Miragem>();
                 if (script != null)
                 {
-                    script.linhaAtual = linha;
-                    script.direcao = offsetY > 0 ?
-                        Inimigo_Piolho.DirecaoMovimento.Descendo :
-                        Inimigo_Piolho.DirecaoMovimento.Subindo;
+                    script.chancelaco = chanceDeLaco;
+                    script.AutoDestruircomlaco = tempoAutoDestruirComLaco;
                 }
             }
             else

@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class TextoNarrativa : MonoBehaviour
 {
@@ -13,6 +13,25 @@ public class TextoNarrativa : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+    }
+
+    public void Narrador(string frase)
+    {
+        MostrarTexto("Narrador: " + frase);
+    }
+
+    public void NarradorPai(string frase)
+    {
+        MostrarTexto("Narrador (Pai): " + frase);
+    }
+
+    public void Crianca(string frase)
+    {
+        MostrarTexto("Criança: " + frase);
+    }
+    public void Mae(string frase)
+    {
+        MostrarTexto("Mãe: " + frase);
     }
 
     public void MostrarTexto(string frase)

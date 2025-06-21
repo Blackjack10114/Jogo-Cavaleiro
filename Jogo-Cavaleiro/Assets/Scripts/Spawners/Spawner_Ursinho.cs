@@ -5,9 +5,13 @@ public class SpawnerUrsinho : MonoBehaviour
     public GameObject prefabUrsinho;
     public Transform jogador;
     public float intervalo = 8f;
-    public float chanceSpawn = 0.3f; // 30%
+    public float chanceSpawn = 0.3f;
     public LayerMask camadaInimigos;
     public float distanciaVerificacao = 2f;
+
+    [Header("Laço Rosa")]
+    [Range(0f, 1f)] public float chanceDeLaco = 0.3f;
+    public float tempoAutoDestruirComLaco = 10f;
 
     private float tempoProximoSpawn = 0f;
 
@@ -29,13 +33,19 @@ public class SpawnerUrsinho : MonoBehaviour
         LinhasController.Linha linha = (LinhasController.Linha)Random.Range(0, 3);
         float x = LinhasController.Instance.PosicaoX(linha);
         float y = jogador.position.y + Random.Range(10f, 13f);
-
         Vector3 posicao = new Vector3(x, y, 0f);
 
         if (PodeSpawnar(posicao))
         {
             GameObject ursinho = Instantiate(prefabUrsinho, posicao, Quaternion.identity);
-            ursinho.tag = "Ursinho"; 
+            ursinho.tag = "Ursinho";
+
+            var script = ursinho.GetComponent<Inimigo_Ursinho>();
+            if (script != null)
+            {
+                script.chancelaco = chanceDeLaco;
+                script.AutoDestruircomlaco = tempoAutoDestruirComLaco;
+            }
         }
     }
 

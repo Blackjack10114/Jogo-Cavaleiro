@@ -88,6 +88,8 @@ public class PlayerAtaque : MonoBehaviour
 
 
         Invoke(nameof(FinalizarAtaque), 0.2f);
+        GetComponent<SomPlayer>()?.Tocar(GetComponent<SomPlayer>().somAtaque);
+
     }
 
 

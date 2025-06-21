@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameEventManager : MonoBehaviour
 {
-    public enum FaseJogo { Introducao, Meio, Sombria, Final, Boss }
+    public enum FaseJogo { Introducao, IntroducaoAvancada, Meio, MeioAvancado, Final } //Boss
     public FaseJogo faseAtual;
     public GameObject panelTexto;
 
@@ -25,58 +25,54 @@ public class GameEventManager : MonoBehaviour
         checkpointManager = Object.FindFirstObjectByType<CheckpointManager>();
         MudarParaFase(faseAtual);
     }
+
     public void MudarParaFase(FaseJogo novaFase)
     {
         faseAtual = novaFase;
 
-        // Atualiza checkpoint ao entrar na nova fase
         if (checkpointManager != null)
-            checkpointManager.SalvarCheckpoint(faseAtual);
+            
+
+        DesativarTodos();
 
         switch (faseAtual)
         {
-            case FaseJogo.Introducao:
-                ConfigurarFase_Introducao();
-                break;
-            case FaseJogo.Meio:
-                ConfigurarFase_Meio();
-                break;
-            case FaseJogo.Sombria:
-                ConfigurarFase_Sombria();
-                break;
-            case FaseJogo.Final:
-                ConfigurarFase_Final();
-                break;
+            case FaseJogo.Introducao: ConfigurarFase_Introducao(); break;
+            case FaseJogo.IntroducaoAvancada: ConfigurarFase_IntroducaoAvancada(); break;
+            case FaseJogo.Meio: ConfigurarFase_Meio(); break;
+            case FaseJogo.MeioAvancado: ConfigurarFase_MeioAvancado(); break;
+            case FaseJogo.Final: ConfigurarFase_Final(); break;
+            //case FaseJogo.Boss: ConfigurarFase_Boss(); break;
         }
     }
 
-
     void ConfigurarFase_Introducao()
     {
-        if (TextoNarrativa.Instance != null)
-            TextoNarrativa.Instance.MostrarTexto("O cavaleiro começou sua escalada...");
-
+        spawnerCarrinho.enabled = false;
+        spawnerCavaleiro.enabled = false;
+        spawnerFantasma.enabled = false;
+        spawnerMiragem.enabled = false;
+        spawnerMorcego1.enabled = false;
+        spawnerMorcego2.enabled = false;
+        spawnerUnicornio.enabled = false;
+        spawnerUrsinho.enabled = false;
+        
         spawnerPiolho.enabled = true;
         spawnerPiolho.chanceSpawn = 0.9f;
         spawnerPiolho.intervaloEntreSpawns = 2f;
 
         spawnerChiclete.enabled = true;
         spawnerChiclete.chanceSpawn = 0.5f;
+    }
 
-        spawnerCavaleiro.enabled = false;
-        spawnerFantasma.enabled = false;
-        spawnerMorcego1.enabled = false;
-        spawnerMorcego2.enabled = false;
-        spawnerUnicornio.enabled = false;
-        spawnerCarrinho.enabled = false;
-        spawnerUrsinho.enabled = false;
-        spawnerMiragem.enabled = false;
+    void ConfigurarFase_IntroducaoAvancada()
+    {
+        spawnerPiolho.chanceSpawn = 0.9f;
+        spawnerChiclete.chanceSpawn = 0.5f;
     }
 
     void ConfigurarFase_Meio()
     {
-        TextoNarrativa.Instance?.MostrarTexto("Outros cavaleiros surgem!");
-
         spawnerCavaleiro.enabled = true;
         spawnerCavaleiro.chanceSpawn = 0.6f;
         spawnerCavaleiro.intervalo = 5f;
@@ -85,10 +81,8 @@ public class GameEventManager : MonoBehaviour
         spawnerChiclete.chanceSpawn = 0.3f;
     }
 
-    void ConfigurarFase_Sombria()
+    void ConfigurarFase_MeioAvancado()
     {
-        TextoNarrativa.Instance?.MostrarTexto("A torre ficou sombria...");
-
         spawnerFantasma.enabled = true;
         spawnerFantasma.chanceSpawn = 0.5f;
 
@@ -100,18 +94,17 @@ public class GameEventManager : MonoBehaviour
         spawnerMiragem.enabled = true;
         spawnerMiragem.chanceSpawn = 0.4f;
 
+        spawnerCavaleiro.chanceSpawn = 0.6f;
         spawnerPiolho.chanceSpawn = 0.2f;
         spawnerChiclete.chanceSpawn = 0.2f;
     }
 
     void ConfigurarFase_Final()
     {
-        TextoNarrativa.Instance?.MostrarTexto("O caos começa!");
-
         spawnerPiolho.chanceSpawn = 0f;
         spawnerChiclete.enabled = false;
 
-        spawnerCavaleiro.chanceSpawn = 0.3f;
+        spawnerCavaleiro.chanceSpawn = 0.2f;
 
         spawnerUnicornio.enabled = true;
         spawnerUnicornio.intervaloEntreSpawns = 4f;
@@ -123,13 +116,12 @@ public class GameEventManager : MonoBehaviour
         spawnerUrsinho.chanceSpawn = 0.4f;
     }
 
-    void ConfigurarFase_Boss()
+    /*void ConfigurarFase_Boss()
     {
         DesativarTodos();
         TextoNarrativa.Instance?.MostrarTexto("E então um Dragão...");
-        
     }
-
+    */
     public void DesativarTodos()
     {
         spawnerPiolho.enabled = false;

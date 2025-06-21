@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AutoDestroyPorDistancia : MonoBehaviour
 {
-    public float distanciaMaxima = 60f;
+    public float distanciaMaxima = 40f;
     private Transform alvo;
 
     void Start()

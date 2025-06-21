@@ -4,87 +4,77 @@ using System.Collections;
 public class Inimigo_Cavaleiro : MonoBehaviour
 {
     public float velocidadeInicial = 10f;
-    public float velocidadeAcompanhamento = 0f; // mesma do jogador
+    public float velocidadeAcompanhamento = 0f;
     public float alcanceVerticalParaAcompanhar = 3f;
-    public float distanciaTrocaLinha = 0.1f; // margem para detectar mesma linha
+    public float distanciaTrocaLinha = 0.1f;
 
     public int dano = 1;
     private Transform jogador;
     private PlayerMov playerMov;
 
     private bool acompanhando = false;
-    private Vector3 distanciaLinha = new Vector3(8f, 0f, 0f); // usado na troca de linha (opcional)
-    // coisas do laço
-    public float chancelaco = 0.3f;
+    private Vector3 distanciaLinha = new Vector3(8f, 0f, 0f);
+
+    [Header("Laço")]
+    [HideInInspector] public float chancelaco = 0.3f;
+    [HideInInspector] public GameObject prefabLaco;
+    [HideInInspector] public float AutoDestruircomlaco = 10f;
     public bool comlaco;
     private bool lacoinsta;
-    private GameObject prefabLaco;
-    public float AutoDestruircomlaco;
 
     void Start()
     {
         jogador = GameObject.FindWithTag("Player")?.transform;
         playerMov = jogador?.GetComponent<PlayerMov>();
-        // verificar se tem laço
+
         if (Random.value < chancelaco)
         {
             comlaco = true;
         }
-        prefabLaco = Resources.Load<GameObject>("Laco_Rosa");
     }
 
     void Update()
     {
-        // instancia o laço
-        if (comlaco && !lacoinsta)
+        if (comlaco && !lacoinsta && prefabLaco != null)
         {
             GameObject laco = Instantiate(prefabLaco, transform.position, Quaternion.identity);
-            lacoinsta = true;
             laco.transform.parent = this.transform;
+            lacoinsta = true;
         }
+
         if (jogador == null) return;
 
         float distanciaVertical = jogador.position.y - transform.position.y;
 
-        if (Mathf.Abs(distanciaVertical) <= 0.2f) // mesma altura (com tolerância)
+        if (Mathf.Abs(distanciaVertical) <= 0.2f)
         {
             acompanhando = true;
-            if (playerMov != null)
-                velocidadeAcompanhamento = playerMov.velocidade;
+            velocidadeAcompanhamento = playerMov != null ? playerMov.velocidade : 0f;
         }
         else
         {
             acompanhando = false;
         }
 
-
         if (acompanhando)
         {
-            // Sobe junto com o jogador
             transform.Translate(Vector3.up * velocidadeAcompanhamento * Time.deltaTime);
+
             if (!comlaco)
-            {
                 StartCoroutine(Atacar());
-            }
             else
-            {
                 StartCoroutine(AutoDestruir());
-            }
         }
         else
         {
-            // Corre em direção ao jogador
             transform.Translate(Vector3.up * velocidadeInicial * Time.deltaTime);
         }
 
-
-        //Troca de linha se estiver na mesma linha
+        // Troca de linha
         if (Mathf.Abs(jogador.position.x - transform.position.x) < distanciaTrocaLinha)
         {
-            // Troca para outra linha
             float novoX = transform.position.x;
 
-            // Se estiver na direita, vai pro centro. Se no centro, vai pra esquerda, etc.
             if (Mathf.Approximately(transform.position.x, LinhasController.Instance.PosicaoX(LinhasController.Linha.Direita)))
                 novoX = LinhasController.Instance.PosicaoX(LinhasController.Linha.Centro);
             else if (Mathf.Approximately(transform.position.x, LinhasController.Instance.PosicaoX(LinhasController.Linha.Centro)))
@@ -94,12 +84,12 @@ public class Inimigo_Cavaleiro : MonoBehaviour
 
             transform.position = new Vector3(novoX, transform.position.y, transform.position.z);
         }
-       
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (comlaco) return;
+
         if (other.CompareTag("Player"))
         {
             Vida vida = other.GetComponent<Vida>();
@@ -110,9 +100,12 @@ public class Inimigo_Cavaleiro : MonoBehaviour
             }
         }
     }
+
     private IEnumerator Atacar()
     {
         yield return new WaitForSeconds(1f);
+        if (jogador == null) yield break;
+
         Vida vidaJogador = jogador.GetComponent<Vida>();
         if (vidaJogador != null)
         {
@@ -120,6 +113,7 @@ public class Inimigo_Cavaleiro : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     private IEnumerator AutoDestruir()
     {
         yield return new WaitForSeconds(AutoDestruircomlaco);

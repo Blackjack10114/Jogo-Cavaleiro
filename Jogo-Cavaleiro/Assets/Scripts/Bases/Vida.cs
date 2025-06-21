@@ -34,6 +34,12 @@ public class Vida : MonoBehaviour
             Morreu = true;
             Morrer();
         }
+
+        if (CompareTag("Player"))
+        {
+            GetComponent<SomPlayer>()?.Tocar(GetComponent<SomPlayer>().somDano);
+        }
+
     }
 
     public int VidaAtual()
@@ -45,6 +51,7 @@ public class Vida : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} morreu!");
 
+        ControladorNarrativa.Instance?.RegistrarKill();//Conta Kill
         OnMorrer?.Invoke(); // Notifica scripts conectados
 
         // Drop de cura (somente para inimigos)
@@ -64,7 +71,8 @@ public class Vida : MonoBehaviour
         // Somente inimigos são destruídos automaticamente
         if (!CompareTag("Player"))
         {
-            Destroy(gameObject);
+                GetComponent<SomPlayer>()?.Tocar(GetComponent<SomPlayer>().somMorte);
+                Destroy(gameObject); 
         }
     }
 

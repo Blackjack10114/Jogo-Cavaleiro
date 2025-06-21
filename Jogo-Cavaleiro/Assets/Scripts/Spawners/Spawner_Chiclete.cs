@@ -43,7 +43,7 @@ public class SpawnerChiclete : MonoBehaviour
             float y = jogador.position.y + (offsetY);
 
             Vector3 posicao = new Vector3(x, y, 0);
-            if (PodeSpawnar(posicao, 3f)) //raio mínimo entre inimigos
+            if (PodeSpawnar(posicao, 3f, "Chiclete")) //raio mínimo entre inimigos
             {
                 GameObject inimigo = Instantiate(prefabInimigo, posicao, Quaternion.identity);
 
@@ -61,11 +61,17 @@ public class SpawnerChiclete : MonoBehaviour
                 Debug.Log("Spawn cancelado: inimigo já próximo");
             }
 
-            bool PodeSpawnar(Vector3 posicaoDesejada, float raio)
+            bool PodeSpawnar(Vector3 posicaoDesejada, float raio, string tagAlvo)
             {
                 Collider2D[] colisores = Physics2D.OverlapCircleAll(posicaoDesejada, raio, layerInimigos);
-                return colisores.Length == 0;
+                foreach (var col in colisores)
+                {
+                    if (col.CompareTag(tagAlvo))
+                        return false;
+                }
+                return true;
             }
+
 
         }
     }
