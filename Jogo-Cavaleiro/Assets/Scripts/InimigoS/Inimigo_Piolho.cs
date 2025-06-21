@@ -22,10 +22,13 @@ public class Inimigo_Piolho : MonoBehaviour
     public DirecaoMovimento direcao;
 
     private float tempoProximoAtaque = 0f;
+    public float AtrasoAtaque;
     private bool lacoInstanciado = false;
 
     private GameObject prefabLaco;
     private Transform jogador;
+    private Vector3 PosicaoPiolho;
+
     private Vida vida;
     private MovimentoVertical movimento;
 
@@ -49,7 +52,9 @@ public class Inimigo_Piolho : MonoBehaviour
 
         comLaco = Random.value < chanceLaco;
         if (comLaco)
+        {
             StartCoroutine(AutoDestruirComLaco());
+        }
     }
 
     private void Update()
@@ -68,9 +73,12 @@ public class Inimigo_Piolho : MonoBehaviour
             float distX = Mathf.Abs(jogador.position.x - transform.position.x);
             float distY = Mathf.Abs(jogador.position.y - transform.position.y);
 
-            bool alinhado = distX < 0.5f;
+            bool alinhado = distX < 9f;
             bool dentroDoAlcance = distY <= alcanceAtaque;
-
+            if (alinhado && dentroDoAlcance)
+            {
+                AlinharYComJogador();
+            }
             if (alinhado && dentroDoAlcance && Time.time >= tempoProximoAtaque)
             {
                 StartCoroutine(Atacar());
@@ -82,7 +90,7 @@ public class Inimigo_Piolho : MonoBehaviour
     {
         tempoProximoAtaque = Time.time + tempoEntreAtaques;
 
-        yield return new WaitForSeconds(0.3f); // atraso do ataque
+        yield return new WaitForSeconds(AtrasoAtaque); // atraso do ataque
 
         if (jogador != null)
         {
@@ -114,5 +122,11 @@ public class Inimigo_Piolho : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+    private void AlinharYComJogador()
+    {
+        if (jogador == null) return;
+        PosicaoPiolho = new Vector3(transform.position.x, jogador.transform.position.y, transform.position.z);
+        transform.position = PosicaoPiolho;
     }
 }

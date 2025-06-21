@@ -197,13 +197,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linhaAtual: 0
-  alcanceAtaque: 1.5
+  alcanceAtaque: 1
   tempoEntreAtaques: 1.5
   dano: 1
-  comlaco: 0
-  AutoDestruircomlaco: 10
+  chanceLaco: 0.3
+  comLaco: 0
+  tempoAutoDestruirComLaco: 10
   direcaoSpawn: 0
   direcao: 1
+  AtrasoAtaque: 1.2
 --- !u!114 &2472750040779524644
 MonoBehaviour:
   m_ObjectHideFlags: 0
