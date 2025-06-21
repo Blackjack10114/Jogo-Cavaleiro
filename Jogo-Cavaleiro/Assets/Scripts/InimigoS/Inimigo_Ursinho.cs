@@ -21,6 +21,7 @@ public class Inimigo_Ursinho : MonoBehaviour
     public int dano = 1;
     public float tempoEntreAtaques = 1.5f;
     public float alcanceAtaque = 0.6f;
+    public float tempoparaatacar;
 
     [Header("Recuo após levar dano")]
     public float tempoRecuo = 0.15f;
@@ -28,10 +29,13 @@ public class Inimigo_Ursinho : MonoBehaviour
     public float tempoParadoAposRecuo = 1f;
 
     private Transform jogador;
+    private Vector3 PosicaoUrsinho;
+    private bool podeatacar;
+    private bool alinhando;
     private bool recuando = false;
     private bool podeMover = true;
     private float proximoAtaque = 0f;
-
+    private bool distanciaDoJogador, MesmaAltura;
     private bool pulando = false;
 
 
@@ -46,11 +50,12 @@ public class Inimigo_Ursinho : MonoBehaviour
             comlaco = true;
         }
         prefabLaco = Resources.Load<GameObject>("Laco_Rosa");
+        podeatacar = true;
     }
 
     void Update()
     {
-        if (jogador == null || !podeMover) return;
+        if (jogador == null) return;
         // instancia o laço
         if (comlaco && !lacoinsta)
         {
@@ -62,36 +67,31 @@ public class Inimigo_Ursinho : MonoBehaviour
         // Verifica se está muito abaixo e não está pulando nem recuando
         if (!pulando && !recuando && transform.position.y < jogador.position.y - 1.5f)
         {
-            StartCoroutine(PularParaCimaDoJogador());
+            //StartCoroutine(PularParaCimaDoJogador());
             return;
         }
 
         // Movimento normal
-        Vector3 destino = jogador.position + new Vector3(0, offsetPosicao, 0);
-        float distanciaDoJogador = Vector2.Distance(transform.position, jogador.position);
-        float distanciaAteDestino = Vector2.Distance(transform.position, destino);
-
-        float velocidade = distanciaDoJogador <= distanciaParaAcelerar ? velocidadeAcelerada : velocidadeBase;
-
-        if (!recuando && distanciaAteDestino > distanciaMinimaAproximacao)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, destino, velocidade * Time.deltaTime);
-        }
-
+        // Vector3 destino = jogador.position + new Vector3(0, offsetPosicao, 0);
+        float distX = Mathf.Abs(jogador.position.x - transform.position.x);
+        float distY = Mathf.Abs(jogador.position.y - transform.position.y);
+        distanciaDoJogador = distX <= 9;
+        MesmaAltura = distY <= alcanceAtaque;
         // Ataque
-        if (distanciaDoJogador < alcanceAtaque && Time.time >= proximoAtaque && !comlaco)
+        if (distanciaDoJogador && MesmaAltura && podeatacar && !comlaco)
         {
-            Vida vida = jogador.GetComponent<Vida>();
-            if (vida != null)
-            {
-                vida.LevarDano(dano);
-                proximoAtaque = Time.time + tempoEntreAtaques;
-            }
+            podeatacar = false;
+            StartCoroutine(Atacar());
         }
-        if (distanciaDoJogador < alcanceAtaque && Time.time >= proximoAtaque && comlaco)
+        if (distanciaDoJogador && MesmaAltura && !recuando)
+        {
+            AlinharYComJogador();
+        }
+        /* if (distanciaDoJogador < alcanceAtaque && Time.time >= proximoAtaque && comlaco)
         {
             StartCoroutine(AutoDestruir());
         }
+        */
     }
 
     public void LevarDanoRecuo()
@@ -106,7 +106,6 @@ public class Inimigo_Ursinho : MonoBehaviour
     private System.Collections.IEnumerator Recuar()
     {
         recuando = true;
-        podeMover = false;
 
         Vector3 direcaoContraria = Vector3.up;
         float tempo = tempoRecuo;
@@ -119,8 +118,6 @@ public class Inimigo_Ursinho : MonoBehaviour
         }
 
         yield return new WaitForSeconds(tempoParadoAposRecuo);
-
-        podeMover = true;
         recuando = false;
     }
 
@@ -131,7 +128,7 @@ public class Inimigo_Ursinho : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         sr.color = original;
     }
-    private System.Collections.IEnumerator PularParaCimaDoJogador()
+   /* private System.Collections.IEnumerator PularParaCimaDoJogador()
     {
         pulando = true;
         podeMover = false;
@@ -155,10 +152,52 @@ public class Inimigo_Ursinho : MonoBehaviour
 
         podeMover = true;
         pulando = false;
-    }
+    } */
     private IEnumerator AutoDestruir()
     {
         yield return new WaitForSeconds(AutoDestruircomlaco);
         Destroy(gameObject);
+    }
+    private IEnumerator Atacar()
+    {
+        yield return new WaitForSeconds(tempoparaatacar);
+        if (distanciaDoJogador && MesmaAltura)
+        {
+            Debug.Log("Atacando");
+            Vida vida = jogador.GetComponent<Vida>();
+            if (vida != null)
+            {
+                vida.LevarDano(dano);
+                proximoAtaque = Time.time + tempoEntreAtaques;
+            }
+        }
+        podeatacar = true;
+    }
+    private void AlinharYComJogador()
+    {
+        alinhando = true;
+        if (!recuando)
+        {
+            if (jogador == null) return;
+            PosicaoUrsinho = new Vector3(transform.position.x, jogador.transform.position.y, transform.position.z);
+            transform.position = PosicaoUrsinho;
+        }
+        else return;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (comlaco) return;
+
+        if (collision.CompareTag("Player"))
+        {
+            Vida vida = collision.GetComponent<Vida>();
+            Vida vidaursinho = GetComponent<Vida>();
+            if (vida != null)
+            {
+                vida.LevarDano(dano);
+                vidaursinho.LevarDano(dano);
+                StartCoroutine(Recuar());
+            }
+        }
     }
 }

@@ -1241,6 +1241,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1851150196253100037, guid: de0cc7d6097b24f439f5652cae84c982, type: 3}
+      propertyPath: chanceDeLaco
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851150196253100037, guid: de0cc7d6097b24f439f5652cae84c982, type: 3}
       propertyPath: prefabCavaleiro
       value: 
       objectReference: {fileID: 9166694913351210287, guid: f1745c0b10a0c934da5a4b4f16485031, type: 3}
@@ -1500,7 +1504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757526702337944367, guid: 10e78ef3d3c49f04a9621545f43ab580, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1526,6 +1530,10 @@ PrefabInstance:
     - target: {fileID: 2908479642835474472, guid: 1b1ef31bffb001c44ba0ec3567096d35, type: 3}
       propertyPath: chanceSpawn
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908479642835474472, guid: 1b1ef31bffb001c44ba0ec3567096d35, type: 3}
+      propertyPath: chanceDeLaco
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2908479642835474472, guid: 1b1ef31bffb001c44ba0ec3567096d35, type: 3}
       propertyPath: prefabUrsinho
@@ -1577,7 +1585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4732470605511167445, guid: 1b1ef31bffb001c44ba0ec3567096d35, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
