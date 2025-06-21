@@ -3711,7 +3711,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.9129944, y: -141.99998}
+  m_AnchoredPosition: {x: 6.9129944, y: -142}
   m_SizeDelta: {x: -41.764, y: -297.954}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1078718874
@@ -4861,16 +4861,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5.0000305, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &1303769847 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5830435480126300884, guid: 412a1db06bf62a540b08b6b0649a0eff, type: 3}
-  m_PrefabInstance: {fileID: 587005553}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1340146210 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2226163751301816945, guid: 5a98af0cc024d1341a15975e695e3da8, type: 3}
-  m_PrefabInstance: {fileID: 1850354092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1361150713
 GameObject:
   m_ObjectHideFlags: 0
@@ -5796,11 +5786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97cbbedc96c9c34ea71f7c58d9c3890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 2060953128}
-  topOfTower: {fileID: 1303769847}
-  bottomOfTower: {fileID: 1340146210}
   iconUI: {fileID: 855360462}
   progressBar: {fileID: 1538672293}
+  metasKills: 000000000000000000000000
 --- !u!114 &1538672295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7431,6 +7419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75e98a08785f84048a8cdc60c4b1ba2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 4, z: 0}
 --- !u!114 &2014696205
 MonoBehaviour:
   m_ObjectHideFlags: 0
