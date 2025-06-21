@@ -63,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 120
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,12 +128,12 @@ TextureImporter:
       name: CAVALEIRO_0
       rect:
         serializedVersion: 2
-        x: 295
-        y: 35
-        width: 231
-        height: 484
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 270
+        y: 37
+        width: 264
+        height: 503
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,12 +150,12 @@ TextureImporter:
       name: CAVALEIRO_1
       rect:
         serializedVersion: 2
-        x: 581
-        y: 44
-        width: 248
-        height: 481
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 551
+        y: 37
+        width: 264
+        height: 503
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -172,12 +172,12 @@ TextureImporter:
       name: CAVALEIRO_2
       rect:
         serializedVersion: 2
-        x: 877
-        y: 54
-        width: 253
-        height: 480
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 847
+        y: 37
+        width: 264
+        height: 503
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -194,12 +194,12 @@ TextureImporter:
       name: CAVALEIRO_3
       rect:
         serializedVersion: 2
-        x: 1187
-        y: 39
-        width: 216
-        height: 481
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1158
+        y: 37
+        width: 264
+        height: 503
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -216,12 +216,12 @@ TextureImporter:
       name: CAVALEIRO_4
       rect:
         serializedVersion: 2
-        x: 1492
-        y: 59
-        width: 250
-        height: 480
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1478
+        y: 37
+        width: 264
+        height: 503
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -238,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d14a3e24ed456d74c8fa51d9a285175d
     internalID: 0
     vertices: []
     indices: 
