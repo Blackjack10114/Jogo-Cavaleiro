@@ -2,36 +2,58 @@ using UnityEngine;
 
 public class Barra_Progresso : MonoBehaviour
 {
-    public Transform playerTransform;
-    public Transform topOfTower;
-    public Transform bottomOfTower;
+    public RectTransform iconUI;
+    public RectTransform progressBar;
+    public int[] metasKills = new int[3]; // 3 metas
 
-    public RectTransform iconUI;           // Ícone que sobe
-    public RectTransform progressBar;      // Barra onde o ícone se move
+    private PlayerAtaque numeroKills;
+    private GameObject player;
 
-    private float minY;
-    private float maxY;
+    private int indiceMetaAtual = 0;
 
-    void Start()
+    private void Start()
     {
-        // Define limites locais da barra onde o ícone pode subir
-        float halfBarHeight = progressBar.rect.height / 2f;
-
-        minY = -halfBarHeight;             // Base da barra
-        maxY = halfBarHeight;              // Topo da barra
+        player = GameObject.FindWithTag("Player");
+        numeroKills = player.GetComponent<PlayerAtaque>();
     }
 
-    void Update()
+    private void Update()
     {
-        float totalHeight = topOfTower.position.y - bottomOfTower.position.y;
-        float playerHeight = Mathf.Clamp(playerTransform.position.y - bottomOfTower.position.y, 0f, totalHeight);
+        AtualizarBarra();
+        VerificarProgressoMeta();
+    }
 
-        float normalizedProgress = playerHeight / totalHeight;
+    private void AtualizarBarra()
+    {
+        if (numeroKills == null || metasKills.Length == 0 || indiceMetaAtual >= metasKills.Length)
+            return;
 
-        // Interpola entre minY e maxY com base no progresso
-        float newY = Mathf.Lerp(minY, maxY, normalizedProgress);
-        Vector3 newLocalPos = iconUI.localPosition;
-        newLocalPos.y = newY;
-        iconUI.localPosition = newLocalPos;
+        float alturaTotal = progressBar.rect.height;
+
+        int kills = numeroKills.kills;
+        int metaAtual = metasKills[indiceMetaAtual];
+
+        float progresso = Mathf.Clamp01((float)kills / metaAtual);
+
+        // Calcula posição vertical
+        float y = progresso * alturaTotal;
+
+        Vector2 pos = iconUI.anchoredPosition;
+        pos.y = y;
+        iconUI.anchoredPosition = pos;
+    }
+
+    private void VerificarProgressoMeta()
+    {
+        if (numeroKills == null || indiceMetaAtual >= metasKills.Length)
+            return;
+
+        int metaAtual = metasKills[indiceMetaAtual];
+
+        if (numeroKills.kills >= metaAtual)
+        {
+            numeroKills.kills = 0; // Reseta kills
+            indiceMetaAtual++;     // Avança para próxima meta
+        }
     }
 }
