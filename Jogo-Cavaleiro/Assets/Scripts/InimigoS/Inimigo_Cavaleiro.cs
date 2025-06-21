@@ -7,10 +7,12 @@ public class Inimigo_Cavaleiro : MonoBehaviour
     public float velocidadeAcompanhamento = 0f;
     public float alcanceVerticalParaAcompanhar = 3f;
     public float distanciaTrocaLinha = 0.1f;
+    public float distanciacavaleiroacima;
 
     public int dano = 1;
     private Transform jogador;
     private PlayerMov playerMov;
+    private bool Distanciadiminuida, jaacompanhou;
 
     private bool acompanhando = false;
     private Vector3 distanciaLinha = new Vector3(8f, 0f, 0f);
@@ -45,25 +47,38 @@ public class Inimigo_Cavaleiro : MonoBehaviour
         if (jogador == null) return;
 
         float distanciaVertical = jogador.position.y - transform.position.y;
+        Debug.Log(acompanhando);
 
-        if (Mathf.Abs(distanciaVertical) <= 0.2f)
+        if (distanciaVertical <= -distanciacavaleiroacima)
         {
+            if (!Distanciadiminuida)
+            {
+                distanciacavaleiroacima = distanciacavaleiroacima - 0.2f;
+                Distanciadiminuida = true;
+            }
+            jaacompanhou = true;
             acompanhando = true;
-            velocidadeAcompanhamento = playerMov != null ? playerMov.velocidade : 0f;
+            // velocidadeAcompanhamento = playerMov != null ? playerMov.velocidade : 0f;
+            velocidadeAcompanhamento = 0;
         }
         else
         {
-            acompanhando = false;
+            if (!jaacompanhou)
+            {
+                acompanhando = false;
+            }
+            else return;
         }
 
         if (acompanhando)
         {
-            transform.Translate(Vector3.up * velocidadeAcompanhamento * Time.deltaTime);
+             transform.Translate(Vector3.up * velocidadeAcompanhamento * Time.deltaTime);
 
-            if (!comlaco)
+            /* if (!comlaco)
                 StartCoroutine(Atacar());
             else
                 StartCoroutine(AutoDestruir());
+            */
         }
         else
         {
@@ -71,7 +86,7 @@ public class Inimigo_Cavaleiro : MonoBehaviour
         }
 
         // Troca de linha
-        if (Mathf.Abs(jogador.position.x - transform.position.x) < distanciaTrocaLinha)
+       /* if (Mathf.Abs(jogador.position.x - transform.position.x) < distanciaTrocaLinha)
         {
             float novoX = transform.position.x;
 
@@ -84,6 +99,7 @@ public class Inimigo_Cavaleiro : MonoBehaviour
 
             transform.position = new Vector3(novoX, transform.position.y, transform.position.z);
         }
+       */
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -105,10 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14caf188d8bf8845b192f957f49ab22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadeInicial: 10
+  velocidadeInicial: 12
   velocidadeAcompanhamento: 5
   alcanceVerticalParaAcompanhar: 3
   distanciaTrocaLinha: 0.1
+  distanciacavaleiroacima: 10
   dano: 1
   chancelaco: 0
   prefabLaco: {fileID: 0}
@@ -202,11 +203,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df865d86e91191e41a092c6c64243dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  somTrocarLinha: {fileID: 0}
+  source: {fileID: 0}
+  sfxGroup: {fileID: 0}
   somAtaque: {fileID: 0}
   somDano: {fileID: 0}
   somCura: {fileID: 0}
-  somMorte: {fileID: 8300000, guid: c9cc99b5abe686e4da9d20e2127b103e, type: 3}
+  somTrocarLinha: {fileID: 0}
 --- !u!82 &2864810817752853691
 AudioSource:
   m_ObjectHideFlags: 0

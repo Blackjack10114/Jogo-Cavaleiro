@@ -1234,7 +1234,7 @@ PrefabInstance:
       objectReference: {fileID: 972322265}
     - target: {fileID: 1851150196253100037, guid: de0cc7d6097b24f439f5652cae84c982, type: 3}
       propertyPath: intervalo
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1851150196253100037, guid: de0cc7d6097b24f439f5652cae84c982, type: 3}
       propertyPath: chanceSpawn
@@ -1254,7 +1254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5765350098375307119, guid: de0cc7d6097b24f439f5652cae84c982, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6705637060317662171, guid: de0cc7d6097b24f439f5652cae84c982, type: 3}
       propertyPath: m_LocalPosition.x
