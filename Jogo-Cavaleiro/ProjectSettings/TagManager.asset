@@ -65,5 +65,8 @@ TagManager:
   - name: "La\xE7o"
     uniqueID: 716689837
     locked: 0
+  - name: Hud
+    uniqueID: 3396758273
+    locked: 0
   m_RenderingLayers:
   - Default
