@@ -342,4 +342,39 @@ void Fase_Introducao()
         spawnerUrsinho.enabled = false;
         spawnerMiragem.enabled = false;
     }
+
+    public void ForcarFase(FaseJogo novaFase)
+    {
+        faseAtual = novaFase;
+        etapa = EtapaPorFase(novaFase);
+        kills = metas[Mathf.Clamp(etapa - 1, 0, metas.Length - 1)];
+
+        MudarParaFase(novaFase);
+
+        // Executa a narrativa correspondente
+        switch (etapa)
+        {
+            case 0: StartCoroutine(IntroducaoNarrativa()); break;
+            case 1: StartCoroutine(Etapa0()); break;
+            case 2: StartCoroutine(Etapa1()); break;
+            case 3: StartCoroutine(Etapa2()); break;
+            case 4: StartCoroutine(Etapa3()); break;
+            case 5: StartCoroutine(Etapa4Final()); break;
+        }
+    }
+
+    private int EtapaPorFase(FaseJogo fase)
+    {
+        return fase switch
+        {
+            FaseJogo.Introducao => 0,
+            FaseJogo.IntroducaoAvancada => 1,
+            FaseJogo.Meio => 2,
+            FaseJogo.MeioAvancado => 3,
+            FaseJogo.ComecoFinal => 4,
+            FaseJogo.Final => 5,
+            _ => 0
+        };
+    }
+
 }

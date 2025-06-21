@@ -15,21 +15,21 @@ public class GameDebugCheat : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             if (Input.GetKeyDown(KeyCode.F1))
-                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.Introducao);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Introducao);
 
             if (Input.GetKeyDown(KeyCode.F2))
-                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.IntroducaoAvancada);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.IntroducaoAvancada);
 
             if (Input.GetKeyDown(KeyCode.F3))
-                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.Meio);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Meio);
 
             if (Input.GetKeyDown(KeyCode.F4))
-                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.MeioAvancado);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.MeioAvancado);
 
             if (Input.GetKeyDown(KeyCode.F5))
-                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.ComecoFinal);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.ComecoFinal);
             if (Input.GetKeyDown(KeyCode.F6))
-                controlador.MudarParaFase(ControladorNarrativa.FaseJogo.Final);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Final);
 
             //if (Input.GetKeyDown(KeyCode.F7))
             //controlador.MudarParaFase(ControladorNarrativa.FaseJogo.Boss);
