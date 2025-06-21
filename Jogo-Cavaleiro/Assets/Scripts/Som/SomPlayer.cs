@@ -1,35 +1,36 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
-[RequireComponent(typeof(AudioSource))]
 public class SomPlayer : MonoBehaviour
 {
-    private AudioSource audioSource;
+    [Header("Configuração")]
+    public AudioSource source;
+    public AudioMixerGroup sfxGroup;
 
-    [Header("Clips de Efeito")]
-    public AudioClip somTrocarLinha;
+    [Header("Clipes")]
     public AudioClip somAtaque;
     public AudioClip somDano;
     public AudioClip somCura;
-    public AudioClip somMorte;
+    public AudioClip somTrocarLinha;
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        if (source == null)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+            source.outputAudioMixerGroup = sfxGroup;
+            source.playOnAwake = false;
+        }
     }
 
     public void TocarSom(AudioClip clip)
     {
-        if (clip == null || audioSource == null)
-            return;
-
-        // Reproduz via AudioManager para que o volume seja controlado pelo mixer
-        Controlador_Som.instancia?.TocarSFX(clip);
+        if (clip != null && source != null)
+            source.PlayOneShot(clip);
     }
 
-    // Métodos de atalho
-    public void TocarTrocarLinha() => TocarSom(somTrocarLinha);
     public void TocarAtaque() => TocarSom(somAtaque);
     public void TocarDano() => TocarSom(somDano);
     public void TocarCura() => TocarSom(somCura);
-    public void TocarMorte() => TocarSom(somMorte);
+    public void TocarTrocarLinha() => TocarSom(somTrocarLinha);
 }

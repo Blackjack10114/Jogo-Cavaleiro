@@ -76,7 +76,7 @@ public class Vida : MonoBehaviour
         // Somente inimigos são destruídos automaticamente
         if (!CompareTag("Player"))
         {
-            GetComponent<SomPlayer>()?.TocarSom(GetComponent<SomPlayer>().somMorte);
+            //GetComponent<SomPlayer>()?.TocarSom(GetComponent<SomPlayer>().somMorte);
             Destroy(gameObject); 
         }
     }
