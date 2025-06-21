@@ -103,7 +103,8 @@ public class PlayerMov : MonoBehaviour
             NaDireita = false;
             NaEsquerda = false;
         }
-        GetComponent<SomPlayer>()?.Tocar(GetComponent<SomPlayer>().somTrocarLinha);
+        GetComponent<SomPlayer>()?.TocarSom(GetComponent<SomPlayer>().somTrocarLinha);
+
 
     }
 }

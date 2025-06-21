@@ -14,7 +14,7 @@ public class VidaColetavel : MonoBehaviour
                 vida.Curar(valorCura);
                 SomPlayer som = other.GetComponent<SomPlayer>();
                 if (som != null)
-                    som.Tocar(som.somCura);
+                    som.TocarSom(som.somCura); // Alterado para TocarSom
                 Destroy(gameObject);
             }
         }

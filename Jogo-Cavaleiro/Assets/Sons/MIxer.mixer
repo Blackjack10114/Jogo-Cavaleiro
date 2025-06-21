@@ -19,25 +19,6 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!243 &-55443135129778964
-AudioMixerGroupController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Voices
-  m_AudioMixer: {fileID: 24100000}
-  m_GroupID: 11165c9b954952b48bca906455b2fffe
-  m_Children: []
-  m_Volume: 63f320dbfb18afb4f8c38760e9752883
-  m_Pitch: 1cd8ea8e4e81bc44abd232ab93b5203a
-  m_Send: 00000000000000000000000000000000
-  m_Effects:
-  - {fileID: 7745841982941339707}
-  m_UserColorIndex: 0
-  m_Mute: 0
-  m_Solo: 0
-  m_BypassEffects: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -60,14 +41,11 @@ AudioMixerController:
     name: BGMVolume
   - guid: f3f87440655aee243a4669a7fb3dd5ac
     name: SFXVolume
-  - guid: 63f320dbfb18afb4f8c38760e9752883
-    name: VozesVolume
   m_AudioMixerGroupViews:
   - guids:
     - b74dd0cb48788084c9c9633bc4ec44ff
     - ef9a8372e7ec4f446958a645db424356
     - 68476673236c9334d90e0bc236c4ad42
-    - 11165c9b954952b48bca906455b2fffe
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -83,7 +61,6 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -9175112758359702181}
   - {fileID: 7218498338653229389}
-  - {fileID: -55443135129778964}
   m_Volume: 69db136913ddeb048ab216edf0efe869
   m_Pitch: 9b4c192238e2d9342baa773981bda1f8
   m_Send: 00000000000000000000000000000000
@@ -165,17 +142,3 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!244 &7745841982941339707
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: cced4773a5cc3d74fbadb889c135a87e
-  m_EffectName: Attenuation
-  m_MixLevel: 094de1f770c6a3c4398db2156bebc80f
-  m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0

@@ -37,8 +37,13 @@ public class Vida : MonoBehaviour
 
         if (CompareTag("Player"))
         {
-            GetComponent<SomPlayer>()?.Tocar(GetComponent<SomPlayer>().somDano);
+            SomPlayer somPlayer = GetComponent<SomPlayer>();
+            if (somPlayer != null)
+            {
+                somPlayer.TocarDano();
+            }
         }
+
 
     }
 
@@ -71,8 +76,8 @@ public class Vida : MonoBehaviour
         // Somente inimigos são destruídos automaticamente
         if (!CompareTag("Player"))
         {
-                GetComponent<SomPlayer>()?.Tocar(GetComponent<SomPlayer>().somMorte);
-                Destroy(gameObject); 
+            GetComponent<SomPlayer>()?.TocarSom(GetComponent<SomPlayer>().somMorte);
+            Destroy(gameObject); 
         }
     }
 
