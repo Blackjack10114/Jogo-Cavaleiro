@@ -1,10 +1,13 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class VolumeUI : MonoBehaviour
 {
-    public string mixerParameter;
+    [Header("Parâmetro do Audio Mixer")]
+    public string mixerParameter = "MasterVolume";
+
+    [Header("Slider (arraste o próprio)")]
     public Slider slider;
 
     private void Awake()
@@ -12,27 +15,23 @@ public class VolumeUI : MonoBehaviour
         if (slider == null)
             slider = GetComponent<Slider>();
 
-        float valorSalvo = PlayerPrefs.GetFloat(mixerParameter, 1f);
-        slider.value = valorSalvo;
-        AplicarVolume(valorSalvo);
+        float valorInicial = PlayerPrefs.GetFloat(mixerParameter, 1f);
+        slider.value = valorInicial;
+        AplicarVolume(valorInicial);
+
         slider.onValueChanged.AddListener(AplicarVolume);
     }
 
     private void AplicarVolume(float valor)
     {
-        float db;
-
-        // Evita logaritmo de zero e define um mínimo de volume audível
-        if (valor <= 0.0001f)
-            db = -80f; // Silêncio total (padrão do Unity)
-        else
-            db = Mathf.Log10(valor) * 20f;
-
+        float db = Mathf.Log10(Mathf.Clamp(valor, 0.001f, 1f)) * 20f;
         if (Controlador_Som.instancia != null)
+        {
             Controlador_Som.instancia.AudioMixer.SetFloat(mixerParameter, db);
+        }
+
 
         PlayerPrefs.SetFloat(mixerParameter, valor);
         PlayerPrefs.Save();
     }
-
 }
