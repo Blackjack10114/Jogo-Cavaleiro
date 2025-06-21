@@ -23,6 +23,7 @@ public class Morcego : MonoBehaviour
     public bool comlaco;
     private bool lacoinsta;
     [HideInInspector] public GameObject prefabLaco;
+    private bool aoLadoNaMesmaAltura;
 
     private void Start()
     {
@@ -55,14 +56,13 @@ public class Morcego : MonoBehaviour
         {
             Vector3 direcao = new Vector3(jogador.position.x - transform.position.x, 0, 0).normalized;
             transform.position += direcao * velocidade * Time.deltaTime;
-
-            // Fixa Y na mesma altura do jogador
-            PosicaoMorcego = new Vector3(transform.position.x, jogador.position.y, transform.position.z);
-            transform.position = PosicaoMorcego;
         }
+        // Fixa Y na mesma altura do jogador
+        PosicaoMorcego = new Vector3(transform.position.x, jogador.position.y, transform.position.z);
+        transform.position = PosicaoMorcego;
 
         Vector2 distancia = jogador.position - transform.position;
-        bool aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) <= alcanceAtaque;
+        aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) <= alcanceAtaque;
 
         if (!comlaco && Time.time >= tempoProximoAtaque && aoLadoNaMesmaAltura)
         {
@@ -88,21 +88,39 @@ public class Morcego : MonoBehaviour
     private IEnumerator Atacar()
     {
         yield return new WaitForSeconds(1f);
-        tempoProximoAtaque = Time.time + tempoEntreAtaques;
-
-        if (jogador == null) yield break;
-
-        Vida vidaJogador = jogador.GetComponent<Vida>();
-        if (vidaJogador != null)
+        if (aoLadoNaMesmaAltura)
         {
-            vidaJogador.LevarDano(dano);
-            Destroy(gameObject);
+            tempoProximoAtaque = Time.time + tempoEntreAtaques;
+
+            if (jogador == null) yield break;
+
+            Vida vidaJogador = jogador.GetComponent<Vida>();
+            if (vidaJogador != null)
+            {
+                vidaJogador.LevarDano(dano);
+                Destroy(gameObject);
+            }
         }
+        Destroy(gameObject);
     }
 
     private IEnumerator AutoDestruir()
     {
         yield return new WaitForSeconds(AutoDestruircomlaco);
         Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (comlaco) return;
+
+        if (collision.CompareTag("Player"))
+        {
+            Vida vida = collision.GetComponent<Vida>();
+            if (vida != null)
+            {
+                vida.LevarDano(dano);
+                Destroy(gameObject);
+            }
+        }
     }
 }
