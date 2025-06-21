@@ -1137,7 +1137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213416939331745931, guid: 643d992472727df4c8198fd726edd8ce, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1556,7 +1556,7 @@ PrefabInstance:
     - target: {fileID: 3796376220892620070, guid: 10e78ef3d3c49f04a9621545f43ab580, type: 3}
       propertyPath: jogador
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 232293032}
     - target: {fileID: 3796376220892620070, guid: 10e78ef3d3c49f04a9621545f43ab580, type: 3}
       propertyPath: chanceSpawn
       value: 1
@@ -1579,7 +1579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757526702337944367, guid: 10e78ef3d3c49f04a9621545f43ab580, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
