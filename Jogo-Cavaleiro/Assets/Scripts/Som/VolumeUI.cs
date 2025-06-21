@@ -4,7 +4,7 @@ using UnityEngine.Audio;
 
 public class VolumeUI : MonoBehaviour
 {
-    public string mixerParameter = "MasterVolume";
+    public string mixerParameter;
     public Slider slider;
 
     private void Awake()
@@ -20,7 +20,13 @@ public class VolumeUI : MonoBehaviour
 
     private void AplicarVolume(float valor)
     {
-        float db = Mathf.Log10(Mathf.Clamp(valor, 0.001f, 1f)) * 20f;
+        float db;
+
+        // Evita logaritmo de zero e define um mínimo de volume audível
+        if (valor <= 0.0001f)
+            db = -80f; // Silêncio total (padrão do Unity)
+        else
+            db = Mathf.Log10(valor) * 20f;
 
         if (Controlador_Som.instancia != null)
             Controlador_Som.instancia.AudioMixer.SetFloat(mixerParameter, db);
@@ -28,4 +34,5 @@ public class VolumeUI : MonoBehaviour
         PlayerPrefs.SetFloat(mixerParameter, valor);
         PlayerPrefs.Save();
     }
+
 }
