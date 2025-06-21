@@ -1,94 +1,109 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
-using System.Runtime.CompilerServices;
 
 public class Inimigo_Piolho : MonoBehaviour
 {
+    [Header("Configuração de linha")]
     public LinhasController.Linha linhaAtual;
-    public float alcanceAtaque;
+    public float alcanceAtaque = 1.5f;
     public float tempoEntreAtaques = 1.5f;
     public int dano = 1;
-    private float tempoProximoAtaque = 0f;
-    // coisas de laço
-    public float chancelaco = 0.3f;
-    public bool comlaco;
-    private bool lacoinsta;
-    private GameObject prefabLaco;
 
-    private Transform playertransform;
-    GameObject Player;
-    private Vector3 PosicaoInimigo;
-    private Vida vida;
+    [Header("Laço Rosa")]
+    public float chanceLaco = 0.3f;
+    public bool comLaco;
+    public float tempoAutoDestruirComLaco = 10f;
 
+    
+    
     public enum DirecaoSpawn { Cima, Baixo }
-    public enum DirecaoMovimento { Subindo, Descendo}
+    public enum DirecaoMovimento { Subindo, Descendo }
     public DirecaoSpawn direcaoSpawn = DirecaoSpawn.Cima;
-
     public DirecaoMovimento direcao;
+
+    private float tempoProximoAtaque = 0f;
+    private bool lacoInstanciado = false;
+
+    private GameObject prefabLaco;
+    private Transform jogador;
+    private Vida vida;
+    private MovimentoVertical movimento;
+
     private void Start()
     {
-        prefabLaco = Resources.Load <GameObject>("Laco_Rosa");
-        playertransform = GameObject.FindWithTag("Player")?.transform;
-        Player = GameObject.FindWithTag("Player");
-        // Usa LinhasController para posicionar na linha correta
+        jogador = GameObject.FindWithTag("Player")?.transform;
+        prefabLaco = Resources.Load<GameObject>("Laco_Rosa");
+
         float x = LinhasController.Instance.PosicaoX(linhaAtual);
         transform.position = new Vector3(x, transform.position.y, transform.position.z);
 
-        MovimentoVertical mov = GetComponent<MovimentoVertical>();
-        if (mov != null)
-        {
-            mov.direcao = (direcao == DirecaoMovimento.Subindo) ?
-                          MovimentoVertical.Direcao.Subindo :
-                          MovimentoVertical.Direcao.Descendo;
+        vida = GetComponent<Vida>();
+        movimento = GetComponent<MovimentoVertical>();
 
-            vida = GetComponent<Vida>();
-        }
-        // verificar se tem laço
-        if (Random.value < chancelaco)
+        if (movimento != null)
         {
-            comlaco = true;
+            movimento.direcao = (direcao == DirecaoMovimento.Subindo) ?
+                                MovimentoVertical.Direcao.Subindo :
+                                MovimentoVertical.Direcao.Descendo;
         }
+
+        comLaco = Random.value < chanceLaco;
+        if (comLaco)
+            StartCoroutine(AutoDestruirComLaco());
     }
 
     private void Update()
     {
-        if (playertransform == null || vida == null || vida.Morreu) return;
-        // instancia o laço
-        if (comlaco && !lacoinsta)
+        if (jogador == null || vida == null || vida.Morreu) return;
+
+        if (comLaco && !lacoInstanciado)
         {
             GameObject laco = Instantiate(prefabLaco, transform.position, Quaternion.identity);
-            lacoinsta = true;
-            laco.transform.parent = this.transform;
+            laco.transform.SetParent(this.transform);
+            lacoInstanciado = true;
         }
-        if (!comlaco)
-        {
-            Vector2 distancia = playertransform.position - transform.position;
 
-            bool naMesmaLinhaVertical = Mathf.Abs(distancia.x) < 0.5f;
-            bool aoLadoNaMesmaAltura = Mathf.Abs(distancia.y) < 1f && Mathf.Abs(distancia.x) <= alcanceAtaque;
-            if (Time.time >= tempoProximoAtaque)
-            {
-                if (aoLadoNaMesmaAltura)
-                {
-                    PosicaoInimigo = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
-                    this.transform.position = PosicaoInimigo;
-                    StartCoroutine(Atacar());
-                }
-            }
-        }
-        else
+        if (!comLaco)
         {
-            Vector2 distancia = playertransform.position - transform.position;
-            if (distancia.y > 20)
+            float distX = Mathf.Abs(jogador.position.x - transform.position.x);
+            float distY = Mathf.Abs(jogador.position.y - transform.position.y);
+
+            bool alinhado = distX < 0.5f;
+            bool dentroDoAlcance = distY <= alcanceAtaque;
+
+            if (alinhado && dentroDoAlcance && Time.time >= tempoProximoAtaque)
             {
-                Destroy(gameObject);
+                StartCoroutine(Atacar());
             }
         }
     }
+
+    private IEnumerator Atacar()
+    {
+        tempoProximoAtaque = Time.time + tempoEntreAtaques;
+
+        yield return new WaitForSeconds(0.3f); // atraso do ataque
+
+        if (jogador != null)
+        {
+            Vida vidaJogador = jogador.GetComponent<Vida>();
+            if (vidaJogador != null)
+            {
+                vidaJogador.LevarDano(dano);
+                Destroy(gameObject); // se autodestrói ao atacar
+            }
+        }
+    }
+
+    private IEnumerator AutoDestruirComLaco()
+    {
+        yield return new WaitForSeconds(tempoAutoDestruirComLaco);
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (comlaco) return; // não ataca se estiver com laço
+        if (comLaco) return;
 
         if (collision.CompareTag("Player"))
         {
@@ -96,21 +111,8 @@ public class Inimigo_Piolho : MonoBehaviour
             if (vida != null)
             {
                 vida.LevarDano(dano);
-                Destroy(gameObject); // piolho se autodestrói após causar dano
+                Destroy(gameObject);
             }
-        }
-    }
-
-    private IEnumerator Atacar()
-    {
-        yield return new WaitForSeconds(1f);
-        tempoProximoAtaque = Time.time + tempoEntreAtaques;
-
-        Vida vidaJogador = playertransform.GetComponent<Vida>();
-        if (vidaJogador != null)
-        {
-            vidaJogador.LevarDano(dano);
-            Destroy(gameObject);
         }
     }
 }

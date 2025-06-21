@@ -5608,7 +5608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796376220892620070, guid: 10e78ef3d3c49f04a9621545f43ab580, type: 3}
       propertyPath: intervaloEntreSpawns
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8757526702337944367, guid: 10e78ef3d3c49f04a9621545f43ab580, type: 3}
       propertyPath: m_Name

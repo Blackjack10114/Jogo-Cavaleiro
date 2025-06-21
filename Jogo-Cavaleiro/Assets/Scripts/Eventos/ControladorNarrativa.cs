@@ -58,22 +58,27 @@ public class ControladorNarrativa : MonoBehaviour
                 break;
             case FaseJogo.IntroducaoAvancada:
                 etapa = 1;
+                kills = metas[0]; // = 5
                 StartCoroutine(Etapa0());
                 break;
             case FaseJogo.Meio:
                 etapa = 2;
+                kills = metas[1]; // = 20
                 StartCoroutine(Etapa1());
                 break;
             case FaseJogo.MeioAvancado:
                 etapa = 3;
+                kills = metas[2]; // = 30
                 StartCoroutine(Etapa2());
                 break;
             case FaseJogo.ComecoFinal:
                 etapa = 4;
+                kills = metas[3]; // = 50
                 StartCoroutine(Etapa3());
                 break;
             case FaseJogo.Final:
                 etapa = 5;
+                kills = metas[4]; // = 60
                 StartCoroutine(Etapa4Final());
                 break;
         }

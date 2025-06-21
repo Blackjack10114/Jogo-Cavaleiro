@@ -14,6 +14,11 @@ public class SpawnerPiolho : MonoBehaviour
 
     [Header("Layer")]
     public LayerMask layerInimigos;
+
+    [Header("Laço Rosa")]
+    [Range(0f, 1f)]
+    public float chanceDeLaco = 0.3f;
+
     void Update()
     {
         if (Time.time >= tempoProximoSpawn && jogador != null)
@@ -33,17 +38,15 @@ public class SpawnerPiolho : MonoBehaviour
 
         for (int i = 0; i < quantidade; i++)
         {
-            // linha aleatória
             LinhasController.Linha linha = (LinhasController.Linha)Random.Range(0, 3);
             float x = LinhasController.Instance.PosicaoX(linha);
 
-            //Random.value < 0.5f ? distanciaVertical : -distanciaVertical;
             float offsetY = Random.Range(distanciaVertical * 0.8f, distanciaVertical * 1.4f);
-
-            float y = jogador.position.y + (offsetY);
+            float y = jogador.position.y + offsetY;
 
             Vector3 posicao = new Vector3(x, y, 0);
-            if (PodeSpawnar(posicao, 3f)) //raio mínimo entre inimigos
+
+            if (PodeSpawnar(posicao, 3f))
             {
                 GameObject inimigo = Instantiate(prefabInimigo, posicao, Quaternion.identity);
 
@@ -54,19 +57,21 @@ public class SpawnerPiolho : MonoBehaviour
                     script.direcao = offsetY > 0 ?
                         Inimigo_Piolho.DirecaoMovimento.Descendo :
                         Inimigo_Piolho.DirecaoMovimento.Subindo;
+
+                    script.chanceLaco = chanceDeLaco;
                 }
             }
             else
             {
                 Debug.Log("Spawn cancelado: inimigo já próximo");
             }
-
-            bool PodeSpawnar(Vector3 posicaoDesejada, float raio)
-            {
-                Collider2D[] colisores = Physics2D.OverlapCircleAll(posicaoDesejada, raio, layerInimigos);
-                return colisores.Length == 0;
-            }
-
         }
     }
+
+    bool PodeSpawnar(Vector3 posicaoDesejada, float raio)
+    {
+        Collider2D[] colisores = Physics2D.OverlapCircleAll(posicaoDesejada, raio, layerInimigos);
+        return colisores.Length == 0;
+    }
 }
+
