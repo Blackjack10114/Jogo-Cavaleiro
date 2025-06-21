@@ -3,7 +3,8 @@ using UnityEngine;
 public class camera : MonoBehaviour
 {
     GameObject Player;
-    Vector3 offset, posicaocamera;
+    Vector3 posicaocamera;
+    public Vector3 offset;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +16,6 @@ public class camera : MonoBehaviour
     void Update()
     {
         posicaocamera = new Vector3(transform.position.x, Player.transform.position.y, transform.position.z);
-        this.transform.position = posicaocamera;
+        this.transform.position = posicaocamera + offset;
     }
 }
