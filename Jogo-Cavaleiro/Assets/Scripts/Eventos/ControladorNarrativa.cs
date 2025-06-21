@@ -50,54 +50,53 @@ public class ControladorNarrativa : MonoBehaviour
 
     void Start()
     {
+        DesativarTodos(); // garante que nenhum inimigo nasce antes do tempo
+
         checkpointManager = Object.FindFirstObjectByType<CheckpointManager>();
         if (checkpointManager != null)
             faseAtual = checkpointManager.CarregarCheckpoint();
-
-        kills = checkpointManager != null ? checkpointManager.CarregarKillsSalvas() : 0;
-
-        MudarParaFase(faseAtual);
 
         switch (faseAtual)
         {
             case FaseJogo.Introducao:
                 etapa = 0;
-                kills = 0; // começa zerado
-                StartCoroutine(IntroducaoNarrativa());
+                kills = 0;
                 break;
-
             case FaseJogo.IntroducaoAvancada:
                 etapa = 1;
-                kills = 5; 
-                StartCoroutine(Etapa0());
+                kills = 5;
                 break;
-
             case FaseJogo.Meio:
                 etapa = 2;
                 kills = 20;
-                StartCoroutine(Etapa1());
                 break;
-
             case FaseJogo.MeioAvancado:
                 etapa = 3;
                 kills = 30;
-                StartCoroutine(Etapa2());
                 break;
-
             case FaseJogo.ComecoFinal:
                 etapa = 4;
                 kills = 50;
-                StartCoroutine(Etapa3());
                 break;
-
             case FaseJogo.Final:
                 etapa = 5;
                 kills = 60;
-                StartCoroutine(Etapa4Final());
                 break;
         }
 
+        // Agora, só executa a narrativa — o Fase_XXX será chamado no fim dela
+        switch (etapa)
+        {
+            case 0: StartCoroutine(IntroducaoNarrativa()); break;
+            case 1: StartCoroutine(Etapa0()); break;
+            case 2: StartCoroutine(Etapa1()); break;
+            case 3: StartCoroutine(Etapa2()); break;
+            case 4: StartCoroutine(Etapa3()); break;
+            case 5: StartCoroutine(Etapa4Final()); break;
+        }
     }
+
+
 
 
     private IEnumerator IntroducaoNarrativa()
@@ -352,9 +351,11 @@ void Fase_Introducao()
 
     public void ForcarFase(FaseJogo novaFase)
     {
+        DesativarTodos();
+
         faseAtual = novaFase;
         etapa = EtapaPorFase(novaFase);
-        kills = metas[Mathf.Clamp(etapa - 1, 0, metas.Length - 1)];
+        kills = checkpointManager != null ? checkpointManager.CarregarKillsSalvas() : 0;
 
         MudarParaFase(novaFase);
 

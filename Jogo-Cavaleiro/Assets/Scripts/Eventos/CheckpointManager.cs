@@ -16,7 +16,8 @@ public class CheckpointManager : MonoBehaviour
             var faseSalva = (ControladorNarrativa.FaseJogo)PlayerPrefs.GetInt(ChaveFase);
 
             // Aplica a fase no ControladorNarrativa
-            controladorNarrativa.MudarParaFase(faseSalva);
+            controladorNarrativa.ForcarFase(faseSalva);
+
 
             // Carrega Y salvo e define X como Centro
             float posY = PlayerPrefs.GetFloat(ChaveY, jogador.position.y);
