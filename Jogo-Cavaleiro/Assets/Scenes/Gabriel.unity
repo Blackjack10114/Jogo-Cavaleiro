@@ -1585,7 +1585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4732470605511167445, guid: 1b1ef31bffb001c44ba0ec3567096d35, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1963,6 +1963,10 @@ PrefabInstance:
       propertyPath: jogador
       value: 
       objectReference: {fileID: 972322265}
+    - target: {fileID: 89338184453546757, guid: d088f530339cfc5478ad95f87824f553, type: 3}
+      propertyPath: chanceDeLaco
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1703469213732099397, guid: d088f530339cfc5478ad95f87824f553, type: 3}
       propertyPath: m_Name
       value: Spawner_morcego_1
@@ -2028,6 +2032,10 @@ PrefabInstance:
       propertyPath: jogador
       value: 
       objectReference: {fileID: 972322265}
+    - target: {fileID: 86079097959987309, guid: 2d6aea514ebc50e4bae22bcc3e83c206, type: 3}
+      propertyPath: chanceDeLaco
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1705316104285394253, guid: 2d6aea514ebc50e4bae22bcc3e83c206, type: 3}
       propertyPath: m_Name
       value: Spawner_morcego_2

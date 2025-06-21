@@ -35,7 +35,7 @@ public class Inimigo_Ursinho : MonoBehaviour
     private bool recuando = false;
     private bool podeMover = true;
     private float proximoAtaque = 0f;
-    private bool distanciaDoJogador, MesmaAltura;
+    private bool distanciaDoJogador, MesmaAltura, Destruir;
     private bool pulando = false;
 
 
@@ -86,6 +86,11 @@ public class Inimigo_Ursinho : MonoBehaviour
         if (distanciaDoJogador && MesmaAltura && !recuando)
         {
             AlinharYComJogador();
+            if (comlaco && !Destruir)
+            {
+                Destruir = true;
+                AutoDestruir();
+            }
         }
         /* if (distanciaDoJogador < alcanceAtaque && Time.time >= proximoAtaque && comlaco)
         {
@@ -156,6 +161,7 @@ public class Inimigo_Ursinho : MonoBehaviour
     private IEnumerator AutoDestruir()
     {
         yield return new WaitForSeconds(AutoDestruircomlaco);
+        Debug.Log("autodestruir");
         Destroy(gameObject);
     }
     private IEnumerator Atacar()
