@@ -76,9 +76,18 @@ public class Vida : MonoBehaviour
         // Somente inimigos são destruídos automaticamente
         if (!CompareTag("Player"))
         {
-            //GetComponent<SomPlayer>()?.TocarSom(GetComponent<SomPlayer>().somMorte);
-            Destroy(gameObject); 
+            SomInimigo som = GetComponent<SomInimigo>();
+            if (som != null)
+            {
+                som.TocarSomMorte();
+                Destroy(gameObject, 1f); // espera 1s para som tocar antes de destruir
+            }
+            else
+            {
+                Destroy(gameObject); // sem som? destrói direto
+            }
         }
+
     }
 
     public void Curar(int valor)
