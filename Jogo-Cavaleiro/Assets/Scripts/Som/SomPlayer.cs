@@ -14,20 +14,8 @@ public class SomPlayer : MonoBehaviour
 
     private void Awake()
     {
-        // Tenta obter o componente existente
         audioSource = GetComponent<AudioSource>();
-
-        // Se não tiver, cria um e avisa
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-            Debug.LogWarning($"AudioSource faltando em {gameObject.name}. Um novo foi adicionado automaticamente.");
-        }
-
-        // Garante que não toque automaticamente
-        audioSource.playOnAwake = false;
     }
-
 
     public void TocarSom(AudioClip clip)
     {

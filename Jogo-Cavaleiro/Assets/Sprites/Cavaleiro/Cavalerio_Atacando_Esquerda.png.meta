@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: d58dc76cad973c74d91f0b69c5911ff5
+guid: 1512656a52b44e447bb99824fefed40f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4233864457794943011
-    second: AtaqueEsquerda 1_0
+      213: -2651989462221380020
+    second: Cavalerio_Atacando_Esquerda_0
+  - first:
+      213: -775682359804729055
+    second: Cavalerio_Atacando_Esquerda_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 360
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AtaqueEsquerda 1_0
+      name: Cavalerio_Atacando_Esquerda_0
       rect:
         serializedVersion: 2
-        x: 391
-        y: 626
-        width: 574
-        height: 909
+        x: 396
+        y: 22
+        width: 327
+        height: 517
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd70bf525ba4e35c0800000000000000
-      internalID: -4233864457794943011
+      spriteID: c46273c82ad323bd0800000000000000
+      internalID: -2651989462221380020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cavalerio_Atacando_Esquerda_1
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 24
+        width: 464
+        height: 518
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1296d45e0093c35f0800000000000000
+      internalID: -775682359804729055
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AtaqueEsquerda 1_0: -4233864457794943011
+      Cavalerio_Atacando_Esquerda_0: -2651989462221380020
+      Cavalerio_Atacando_Esquerda_1: -775682359804729055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

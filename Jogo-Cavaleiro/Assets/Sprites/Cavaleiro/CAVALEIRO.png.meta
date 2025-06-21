@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 07dfde994f9af6c4c85f94c32a06c5ea
+guid: 2fc7cddd278c0aa4da14862733333b0f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7407293315997523011
-    second: Cavaleiro 5_0
+      213: -5153192923768834526
+    second: CAVALEIRO_0
+  - first:
+      213: -6632367823047562824
+    second: CAVALEIRO_1
+  - first:
+      213: 5940668781199915260
+    second: CAVALEIRO_2
+  - first:
+      213: -7923418609144761732
+    second: CAVALEIRO_3
+  - first:
+      213: -8018880545132327412
+    second: CAVALEIRO_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 360
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cavaleiro 5_0
+      name: CAVALEIRO_0
       rect:
         serializedVersion: 2
-        x: 598
-        y: 716
-        width: 466
-        height: 892
+        x: 295
+        y: 35
+        width: 231
+        height: 484
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 34c582f760efbc660800000000000000
-      internalID: 7407293315997523011
+      spriteID: 226b3bfa65e2c78b0800000000000000
+      internalID: -5153192923768834526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVALEIRO_1
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 44
+        width: 248
+        height: 481
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b9e48fca9815f3a0800000000000000
+      internalID: -6632367823047562824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVALEIRO_2
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 54
+        width: 253
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf87caf08ce717250800000000000000
+      internalID: 5940668781199915260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVALEIRO_3
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 39
+        width: 216
+        height: 481
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c72f43b41cc5a0290800000000000000
+      internalID: -7923418609144761732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CAVALEIRO_4
+      rect:
+        serializedVersion: 2
+        x: 1492
+        y: 59
+        width: 250
+        height: 480
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0ec81b41a637b090800000000000000
+      internalID: -8018880545132327412
       vertices: []
       indices: 
       edges: []
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cavaleiro 5_0: 7407293315997523011
+      CAVALEIRO_0: -5153192923768834526
+      CAVALEIRO_1: -6632367823047562824
+      CAVALEIRO_2: 5940668781199915260
+      CAVALEIRO_3: -7923418609144761732
+      CAVALEIRO_4: -8018880545132327412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
