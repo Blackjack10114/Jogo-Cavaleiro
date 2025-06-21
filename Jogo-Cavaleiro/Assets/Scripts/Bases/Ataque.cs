@@ -84,6 +84,8 @@ public class PlayerAtaque : MonoBehaviour
                 anim.SetTrigger("AtacarDireita");
             else if (direcao == Vector2.left)
                 anim.SetTrigger("AtacarEsquerda");
+            else if (direcao == Vector2.up)
+                anim.SetTrigger("AtacarCima");
         }
 
 
