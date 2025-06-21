@@ -1596,7 +1596,6 @@ GameObject:
   m_Component:
   - component: {fileID: 574542737}
   - component: {fileID: 574542738}
-  - component: {fileID: 574542739}
   m_Layer: 5
   m_Name: MusicaSlider
   m_TagString: Untagged
@@ -1678,20 +1677,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &574542739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574542736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 695ea4ff18b42ac4ab669e139ce2fccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixerParameter: BGMVolume
-  slider: {fileID: 0}
 --- !u!1001 &582305848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3596,7 +3581,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1083450469}
   - component: {fileID: 1083450470}
-  - component: {fileID: 1083450471}
   m_Layer: 5
   m_Name: MasterSlider
   m_TagString: Untagged
@@ -3678,20 +3662,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1083450471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1083450468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 695ea4ff18b42ac4ab669e139ce2fccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixerParameter: MasterVolume
-  slider: {fileID: 0}
 --- !u!1 &1090849548
 GameObject:
   m_ObjectHideFlags: 0
@@ -3838,7 +3808,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1121619616}
   - component: {fileID: 1121619617}
-  - component: {fileID: 1121619618}
   m_Layer: 5
   m_Name: SFXSlider
   m_TagString: Untagged
@@ -3920,20 +3889,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1121619618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121619615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 695ea4ff18b42ac4ab669e139ce2fccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixerParameter: SFXVolume
-  slider: {fileID: 0}
 --- !u!1 &1123834953
 GameObject:
   m_ObjectHideFlags: 0
