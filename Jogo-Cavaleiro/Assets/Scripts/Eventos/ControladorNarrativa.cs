@@ -44,7 +44,9 @@ public class ControladorNarrativa : MonoBehaviour
 
     private int kills = 0;
     private int etapa = 0;
-    private int[] metas = new int[] { 20, 40, 80, 100, 130 };
+    // Mude metas para não acumulativas
+    private int[] metas = new int[] { 20, 20, 20, 20, 20 }; // total 130
+
 
     private CheckpointManager checkpointManager;
 
@@ -528,15 +530,18 @@ public class ControladorNarrativa : MonoBehaviour
     {
         if (etapa >= metas.Length) return 0;
 
+        return Mathf.Max(0, metas[etapa] - KillsEtapaAtual());
+    }
+
+    private int KillsEtapaAtual()
+    {
         int somaMetasAnteriores = 0;
         for (int i = 0; i < etapa; i++)
             somaMetasAnteriores += metas[i];
 
-        int metaAtual = metas[etapa];
-        int killsEtapaAtual = Mathf.Max(0, kills - somaMetasAnteriores);
-
-        return Mathf.Max(0, metaAtual - killsEtapaAtual);
+        return kills - somaMetasAnteriores;
     }
+
 
 
 }
