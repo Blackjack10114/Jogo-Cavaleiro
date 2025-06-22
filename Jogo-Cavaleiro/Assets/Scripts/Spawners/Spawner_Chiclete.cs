@@ -8,7 +8,7 @@ public class SpawnerChiclete : MonoBehaviour
     public float intervaloEntreSpawns = 1.5f;
     private float tempoProximoSpawn = 0f;
     public int minimoPorSpawn = 1;
-    public int maximoPorSpawn = 3;
+    public int maximoPorSpawn = 2;
     public float chanceSpawn = 0.5f; // 50%
     public float distanciaVertical = 10f;
 
@@ -43,7 +43,7 @@ public class SpawnerChiclete : MonoBehaviour
             float y = jogador.position.y + (offsetY);
 
             Vector3 posicao = new Vector3(x, y, 0);
-            if (PodeSpawnar(posicao, 8f, "Chiclete")) //raio mínimo entre inimigos
+            if (PodeSpawnar(posicao, 15f, "Chiclete")) //raio mínimo entre inimigos
             {
                 GameObject inimigo = Instantiate(prefabInimigo, posicao, Quaternion.identity);
 
