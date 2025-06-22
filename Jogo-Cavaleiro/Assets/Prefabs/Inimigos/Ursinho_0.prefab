@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2946152318519997686}
   - component: {fileID: 3632482458279411601}
   - component: {fileID: 7811244627776987300}
+  - component: {fileID: -4018037415427732425}
   m_Layer: 7
   m_Name: Ursinho_0
   m_TagString: Ursinho
@@ -167,8 +168,8 @@ MonoBehaviour:
   alcanceAtaque: 0.5
   tempoparaatacar: 2
   tempoRecuo: 0.5
-  velocidadeRecuo: 20
-  tempoParadoAposRecuo: 1
+  velocidadeRecuo: 10
+  tempoParadoAposRecuo: 0.5
 --- !u!114 &3632482458279411601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,3 +284,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4018037415427732425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3292330137777223225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9181bed58d3cfcc4e95705494f026041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanciaMaxima: 40

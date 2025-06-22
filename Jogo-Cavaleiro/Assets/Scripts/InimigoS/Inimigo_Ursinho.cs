@@ -98,7 +98,7 @@ public class Inimigo_Ursinho : MonoBehaviour
             if (comlaco && !Destruir)
             {
                 Destruir = true;
-                AutoDestruir();
+                StartCoroutine(AutoDestruir());
             }
         }
         /* if (distanciaDoJogador < alcanceAtaque && Time.time >= proximoAtaque && comlaco)

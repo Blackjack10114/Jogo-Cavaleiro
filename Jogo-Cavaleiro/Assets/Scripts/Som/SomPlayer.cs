@@ -23,14 +23,15 @@ public class SomPlayer : MonoBehaviour
         }
     }
 
-    public void TocarSom(AudioClip clip)
+    public void TocarSom(AudioClip clip, float volume = 1f)
     {
         if (clip != null && source != null)
-            source.PlayOneShot(clip);
+            source.PlayOneShot(clip, volume);
     }
 
-    public void TocarAtaque() => TocarSom(somAtaque);
-    public void TocarDano() => TocarSom(somDano);
+
+    public void TocarAtaque() => TocarSom(somAtaque, 0.5f);
+    public void TocarDano() => TocarSom(somDano, 0.5f);
     public void TocarCura() => TocarSom(somCura);
     public void TocarTrocarLinha() => TocarSom(somTrocarLinha);
 }

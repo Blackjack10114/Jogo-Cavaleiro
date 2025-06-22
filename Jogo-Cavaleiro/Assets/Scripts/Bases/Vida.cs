@@ -14,6 +14,8 @@ public class Vida : MonoBehaviour
 
     public System.Action OnMorrer;
 
+
+
     void Start()
     {
         vidaAtual = vidaMaxima;

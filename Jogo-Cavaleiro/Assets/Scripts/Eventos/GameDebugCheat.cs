@@ -15,23 +15,22 @@ public class GameDebugCheat : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
             if (Input.GetKeyDown(KeyCode.F1))
-                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Introducao);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Etapa0);
 
             if (Input.GetKeyDown(KeyCode.F2))
-                controlador.ForcarFase(ControladorNarrativa.FaseJogo.IntroducaoAvancada);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Etapa1);
 
             if (Input.GetKeyDown(KeyCode.F3))
-                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Meio);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Etapa2);
 
             if (Input.GetKeyDown(KeyCode.F4))
-                controlador.ForcarFase(ControladorNarrativa.FaseJogo.MeioAvancado);
-
-            if (Input.GetKeyDown(KeyCode.F5))
-                controlador.ForcarFase(ControladorNarrativa.FaseJogo.ComecoFinal);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Etapa3);
+             if (Input.GetKeyDown(KeyCode.F5))
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Etapa4);
             if (Input.GetKeyDown(KeyCode.F6))
-                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Final);
+                controlador.ForcarFase(ControladorNarrativa.FaseJogo.Etapa5_Final);
 
-            //if (Input.GetKeyDown(KeyCode.F7))
+            //if (Input.GetKeyDown(KeyCode.F6))
             //controlador.MudarParaFase(ControladorNarrativa.FaseJogo.Boss);
 
             if (Input.GetKeyDown(KeyCode.Delete))

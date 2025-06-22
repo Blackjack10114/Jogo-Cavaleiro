@@ -3,7 +3,7 @@ using UnityEngine;
 public class CarrinhoAlien : MonoBehaviour
 {
     public float velocidade = 15f;
-    public float tempoAntesDeDisparar = 1.5f;
+    public float tempoAntesDeDisparar = 2f;
     public Vector2 direcao = Vector2.down;
     public int dano = 1;
 

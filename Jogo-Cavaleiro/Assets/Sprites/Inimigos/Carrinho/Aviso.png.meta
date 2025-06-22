@@ -1,13 +1,25 @@
 fileFormatVersion: 2
-guid: 965395482ef571443b99ffdb0079b678
+guid: e4f3962203994fc4f97c7b1474865cb7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 460963013959069387
-    second: Unicornio_0
+      213: -7155196623365344728
+    second: Aviso_0
   - first:
-      213: -3226424122091530294
-    second: Unicornio_1
+      213: 544770778552390204
+    second: Aviso_1
+  - first:
+      213: -1130726465788207849
+    second: Aviso_2
+  - first:
+      213: -1826548476763183905
+    second: Aviso_3
+  - first:
+      213: -1214393183244452375
+    second: Aviso_4
+  - first:
+      213: -1942730389541090138
+    second: Aviso_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,12 +61,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 140
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,30 +111,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Unicornio_0
+      name: Aviso_0
       rect:
         serializedVersion: 2
-        x: 103
-        y: 51
-        width: 963
-        height: 420
+        x: 397
+        y: 742
+        width: 751
+        height: 679
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bceaf9d3b6ba56600800000000000000
-      internalID: 460963013959069387
+      spriteID: 822fb36b492a3bc90800000000000000
+      internalID: -7155196623365344728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Unicornio_1
+      name: Aviso_1
       rect:
         serializedVersion: 2
-        x: 1072
-        y: 7
-        width: 880
-        height: 551
+        x: 424
+        y: 1165
+        width: 6
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +152,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ac79bf3fa507933d0800000000000000
-      internalID: -3226424122091530294
+      spriteID: c32d0a3032a6f8700800000000000000
+      internalID: 544770778552390204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aviso_2
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 1145
+        width: 6
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71d9f8c254ade40f0800000000000000
+      internalID: -1130726465788207849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aviso_3
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 1102
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd4ef7d76dbc6a6e0800000000000000
+      internalID: -1826548476763183905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aviso_4
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 1115
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9edfe0f75db952fe0800000000000000
+      internalID: -1214393183244452375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aviso_5
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 1089
+        width: 6
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ac0c05f0090a05e0800000000000000
+      internalID: -1942730389541090138
       vertices: []
       indices: 
       edges: []
@@ -163,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -173,8 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Unicornio_0: 460963013959069387
-      Unicornio_1: -3226424122091530294
+      Aviso_0: -7155196623365344728
+      Aviso_1: 544770778552390204
+      Aviso_2: -1130726465788207849
+      Aviso_3: -1826548476763183905
+      Aviso_4: -1214393183244452375
+      Aviso_5: -1942730389541090138
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -3,50 +3,79 @@ using System.Collections;
 
 public class Laço : MonoBehaviour
 {
-    private Transform fantasma;
-    private Inimigo_Fantasma ver_laco;
+    private Vida vidaDoInimigo;
+    private bool puniu = false;
+
+    // Exclusivo do Fantasma
+    private Inimigo_Fantasma fantasma;
     private SpriteRenderer sr;
     private Color corOriginal;
     private bool fezfade;
+
     void Start()
     {
-        fantasma = transform.parent;
-        ver_laco = fantasma.GetComponent<Inimigo_Fantasma>();
-        sr = GetComponent<SpriteRenderer>();
-        corOriginal = sr.color;
+        Transform dono = transform.parent;
+        if (dono == null) return;
+
+        vidaDoInimigo = dono.GetComponent<Vida>();
+
+        // Se o inimigo for um fantasma, ativa visual de fade
+        fantasma = dono.GetComponent<Inimigo_Fantasma>();
+        if (fantasma != null)
+        {
+            sr = GetComponent<SpriteRenderer>();
+            if (sr != null)
+                corOriginal = sr.color;
+        }
     }
 
     void Update()
     {
-        if (ver_laco != null)
+        // 🎭 Apenas para o fantasma: faz o fade visual
+        if (fantasma != null)
         {
-            if (ver_laco.Comecarfade && !fezfade)
-            {
+            if (fantasma.Comecarfade && !fezfade)
                 StartCoroutine(FadeOut());
-            }
-            if (ver_laco.podeatacar)
-            {
+
+            if (fantasma.podeatacar && sr != null)
                 sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, 255f);
-            }
         }
-        else return;
+
+        // 💥 Punição global se o inimigo morrer (atacado)
+        if (vidaDoInimigo != null && vidaDoInimigo.Morreu && !puniu)
+        {
+            AplicarPuniçãoAoJogador();
+            puniu = true;
+        }
     }
+
     IEnumerator FadeOut()
     {
         fezfade = true;
-        sr = GetComponent<SpriteRenderer>();
-        corOriginal = sr.color;
-
         float tempo = 0f;
 
-        while (tempo < ver_laco.duracaoDoFade)
+        while (tempo < fantasma.duracaoDoFade)
         {
-            float alpha = Mathf.Lerp(1f, 0f, tempo / ver_laco.duracaoDoFade);
+            float alpha = Mathf.Lerp(1f, 0f, tempo / fantasma.duracaoDoFade);
             sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, alpha);
-
             tempo += Time.deltaTime;
             yield return null;
         }
+
         sr.color = new Color(corOriginal.r, corOriginal.g, corOriginal.b, 0f);
+    }
+
+    void AplicarPuniçãoAoJogador()
+    {
+        GameObject jogador = GameObject.FindWithTag("Player");
+        if (jogador != null)
+        {
+            Vida vidaJogador = jogador.GetComponent<Vida>();
+            if (vidaJogador != null)
+            {
+                vidaJogador.LevarDano(1);
+                Debug.Log("⚠️ Jogador atacou um inimigo com laço! Perdeu 1 de vida.");
+            }
+        }
     }
 }

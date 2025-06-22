@@ -35,12 +35,11 @@ public class CheckpointManager : MonoBehaviour
         // Salva kills equivalentes à meta da fase
         int killsSalvas = fase switch
         {
-            ControladorNarrativa.FaseJogo.Introducao => 0,
-            ControladorNarrativa.FaseJogo.IntroducaoAvancada => 5,
-            ControladorNarrativa.FaseJogo.Meio => 20,
-            ControladorNarrativa.FaseJogo.MeioAvancado => 30,
-            ControladorNarrativa.FaseJogo.ComecoFinal => 50,
-            ControladorNarrativa.FaseJogo.Final => 60,
+            ControladorNarrativa.FaseJogo.Etapa0 => 0,
+            ControladorNarrativa.FaseJogo.Etapa1 => 10,
+            ControladorNarrativa.FaseJogo.Etapa2 => 20,
+            ControladorNarrativa.FaseJogo.Etapa3 => 40,
+            ControladorNarrativa.FaseJogo.Etapa4 => 60,
             _ => 0
         };
         PlayerPrefs.SetInt(ChaveKills, killsSalvas);
@@ -57,7 +56,7 @@ public class CheckpointManager : MonoBehaviour
         if (PlayerPrefs.HasKey(ChaveFase))
             return (ControladorNarrativa.FaseJogo)PlayerPrefs.GetInt(ChaveFase);
 
-        return ControladorNarrativa.FaseJogo.Introducao; // padrão
+        return ControladorNarrativa.FaseJogo.Etapa0; // padrão
     }
 
     public int CarregarKillsSalvas()

@@ -1,17 +1,19 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ControladorNarrativa : MonoBehaviour
 {
     public enum FaseJogo
     {
-        Introducao,
-        IntroducaoAvancada,
-        Meio,
-        MeioAvancado,
-        ComecoFinal,
-        Final
+        Etapa0,
+        Etapa1,
+        Etapa2,
+        Etapa3,
+        Etapa4,
+        Etapa5_Final
     }
 
     public static ControladorNarrativa Instance;
@@ -35,6 +37,10 @@ public class ControladorNarrativa : MonoBehaviour
     [SerializeField] private Sprite fundoNoite;
     [SerializeField] private float duracaoFade = 1f;
     */
+
+    [SerializeField] private Image fadeImage;
+    [SerializeField] private float duracaoFade = 1.5f;
+    [SerializeField] private string CenaFim;
 
     private int kills = 0;
     private int etapa = 0;
@@ -65,56 +71,54 @@ public class ControladorNarrativa : MonoBehaviour
 
         switch (faseAtual)
         {
-            case FaseJogo.Introducao:
+            case FaseJogo.Etapa0:
                 etapa = 0;
                 kills = 0;
                 break;
-            case FaseJogo.IntroducaoAvancada:
+            case FaseJogo.Etapa1:
                 etapa = 1;
-                kills = 5;
+                kills = 10;
                 break;
-            case FaseJogo.Meio:
+            case FaseJogo.Etapa2:
                 etapa = 2;
                 kills = 20;
                 break;
-            case FaseJogo.MeioAvancado:
+            case FaseJogo.Etapa3:
                 etapa = 3;
-                kills = 30;
+                kills = 40;
                 break;
-            case FaseJogo.ComecoFinal:
+            case FaseJogo.Etapa4:
                 etapa = 4;
-                kills = 50;
-                break;
-            case FaseJogo.Final:
-                etapa = 5;
                 kills = 60;
                 break;
+
         }
 
         // Agora, só executa a narrativa — o Fase_XXX será chamado no fim dela
         switch (etapa)
         {
-            case 0: StartCoroutine(IntroducaoNarrativa()); break;
-            case 1: StartCoroutine(Etapa0()); break;
-            case 2: StartCoroutine(Etapa1()); break;
-            case 3: StartCoroutine(Etapa2()); break;
-            case 4: StartCoroutine(Etapa3()); break;
-            case 5: StartCoroutine(Etapa4Final()); break;
+            case 0: StartCoroutine(Etapa0()); break;
+            case 1: StartCoroutine(Etapa1()); break;
+            case 2: StartCoroutine(Etapa2()); break;
+            case 3: StartCoroutine(Etapa3()); break;
+            case 4: StartCoroutine(Etapa4()); break;
+            case 5: StartCoroutine(Etapa5_Final()); break;
         }
     }
 
-   /* void Update()
-    {
-        if (Time.time >= proximoTempoSpawn)
-        {
-            TentarSpawnarInimigo();
-            proximoTempoSpawn = Time.time + intervaloSpawnGeral;
-        }
-    }
-   */
+
+    /* void Update()
+     {
+         if (Time.time >= proximoTempoSpawn)
+         {
+             TentarSpawnarInimigo();
+             proximoTempoSpawn = Time.time + intervaloSpawnGeral;
+         }
+     }
+    */
 
 
-    private IEnumerator IntroducaoNarrativa()
+    private IEnumerator Etapa0()
     {
         TextoNarrativa.Instance.Narrador("Mas o mago não encolhe o cavaleiro. Você não pode mudar a história assim!");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
@@ -123,7 +127,7 @@ public class ControladorNarrativa : MonoBehaviour
         TextoNarrativa.Instance.Narrador("*Argh* Enfim! O cavaleiro depois de ser encolhido pelo mago, iniciou sua escalada que agora será ainda mais longa entre os cabelos da princesa para resgatá-lá.");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Mas o cabelo da princesa estava cheio de... de ... PIOLHOS E CHICLETE! Que vão para cima do cavaleiro!");
-        Fase_Introducao();
+        Fase_Etapa0();
     }
 
     public void RegistrarKill()
@@ -131,30 +135,30 @@ public class ControladorNarrativa : MonoBehaviour
         kills++;
         Debug.Log($"Kills: {kills}");
 
-        if (etapa == 0 && kills >= 5)
-        {
-            etapa++;
-            StartCoroutine(Etapa0());
-        }
-        else if (etapa == 1 && kills >= 20)
+        if (etapa == 0 && kills >= 10)
         {
             etapa++;
             StartCoroutine(Etapa1());
         }
-        else if (etapa == 2 && kills >= 30)
+        else if (etapa == 1 && kills >= 20)
         {
             etapa++;
             StartCoroutine(Etapa2());
         }
-        else if (etapa == 3 && kills >= 50)
+        else if (etapa == 2 && kills >= 40)
         {
             etapa++;
             StartCoroutine(Etapa3());
         }
-        else if (etapa == 4 && kills >= 60)
+        else if (etapa == 3 && kills >= 60)
         {
             etapa++;
-            StartCoroutine(Etapa4Final());
+            StartCoroutine(Etapa4());
+        }
+        else if (etapa == 4 && kills >= 75)
+        {
+            etapa++;
+            StartCoroutine(Etapa5_Final());
         }
         else
         {
@@ -166,7 +170,7 @@ public class ControladorNarrativa : MonoBehaviour
         }
     }
 
-    private IEnumerator Etapa0()
+    private IEnumerator Etapa1()
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("É o cabelo de uma princesa! Por que teria chiclete e piolho no cabelo dela?");
@@ -174,34 +178,36 @@ public class ControladorNarrativa : MonoBehaviour
         TextoNarrativa.Instance.Crianca("Porque eu gosto de chiclete e acho piolhos legais, mas pensando bem, acho que nem todos seriam ruins, acho que deve ter alguns que são amigos. Né?");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         yield return new WaitForSeconds(2f);
-        MudarParaFase(FaseJogo.IntroducaoAvancada);
+        MudarParaFase(FaseJogo.Etapa1);
     }
 
-    private IEnumerator Etapa1()
+    private IEnumerator Etapa2()
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("Não sei onde chicletes e piolhos são legais ou que sejam amigos, mas enfim, depois de uma longa... e bastante problemática escalada, nosso cavaleiro se encontra no topo do cas-");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
-        TextoNarrativa.Instance.Crianca("Mas o cavaleiro não imaginaria que teria sido uma jornada de DIAS! Ele levaria muito mais tempo para chegar no topo do castelo, anoiteceu e ele mal percebeu!");
+        //TextoNarrativa.Instance.Crianca("Mas o cavaleiro não imaginaria que teria sido uma jornada de DIAS! Ele levaria muito mais tempo para chegar no topo do castelo, anoiteceu e ele mal percebeu!");
         //AplicarFundoPorFase();
-        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        //yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Quando ele menos percebe começa a surgir outros cavaleiros! De outros reinos! QUERENDO MATAR A PRINCESA!");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("Estou começando a sentir pena dessa princesa...");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("*Risadinha*");
         yield return new WaitForSeconds(2f);
-        MudarParaFase(FaseJogo.Meio);
+        MudarParaFase(FaseJogo.Etapa2);
     }
 
-    private IEnumerator Etapa2()
+    private IEnumerator Etapa3()
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("*Respira Fundo*");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("Conforme escalava, a torre ficava cada vez mais sombria, inimigos se espreitavam entre as mechas de cabelo e cercavam o cavaleiro..");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
-        TextoNarrativa.Instance.Narrador(" morcegos, fantasmas e clones espelhados do cavaleiro que surgem por comando do mago, para botar um fim em sua bravura.");
+        TextoNarrativa.Instance.Narrador("Morcegos, fantasmas e clones espelhados do cavaleiro que surgem por comando do mago, para botar um fim em sua bravura.");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        TextoNarrativa.Instance.Crianca("...");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("Nenhuma interrupção?");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
@@ -209,24 +215,33 @@ public class ControladorNarrativa : MonoBehaviour
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("*Alívio* Finalmente...");
         yield return new WaitForSeconds(2f);
-        MudarParaFase(FaseJogo.MeioAvancado);
+        MudarParaFase(FaseJogo.Etapa3);
     }
 
-    private IEnumerator Etapa3()
+    private IEnumerator Etapa4()
     {
         DesativarTodos();
-        TextoNarrativa.Instance.Narrador("A FESTA DO CASTELO COMEÇOU!");
+        TextoNarrativa.Instance.Narrador("Eu já nem me lembro mais como era a história original... Essa história não está nem ao menos seguindo um rumo...");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
-        TextoNarrativa.Instance.Crianca("TODOS ESTAVAM ESPERANDO O CAVALEIRO PARA DAR UMA GRANDE FESTA DE COMEMORAÇÃO!");
+        TextoNarrativa.Instance.Crianca("Como não? Estamos chegando na melhor parte!");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        TextoNarrativa.Instance.Narrador("Jura? E qual seria?");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        TextoNarrativa.Instance.Crianca("A FESTA DO CASTELO! ");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("QUÊ?!!");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
-        TextoNarrativa.Instance.Crianca("YEAAAAAAA");
-        yield return new WaitForSeconds(2f);
-        MudarParaFase(FaseJogo.ComecoFinal);
+        TextoNarrativa.Instance.Crianca("TODOS ESTAVAM ESPERANDO O CAVALEIRO PARA DAR UMA GRANDE FESTA DE COMEMORAÇÃO!");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        TextoNarrativa.Instance.Narrador("AAAHHH!! Isso não é possível!!");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        TextoNarrativa.Instance.Crianca("YEAAAAAAAAAAAAAAAAAA!!!!!!!");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        yield return new WaitForSeconds(4f);
+        MudarParaFase(FaseJogo.Etapa4);
     }
-
-    private IEnumerator Etapa4Final()
+   
+    private IEnumerator Etapa5_Final()
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("Ok, ok, essa história já foi longe demais! Hora de ir dormir!");
@@ -239,9 +254,13 @@ public class ControladorNarrativa : MonoBehaviour
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("* Criança fingindo que está dormindo* ZZZZZZzzzZZ");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        TextoNarrativa.Instance.NarradorPai("...");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Mae("*risadinha* desliga as luzes e vá dormir você também, e então amanhã... conte uma nova história para ele.");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        etapa = 5;
         yield return new WaitForSeconds(2f);
-        MudarParaFase(FaseJogo.Final);
+        StartCoroutine(FadeOutETrocarCena());
     }
 
     public void MudarParaFase(FaseJogo novaFase)
@@ -254,16 +273,15 @@ public class ControladorNarrativa : MonoBehaviour
 
         switch (faseAtual)
         {
-            case FaseJogo.Introducao: Fase_Introducao(); break;
-            case FaseJogo.IntroducaoAvancada: Fase_IntroducaoAvancada(); break;
-            case FaseJogo.Meio: Fase_Meio(); break;
-            case FaseJogo.MeioAvancado: Fase_MeioAvancado(); break;
-            case FaseJogo.ComecoFinal: Fase_Final(); break;
-            case FaseJogo.Final: DesativarTodos(); break;
+            case FaseJogo.Etapa0: Fase_Etapa0(); break;
+            case FaseJogo.Etapa1: Fase_Etapa1(); break;
+            case FaseJogo.Etapa2: Fase_Etapa2(); break;
+            case FaseJogo.Etapa3: Fase_Etapa3(); break;
+            case FaseJogo.Etapa4: Fase_Etapa4(); break; // era DesativarTodos()
         }
     }
 
-void Fase_Introducao()
+    void Fase_Etapa0()
     {
         spawnerCarrinho.enabled = false;
         spawnerCavaleiro.enabled = false;
@@ -277,13 +295,13 @@ void Fase_Introducao()
         spawnerPiolho.enabled = true;
         spawnerPiolho.chanceDeLaco = 0f;
         spawnerPiolho.chanceSpawn = 0.75f;
-        spawnerPiolho.intervaloEntreSpawns = 2f;
+        spawnerPiolho.intervaloEntreSpawns = 5f;
 
         spawnerChiclete.enabled = true;
         spawnerChiclete.chanceSpawn = 0.45f;
     }
 
-    void Fase_IntroducaoAvancada()
+    void Fase_Etapa1()
     {
         spawnerPiolho.enabled = true;
         spawnerChiclete.enabled = true;
@@ -292,22 +310,25 @@ void Fase_Introducao()
         spawnerChiclete.chanceSpawn = 0.55f;
     }
 
-    void Fase_Meio()
+    void Fase_Etapa2()
+    {
+        spawnerCavaleiro.enabled = true;
+        spawnerCavaleiro.chanceSpawn = 0.8f;
+        spawnerCavaleiro.chanceDeLaco = 0.1f;
+        spawnerCavaleiro.intervalo = 5f;
+        spawnerPiolho.enabled = true;
+        spawnerChiclete.enabled = true;
+        spawnerPiolho.chanceSpawn = 0.2f;
+        spawnerPiolho.chanceDeLaco = 0.05f;
+        spawnerChiclete.chanceSpawn = 0.3f;
+    }
+    void Fase_Etapa3()
     {
         spawnerCavaleiro.enabled = true;
         spawnerCavaleiro.chanceSpawn = 0.6f;
         spawnerCavaleiro.chanceDeLaco = 0.1f;
         spawnerCavaleiro.intervalo = 5f;
 
-        spawnerPiolho.enabled = true;
-        spawnerChiclete.enabled = true;
-        spawnerPiolho.chanceSpawn = 0.4f;
-        spawnerPiolho.chanceDeLaco = 0.09f;
-        spawnerChiclete.chanceSpawn = 0.3f;
-    }
-
-    void Fase_MeioAvancado()
-    {
         spawnerFantasma.enabled = true;
         spawnerFantasma.chanceSpawn = 0.5f;
         spawnerFantasma.chanceDeLaco = 0.1f;
@@ -323,30 +344,31 @@ void Fase_Introducao()
         spawnerMiragem.chanceSpawn = 0.4f;
         spawnerMiragem.chanceDeLaco = 0.1f;
 
-        spawnerCavaleiro.enabled = true;
         spawnerPiolho.enabled = true;
-        spawnerChiclete.enabled = true;
-        spawnerCavaleiro.chanceSpawn = 0.4f;
+        //spawnerChiclete.enabled = true;
         spawnerPiolho.chanceSpawn = 0.2f;
-        spawnerChiclete.chanceSpawn = 0.2f;
+        spawnerPiolho.chanceDeLaco = 0.05f;
+        //spawnerChiclete.chanceSpawn = 0.3f;
     }
 
-    void Fase_Final()
+    void Fase_Etapa4()
     {
         spawnerCavaleiro.enabled = true;
         spawnerCavaleiro.chanceSpawn = 0.2f;
 
         spawnerUnicornio.enabled = true;
-        spawnerUnicornio.chanceDeLaco = 0.1f;
+        spawnerUnicornio.chanceDeLaco = 0.4f;
         spawnerUnicornio.intervaloEntreSpawns = 4f;
 
         spawnerCarrinho.enabled = true;
-        spawnerCarrinho.chanceSpawn = 0.3f;
+        spawnerCarrinho.chanceSpawn = 0.6f;
 
         spawnerUrsinho.enabled = true;
-        spawnerUrsinho.chanceSpawn = 0.4f;
+        spawnerUrsinho.chanceSpawn = 0.6f;
         spawnerUrsinho.chanceDeLaco = 0.1f;
     }
+
+
 
     /*void Fase_Boss()
     {
@@ -381,47 +403,50 @@ void Fase_Introducao()
         // Executa a narrativa correspondente
         switch (etapa)
         {
-            case 0: StartCoroutine(IntroducaoNarrativa()); break;
-            case 1: StartCoroutine(Etapa0()); break;
-            case 2: StartCoroutine(Etapa1()); break;
-            case 3: StartCoroutine(Etapa2()); break;
-            case 4: StartCoroutine(Etapa3()); break;
-            case 5: StartCoroutine(Etapa4Final()); break;
+            case 0: StartCoroutine(Etapa0()); break;
+            case 1: StartCoroutine(Etapa1()); break;
+            case 2: StartCoroutine(Etapa2()); break;
+            case 3: StartCoroutine(Etapa3()); break;
+            case 4: StartCoroutine(Etapa4()); break;           
+            case 5: StartCoroutine(Etapa5_Final()); break;  
         }
+
     }
 
     private int EtapaPorFase(FaseJogo fase)
     {
         return fase switch
         {
-            FaseJogo.Introducao => 0,
-            FaseJogo.IntroducaoAvancada => 1,
-            FaseJogo.Meio => 2,
-            FaseJogo.MeioAvancado => 3,
-            FaseJogo.ComecoFinal => 4,
-            FaseJogo.Final => 5,
+            FaseJogo.Etapa0 => 0,
+            FaseJogo.Etapa1 => 1,
+            FaseJogo.Etapa2 => 2,
+            FaseJogo.Etapa3 => 3,
+            FaseJogo.Etapa4 => 4,
+            FaseJogo.Etapa5_Final => 5, 
             _ => 0
         };
     }
 
-   /* void TentarSpawnarInimigo()
-    {
-        if (spawnersAtivos == null || spawnersAtivos.Length == 0) return;
 
-        // Embaralha a ordem dos spawners
-        var lista = new List<SpawnerBase>(spawnersAtivos);
-        lista.Shuffle(); // função de extensão que você pode criar
 
-        foreach (var spawner in lista)
-        {
-            if (spawner.PodeSpawnarAgora())
-            {
-                spawner.Spawnar();
-                break; // só 1 por ciclo
-            }
-        }
-    }
-   */
+    /* void TentarSpawnarInimigo()
+     {
+         if (spawnersAtivos == null || spawnersAtivos.Length == 0) return;
+
+         // Embaralha a ordem dos spawners
+         var lista = new List<SpawnerBase>(spawnersAtivos);
+         lista.Shuffle(); // função de extensão que você pode criar
+
+         foreach (var spawner in lista)
+         {
+             if (spawner.PodeSpawnarAgora())
+             {
+                 spawner.Spawnar();
+                 break; // só 1 por ciclo
+             }
+         }
+     }
+    */
 
     /* private void AplicarFundoPorFase()
      {
@@ -453,5 +478,23 @@ void Fase_Introducao()
          }
      }
      */
+    private IEnumerator FadeOutETrocarCena()
+    {
+        float duration = 8f;
+        float t = 0f;
 
-}
+        Color c = fadeImage.color;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float alpha = Mathf.Lerp(0f, 1f, t / duration);
+            fadeImage.color = new Color(c.r, c.g, c.b, alpha);
+            yield return null;
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene(CenaFim);
+    }
+
+        
+    }
+
