@@ -44,7 +44,7 @@ public class ControladorNarrativa : MonoBehaviour
 
     private int kills = 0;
     private int etapa = 0;
-    private int[] metas = new int[] { 5, 20, 30, 50, 60 };
+    private int[] metas = new int[] { 10, 20, 40, 60, 75 };
 
     private CheckpointManager checkpointManager;
 
@@ -139,26 +139,31 @@ public class ControladorNarrativa : MonoBehaviour
         {
             etapa++;
             StartCoroutine(Etapa1());
+            return;
         }
         else if (etapa == 1 && kills >= 20)
         {
             etapa++;
             StartCoroutine(Etapa2());
+            return;
         }
         else if (etapa == 2 && kills >= 40)
         {
             etapa++;
             StartCoroutine(Etapa3());
+            return;
         }
         else if (etapa == 3 && kills >= 60)
         {
             etapa++;
             StartCoroutine(Etapa4());
+            return;
         }
         else if (etapa == 4 && kills >= 75)
         {
             etapa++;
             StartCoroutine(Etapa5_Final());
+            return;
         }
         else
         {
@@ -295,7 +300,7 @@ public class ControladorNarrativa : MonoBehaviour
         spawnerPiolho.enabled = true;
         spawnerPiolho.chanceDeLaco = 0f;
         spawnerPiolho.chanceSpawn = 0.75f;
-        spawnerPiolho.intervaloEntreSpawns = 5f;
+        spawnerPiolho.intervaloEntreSpawns = 2.5f;
 
         spawnerChiclete.enabled = true;
         spawnerChiclete.chanceSpawn = 0.45f;
@@ -495,6 +500,21 @@ public class ControladorNarrativa : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(CenaFim);
     }
 
-        
+    public int[] Metas()
+    {
+        return metas;
     }
+
+    public int EtapaAtual()
+    {
+        return etapa;
+    }
+
+    public int Kills()
+    {
+        return kills;
+    }
+
+
+}
 

@@ -53,7 +53,7 @@ public class Inimigo_Cavaleiro : MonoBehaviour
         if (jogador == null) return;
 
         float distanciaVertical = jogador.position.y - transform.position.y;
-        Debug.Log(acompanhando);
+        //Debug.Log(acompanhando);
 
         if (distanciaVertical <= -distanciacavaleiroacima)
         {

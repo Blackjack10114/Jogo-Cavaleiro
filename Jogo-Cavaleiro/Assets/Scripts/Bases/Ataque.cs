@@ -114,9 +114,23 @@ public class PlayerAtaque : MonoBehaviour
             Collider2D[] inimigos = Physics2D.OverlapCircleAll(pontoDeAtaque.position, alcanceAtaque, inimigoLayer);
             foreach (Collider2D inimigo in inimigos)
             {
-                inimigo.GetComponent<Vida>()?.LevarDano(dano);
-                kills++;
+                Vida vida = inimigo.GetComponent<Vida>();
+                if (vida != null)
+                {
+                    int vidaAntes = vida.VidaAtual();
+                    bool morreuAntes = vida.Morreu;
+
+                    vida.LevarDano(dano);
+
+                    // Conta kill somente se o inimigo realmente morreu agora
+                    if (vida.Morreu && !morreuAntes && vidaAntes > 0)
+                    {
+                        kills++;
+                        // ControladorNarrativa.Instance?.RegistrarKill(); // se estiver usando
+                    }
+                }
             }
+
 
             Debug.Log("Atacou em direção: " + direcao);
         }

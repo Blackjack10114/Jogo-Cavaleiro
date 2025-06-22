@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
-    [Header("Configura��o vida")]
+    [Header("Configuração vida")]
     public int vidaMaxima;
     [HideInInspector] public int vidaAtual;
 
@@ -25,10 +25,30 @@ public class Vida : MonoBehaviour
     {
         if (Morreu) return;
 
+        // Verifica se tem laço como filho (nome deve estar certo no prefab)
+        Transform laco = transform.Find("Laco_Rosa");
+        if (laco != null)
+        {
+            // ⚠️ Punição ao jogador
+            GameObject jogador = GameObject.FindWithTag("Player");
+            if (jogador != null)
+            {
+                Vida vidaJogador = jogador.GetComponent<Vida>();
+                if (vidaJogador != null)
+                {
+                    vidaJogador.LevarDano(1);
+                    Debug.Log("⚠️ Jogador atacou inimigo com laço. Perdeu 1 de vida!");
+                }
+            }
+
+            return; // Inimigo com laço não leva dano nem morre
+        }
+
+        // Agora sim aplica dano se não tiver laço
         vidaAtual -= dano;
         Debug.Log($"{gameObject.name} levou {dano} de dano. Vida restante: {vidaAtual}");
 
-        // Rea��o especial de inimigos
+        // Reação especial de inimigos
         GetComponent<Inimigo_Ursinho>()?.LevarDanoRecuo();
 
         if (vidaAtual <= 0)
@@ -45,11 +65,9 @@ public class Vida : MonoBehaviour
                 somPlayer.TocarDano();
             }
         }
-
-
     }
 
-    public int VidaAtual()
+public int VidaAtual()
     {
         return vidaAtual;
     }
@@ -75,7 +93,7 @@ public class Vida : MonoBehaviour
             }
         }
 
-        // Somente inimigos s�o destru�dos automaticamente
+        // Somente inimigos são destruídos automaticamente
         if (!CompareTag("Player"))
         {
             SomInimigo som = GetComponent<SomInimigo>();
@@ -88,7 +106,7 @@ public class Vida : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject); // sem som? destr�i direto
+                Destroy(gameObject); // sem som? destrói direto
             }
         }
 

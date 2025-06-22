@@ -12,6 +12,11 @@ public class Spawner_Cavaleiro : MonoBehaviour
     public float distanciaVerificacao = 2f;
     public LayerMask camadaInimigos;
 
+    [Header("Altura do Spawn")]
+    public float alturaMinima = 28f;
+    public float alturaMaxima = 32f;
+
+
     [Header("Controle do Laço")]
     [Range(0f, 1f)] public float chanceDeLaco = 0.3f;
     public GameObject prefabLacoRosa;
@@ -56,7 +61,7 @@ public class Spawner_Cavaleiro : MonoBehaviour
 
         LinhasController.Linha linhaEscolhida = linhasDisponiveis[Random.Range(0, linhasDisponiveis.Count)];
         float x = LinhasController.Instance.PosicaoX(linhaEscolhida);
-        float y = jogador.position.y - Random.Range(9f, 13f);
+        float y = jogador.position.y - Random.Range(alturaMinima, alturaMaxima);
 
         Vector3 posicao = new Vector3(x, y, 0f);
 
