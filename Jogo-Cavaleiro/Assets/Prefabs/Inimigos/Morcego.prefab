@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2080883499
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 31b40b132991fd2469c5121a83190d8d, type: 3}
   m_Color: {r: 0.7069187, g: 0, b: 1, a: 1}
@@ -201,11 +201,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df865d86e91191e41a092c6c64243dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  somTrocarLinha: {fileID: 0}
+  source: {fileID: 0}
+  sfxGroup: {fileID: 0}
   somAtaque: {fileID: 0}
   somDano: {fileID: 0}
   somCura: {fileID: 0}
-  somMorte: {fileID: 8300000, guid: c9cc99b5abe686e4da9d20e2127b103e, type: 3}
+  somTrocarLinha: {fileID: 0}
 --- !u!82 &-4638804674021737202
 AudioSource:
   m_ObjectHideFlags: 0
