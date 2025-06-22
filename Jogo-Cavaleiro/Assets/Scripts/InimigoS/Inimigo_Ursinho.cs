@@ -3,6 +3,14 @@ using System.Collections;
 
 public class Inimigo_Ursinho : MonoBehaviour
 {
+    [Header("Sprites")]
+    public Sprite spritePadrao;
+    public Sprite spriteAtacando;
+    public Sprite spriteDanificado;
+    public Sprite spriteMorreu;
+    
+
+
     // coisas do laço
     public float chancelaco = 0.3f;
     public bool comlaco;
@@ -45,6 +53,7 @@ public class Inimigo_Ursinho : MonoBehaviour
     {
         jogador = GameObject.FindWithTag("Player")?.transform;
         sr = GetComponent<SpriteRenderer>();
+        sr.sprite = spritePadrao;
         if (Random.value < chancelaco)
         {
             comlaco = true;
@@ -103,6 +112,8 @@ public class Inimigo_Ursinho : MonoBehaviour
     {
         if (!recuando)
         {
+            if (sr != null && spriteDanificado != null)
+                sr.sprite = spriteDanificado;
             StartCoroutine(Recuar());
             if (sr != null) StartCoroutine(Piscar());
         }
@@ -166,6 +177,9 @@ public class Inimigo_Ursinho : MonoBehaviour
     }
     private IEnumerator Atacar()
     {
+        if (sr != null && spriteAtacando != null)
+            sr.sprite = spriteAtacando;
+
         yield return new WaitForSeconds(tempoparaatacar);
         if (distanciaDoJogador && MesmaAltura)
         {
@@ -177,6 +191,8 @@ public class Inimigo_Ursinho : MonoBehaviour
                 proximoAtaque = Time.time + tempoEntreAtaques;
             }
         }
+        if (sr != null && spritePadrao != null)
+            sr.sprite = spritePadrao;
         podeatacar = true;
     }
     private void AlinharYComJogador()
@@ -206,4 +222,18 @@ public class Inimigo_Ursinho : MonoBehaviour
             }
         }
     }
+    public void Morrer()
+    {
+        StartCoroutine(MorteAnimada());
+    }
+
+    private IEnumerator MorteAnimada()
+    {
+        if (sr != null && spriteMorreu != null)
+            sr.sprite = spriteMorreu;
+
+        yield return new WaitForSeconds(0.3f);
+        Destroy(gameObject);
+    }
+
 }

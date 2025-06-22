@@ -28,11 +28,12 @@ public class ControladorNarrativa : MonoBehaviour
     public SpawnerUrsinho spawnerUrsinho;
     public Spawner_Miragem spawnerMiragem;
 
-    [Header("Fundo Cenário")]
+    /*[Header("Fundo Cenário")]
     [SerializeField] private SpriteRenderer fundoRenderer;
     [SerializeField] private Sprite fundoDia;
     [SerializeField] private Sprite fundoNoite;
     [SerializeField] private float duracaoFade = 1f;
+    */
 
     private int kills = 0;
     private int etapa = 0;
@@ -168,7 +169,7 @@ public class ControladorNarrativa : MonoBehaviour
         TextoNarrativa.Instance.Narrador("Não sei onde chicletes e piolhos são legais ou que sejam amigos, mas enfim, depois de uma longa... e bastante problemática escalada, nosso cavaleiro se encontra no topo do cas-");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Mas o cavaleiro não imaginaria que teria sido uma jornada de DIAS! Ele levaria muito mais tempo para chegar no topo do castelo, anoiteceu e ele mal percebeu!");
-        AplicarFundoPorFase();
+        //AplicarFundoPorFase();
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Quando ele menos percebe começa a surgir outros cavaleiros! De outros reinos! QUERENDO MATAR A PRINCESA!");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
@@ -385,33 +386,35 @@ void Fase_Introducao()
         };
     }
 
-    private void AplicarFundoPorFase()
+   /* private void AplicarFundoPorFase()
     {
         Sprite novoFundo = (faseAtual == FaseJogo.Introducao || faseAtual == FaseJogo.IntroducaoAvancada) ? fundoDia : fundoNoite;
         StartCoroutine(FadeTrocaFundo(novoFundo));
     }
+   */
 
-    private IEnumerator FadeTrocaFundo(Sprite novoSprite)
-    {
-        Color corAtual = fundoRenderer.color;
+    /* private IEnumerator FadeTrocaFundo(Sprite novoSprite)
+     {
+         Color corAtual = fundoRenderer.color;
 
-        // Fade out
-        for (float t = 0; t < duracaoFade; t += Time.deltaTime)
-        {
-            float alpha = Mathf.Lerp(1f, 0f, t / duracaoFade);
-            fundoRenderer.color = new Color(corAtual.r, corAtual.g, corAtual.b, alpha);
-            yield return null;
-        }
+         // Fade out
+         for (float t = 0; t < duracaoFade; t += Time.deltaTime)
+         {
+             float alpha = Mathf.Lerp(1f, 0f, t / duracaoFade);
+             fundoRenderer.color = new Color(corAtual.r, corAtual.g, corAtual.b, alpha);
+             yield return null;
+         }
 
-        fundoRenderer.sprite = novoSprite;
+         fundoRenderer.sprite = novoSprite;
 
-        // Fade in
-        for (float t = 0; t < duracaoFade; t += Time.deltaTime)
-        {
-            float alpha = Mathf.Lerp(0f, 1f, t / duracaoFade);
-            fundoRenderer.color = new Color(corAtual.r, corAtual.g, corAtual.b, alpha);
-            yield return null;
-        }
-    }
+         // Fade in
+         for (float t = 0; t < duracaoFade; t += Time.deltaTime)
+         {
+             float alpha = Mathf.Lerp(0f, 1f, t / duracaoFade);
+             fundoRenderer.color = new Color(corAtual.r, corAtual.g, corAtual.b, alpha);
+             yield return null;
+         }
+     }
+     */
 
 }

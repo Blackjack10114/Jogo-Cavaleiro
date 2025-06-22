@@ -4,6 +4,10 @@ using UnityEngine.Assertions.Must;
 
 public class Inimigo_Fantasma : MonoBehaviour
 {
+    [Header("Sprites")]
+    public Sprite spritePadrao;
+    public Sprite spriteAtacando;
+
     public LinhasController.Linha linhaAtual;
     public float alcanceAtaque;
     public float tempoEntreAtaques = 1.5f;
@@ -139,6 +143,9 @@ public class Inimigo_Fantasma : MonoBehaviour
     }
     private IEnumerator Atacar()
     {
+        if (sr != null && spriteAtacando != null)
+            sr.sprite = spriteAtacando;
+
         yield return new WaitForSeconds(tempoparaatacar);
         tempoProximoAtaque = Time.time + tempoEntreAtaques;
 
@@ -146,6 +153,10 @@ public class Inimigo_Fantasma : MonoBehaviour
         if (vidaJogador != null)
         {
             vidaJogador.LevarDano(dano);
+
+            if (sr != null && spritePadrao != null)
+                sr.sprite = spritePadrao;
+
             Destroy(gameObject);
         }
     }

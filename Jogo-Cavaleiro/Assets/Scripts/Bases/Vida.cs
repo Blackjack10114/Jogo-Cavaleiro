@@ -77,6 +77,8 @@ public class Vida : MonoBehaviour
         if (!CompareTag("Player"))
         {
             SomInimigo som = GetComponent<SomInimigo>();
+            GetComponent<Inimigo_Ursinho>()?.Morrer();
+
             if (som != null)
             {
                 som.TocarSomMorte();

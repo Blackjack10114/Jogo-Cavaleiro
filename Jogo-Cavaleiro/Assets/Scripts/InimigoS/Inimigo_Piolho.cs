@@ -3,6 +3,12 @@ using System.Collections;
 
 public class Inimigo_Piolho : MonoBehaviour
 {
+    [Header("Sprites")]
+    public Sprite spritePadrao;
+    public Sprite spriteAtacando;
+
+    private SpriteRenderer sr;
+
     [Header("Configuração de linha")]
     public LinhasController.Linha linhaAtual;
     public float alcanceAtaque = 1.5f;
@@ -50,6 +56,8 @@ public class Inimigo_Piolho : MonoBehaviour
                                 MovimentoVertical.Direcao.Descendo;
         }
 
+        sr = GetComponent<SpriteRenderer>();
+
         comLaco = Random.value < chanceLaco;
         if (comLaco)
         {
@@ -81,6 +89,7 @@ public class Inimigo_Piolho : MonoBehaviour
             }
             if (alinhado && dentroDoAlcance && Time.time >= tempoProximoAtaque)
             {
+                sr.sprite = spriteAtacando;
                 StartCoroutine(Atacar());
             }
         }
@@ -92,12 +101,15 @@ public class Inimigo_Piolho : MonoBehaviour
 
         yield return new WaitForSeconds(AtrasoAtaque); // atraso do ataque
 
+        sr.sprite = spritePadrao;
+
         if (jogador != null)
         {
             Vida vidaJogador = jogador.GetComponent<Vida>();
             if (vidaJogador != null)
             {
                 vidaJogador.LevarDano(dano);
+                sr.sprite = spritePadrao;
                 Destroy(gameObject); // se autodestrói ao atacar
             }
         }

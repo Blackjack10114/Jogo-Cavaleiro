@@ -3,6 +3,11 @@ using System.Collections;
 
 public class Inimigo_Cavaleiro : MonoBehaviour
 {
+    [Header("Sprites")]
+    public Sprite spritePadrao;
+    public Sprite spriteAtacando;
+    private SpriteRenderer sr;
+
     public float velocidadeInicial = 10f;
     public float velocidadeAcompanhamento = 0f;
     public float alcanceVerticalParaAcompanhar = 3f;
@@ -28,6 +33,7 @@ public class Inimigo_Cavaleiro : MonoBehaviour
     {
         jogador = GameObject.FindWithTag("Player")?.transform;
         playerMov = jogador?.GetComponent<PlayerMov>();
+        sr = GetComponent<SpriteRenderer>();
 
         if (Random.value < chancelaco)
         {
