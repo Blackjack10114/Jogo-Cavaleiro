@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 8218758276440861786}
   - component: {fileID: 978508827024358173}
   - component: {fileID: 107489016720617785}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fantasma_0
-  m_TagString: Untagged
+  m_TagString: Fantasma
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

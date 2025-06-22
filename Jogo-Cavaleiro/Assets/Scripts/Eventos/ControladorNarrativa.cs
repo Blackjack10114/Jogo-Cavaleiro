@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ControladorNarrativa : MonoBehaviour
 {
@@ -40,6 +41,11 @@ public class ControladorNarrativa : MonoBehaviour
     private int[] metas = new int[] { 5, 20, 30, 50, 60 };
 
     private CheckpointManager checkpointManager;
+
+    private float intervaloSpawnGeral = 3f;
+    private float proximoTempoSpawn = 0f;
+    //private SpawnerBase[] spawnersAtivos; // interface base que todos os spawners implementam
+
 
     private void Awake()
     {
@@ -97,7 +103,15 @@ public class ControladorNarrativa : MonoBehaviour
         }
     }
 
-
+   /* void Update()
+    {
+        if (Time.time >= proximoTempoSpawn)
+        {
+            TentarSpawnarInimigo();
+            proximoTempoSpawn = Time.time + intervaloSpawnGeral;
+        }
+    }
+   */
 
 
     private IEnumerator IntroducaoNarrativa()
@@ -183,7 +197,11 @@ public class ControladorNarrativa : MonoBehaviour
     private IEnumerator Etapa2()
     {
         DesativarTodos();
-        TextoNarrativa.Instance.Narrador("*Respira Fundo* Conforme escalava, a torre ficava cada vez mais sombria, inimigos se espreitavam entre as mechas de cabelo e cercavam o cavaleiro, morcegos, fantasmas e clones espelhados do cavaleiro que surgem por comando do mago, para botar um fim em sua bravura.");
+        TextoNarrativa.Instance.Narrador("*Respira Fundo*");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        TextoNarrativa.Instance.Narrador("Conforme escalava, a torre ficava cada vez mais sombria, inimigos se espreitavam entre as mechas de cabelo e cercavam o cavaleiro..");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        TextoNarrativa.Instance.Narrador(" morcegos, fantasmas e clones espelhados do cavaleiro que surgem por comando do mago, para botar um fim em sua bravura.");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Narrador("Nenhuma interrupção?");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
@@ -308,7 +326,7 @@ void Fase_Introducao()
         spawnerCavaleiro.enabled = true;
         spawnerPiolho.enabled = true;
         spawnerChiclete.enabled = true;
-        spawnerCavaleiro.chanceSpawn = 0.6f;
+        spawnerCavaleiro.chanceSpawn = 0.4f;
         spawnerPiolho.chanceSpawn = 0.2f;
         spawnerChiclete.chanceSpawn = 0.2f;
     }
@@ -386,12 +404,31 @@ void Fase_Introducao()
         };
     }
 
-   /* private void AplicarFundoPorFase()
+   /* void TentarSpawnarInimigo()
     {
-        Sprite novoFundo = (faseAtual == FaseJogo.Introducao || faseAtual == FaseJogo.IntroducaoAvancada) ? fundoDia : fundoNoite;
-        StartCoroutine(FadeTrocaFundo(novoFundo));
+        if (spawnersAtivos == null || spawnersAtivos.Length == 0) return;
+
+        // Embaralha a ordem dos spawners
+        var lista = new List<SpawnerBase>(spawnersAtivos);
+        lista.Shuffle(); // função de extensão que você pode criar
+
+        foreach (var spawner in lista)
+        {
+            if (spawner.PodeSpawnarAgora())
+            {
+                spawner.Spawnar();
+                break; // só 1 por ciclo
+            }
+        }
     }
    */
+
+    /* private void AplicarFundoPorFase()
+     {
+         Sprite novoFundo = (faseAtual == FaseJogo.Introducao || faseAtual == FaseJogo.IntroducaoAvancada) ? fundoDia : fundoNoite;
+         StartCoroutine(FadeTrocaFundo(novoFundo));
+     }
+    */
 
     /* private IEnumerator FadeTrocaFundo(Sprite novoSprite)
      {

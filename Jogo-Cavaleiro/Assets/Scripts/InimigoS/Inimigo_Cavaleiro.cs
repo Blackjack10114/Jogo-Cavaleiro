@@ -117,11 +117,26 @@ public class Inimigo_Cavaleiro : MonoBehaviour
             Vida vida = other.GetComponent<Vida>();
             if (vida != null)
             {
-                vida.LevarDano(dano);
-                Destroy(gameObject);
+                StartCoroutine(AtaqueComAnimacao(vida));
             }
         }
     }
+
+    private IEnumerator AtaqueComAnimacao(Vida vidaJogador)
+    {
+        if (sr != null && spriteAtacando != null)
+            sr.sprite = spriteAtacando;
+
+        yield return new WaitForSeconds(0.15f); // tempo suficiente para mostrar o sprite atacando
+
+        vidaJogador.LevarDano(dano);
+
+        if (sr != null && spritePadrao != null)
+            sr.sprite = spritePadrao;
+
+        Destroy(gameObject);
+    }
+
 
     private IEnumerator Atacar()
     {

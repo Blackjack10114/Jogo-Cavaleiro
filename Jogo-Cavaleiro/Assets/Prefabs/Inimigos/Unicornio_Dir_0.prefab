@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 8088581116437117416}
   - component: {fileID: 3611174805349360559}
   - component: {fileID: 3877132965824187723}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Unicornio_Dir_0
-  m_TagString: Untagged
+  m_TagString: Unicornio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

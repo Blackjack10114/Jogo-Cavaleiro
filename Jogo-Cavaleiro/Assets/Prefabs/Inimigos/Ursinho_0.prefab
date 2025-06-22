@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2946152318519997686}
   - component: {fileID: 3632482458279411601}
   - component: {fileID: 7811244627776987300}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ursinho_0
-  m_TagString: Untagged
+  m_TagString: Ursinho
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

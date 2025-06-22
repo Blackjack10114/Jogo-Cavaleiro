@@ -18,7 +18,8 @@ GameObject:
   - component: {fileID: 4067122619191147796}
   - component: {fileID: 186369124166976864}
   - component: {fileID: 1243760824981194304}
-  - component: {fileID: 6648638989782241986}
+  - component: {fileID: -4136062891089337053}
+  - component: {fileID: 9092883274487105201}
   m_Layer: 8
   m_Name: Cavaleiro
   m_TagString: Player
@@ -388,7 +389,23 @@ MonoBehaviour:
   somDano: {fileID: 8300000, guid: 147da97652d46854981d77cf4658fe9b, type: 3}
   somCura: {fileID: 8300000, guid: 967abe54794586c4280bac2db7c37115, type: 3}
   somTrocarLinha: {fileID: 8300000, guid: b032963a44384284082b6861880d74ce, type: 3}
---- !u!95 &6648638989782241986
+--- !u!111 &-4136062891089337053
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59590096706063271}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
+--- !u!95 &9092883274487105201
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
