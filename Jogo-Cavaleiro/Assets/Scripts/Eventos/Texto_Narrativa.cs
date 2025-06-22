@@ -46,4 +46,11 @@ public class TextoNarrativa : MonoBehaviour
     {
         return aguardandoInput;
     }
+
+    public void ForcarFecharTexto()
+    {
+        painelFala.SetActive(false);
+        aguardandoInput = false;
+    }
+
 }

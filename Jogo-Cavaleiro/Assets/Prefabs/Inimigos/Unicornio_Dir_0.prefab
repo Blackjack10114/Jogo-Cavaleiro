@@ -127,11 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e315b6ff7071b504a8ec6d27301ccf6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadeVertical: 2
-  velocidadeHorizontal: 5
+  velocidadeVertical: 3
+  velocidadeHorizontal: 6
   intervaloTrocaLinha: 1.5
   linhaAtual: 0
-  chancelaco: 0.5
+  chancelaco: 0
   comlaco: 0
   AutoDestruircomlaco: 0
 --- !u!61 &3698291161924523122

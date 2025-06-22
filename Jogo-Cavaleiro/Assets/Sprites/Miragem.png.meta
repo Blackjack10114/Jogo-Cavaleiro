@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 329170b88b28d0f48a395563bfe3ac10
+guid: fb733070f80eab243b2f262d12be37fd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -926105084329999377
-    second: Botao por cima_0
+      213: -3570721150972821693
+    second: Miragem_0
+  - first:
+      213: -4094887847205397264
+    second: Miragem_1
+  - first:
+      213: -3247790550034235239
+    second: Miragem_2
+  - first:
+      213: -8045331374048126878
+    second: Miragem_3
+  - first:
+      213: 3480281863381232304
+    second: Miragem_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 70
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +112,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Botao por cima_0
+      name: Miragem_0
       rect:
         serializedVersion: 2
-        x: 84
-        y: 706
-        width: 1907
-        height: 613
+        x: 196
+        y: 21
+        width: 235
+        height: 492
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fe3c3df1550d523f0800000000000000
-      internalID: -926105084329999377
+      spriteID: 34f7a4c1800427ec0800000000000000
+      internalID: -3570721150972821693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miragem_1
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 42
+        width: 239
+        height: 462
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fc1248d2390c27c0800000000000000
+      internalID: -4094887847205397264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miragem_2
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 49
+        width: 249
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 990c658c3b78de2d0800000000000000
+      internalID: -3247790550034235239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miragem_3
+      rect:
+        serializedVersion: 2
+        x: 1223
+        y: 43
+        width: 209
+        height: 462
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2685e85cdbd395090800000000000000
+      internalID: -8045331374048126878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miragem_4
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 47
+        width: 247
+        height: 470
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0baa2195ae17c4030800000000000000
+      internalID: 3480281863381232304
       vertices: []
       indices: 
       edges: []
@@ -125,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fe998d4ae3055bb4daa162df815fad00
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Botao por cima_0: -926105084329999377
+      Miragem_0: -3570721150972821693
+      Miragem_1: -4094887847205397264
+      Miragem_2: -3247790550034235239
+      Miragem_3: -8045331374048126878
+      Miragem_4: 3480281863381232304
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

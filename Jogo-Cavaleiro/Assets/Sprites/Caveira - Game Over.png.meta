@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 329170b88b28d0f48a395563bfe3ac10
+guid: 9121c0e1be0f1da4f986fba194080e52
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -926105084329999377
-    second: Botao por cima_0
+      213: -2930991676932272463
+    second: Caveira - Game Over_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Botao por cima_0
+      name: Caveira - Game Over_0
       rect:
         serializedVersion: 2
-        x: 84
-        y: 706
-        width: 1907
-        height: 613
+        x: 437
+        y: 808
+        width: 998
+        height: 971
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fe3c3df1550d523f0800000000000000
-      internalID: -926105084329999377
+      spriteID: 1be43d059960357d0800000000000000
+      internalID: -2930991676932272463
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fe998d4ae3055bb4daa162df815fad00
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Botao por cima_0: -926105084329999377
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

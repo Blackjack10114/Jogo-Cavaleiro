@@ -44,7 +44,7 @@ public class ControladorNarrativa : MonoBehaviour
 
     private int kills = 0;
     private int etapa = 0;
-    private int[] metas = new int[] { 10, 20, 40, 60, 75 };
+    private int[] metas = new int[] { 20, 40, 80, 100, 130 };
 
     private CheckpointManager checkpointManager;
 
@@ -63,36 +63,38 @@ public class ControladorNarrativa : MonoBehaviour
 
     void Start()
     {
-        DesativarTodos(); // garante que nenhum inimigo nasce antes do tempo
+        DesativarTodos(); // evita spawns antes da hora
 
         checkpointManager = Object.FindFirstObjectByType<CheckpointManager>();
-        if (checkpointManager != null)
-            faseAtual = checkpointManager.CarregarCheckpoint();
 
-        switch (faseAtual)
+        if (checkpointManager != null && PlayerPrefs.HasKey("FaseSalva"))
         {
-            case FaseJogo.Etapa0:
-                etapa = 0;
-                kills = 0;
-                break;
-            case FaseJogo.Etapa1:
-                etapa = 1;
-                kills = 10;
-                break;
-            case FaseJogo.Etapa2:
-                etapa = 2;
-                kills = 20;
-                break;
-            case FaseJogo.Etapa3:
-                etapa = 3;
-                kills = 40;
-                break;
-            case FaseJogo.Etapa4:
-                etapa = 4;
-                kills = 60;
-                break;
-
+            faseAtual = checkpointManager.CarregarCheckpoint();
+            etapa = EtapaPorFase(faseAtual);
+            kills = checkpointManager.CarregarKillsSalvas();
         }
+        else
+        {
+            // Novo jogo, sem checkpoint
+            faseAtual = FaseJogo.Etapa0;
+            etapa = 0;
+            kills = 0;
+            StartCoroutine(Etapa0()); // só roda narrativa do início se não for um jogo salvo
+            return; // IMPORTANTE: evita duplicar chamadas abaixo
+        }
+
+        // Executa narrativa da fase salva
+        switch (etapa)
+        {
+            case 0: StartCoroutine(Etapa0()); break;
+            case 1: StartCoroutine(Etapa1()); break;
+            case 2: StartCoroutine(Etapa2()); break;
+            case 3: StartCoroutine(Etapa3()); break;
+            case 4: StartCoroutine(Etapa4()); break;
+            case 5: StartCoroutine(Etapa5_Final()); break;
+        }
+    
+
 
         // Agora, só executa a narrativa — o Fase_XXX será chamado no fim dela
         switch (etapa)
@@ -118,6 +120,55 @@ public class ControladorNarrativa : MonoBehaviour
     */
 
 
+  
+
+    public void RegistrarKill()
+    {
+        kills++;
+        Debug.Log($"[Narrativa] Etapa atual: {etapa}, Kills: {kills}");
+
+        if (etapa == 0 && kills >= 20)
+        {
+            etapa++;
+            StartCoroutine(Etapa1());
+            return;
+        }
+        else if (etapa == 1 && kills >= 40)
+        {
+            etapa++;
+            StartCoroutine(Etapa2());
+            return;
+        }
+        else if (etapa == 2 && kills >= 80)
+        {
+            etapa++;
+            StartCoroutine(Etapa3());
+            return;
+        }
+        else if (etapa == 3 && kills >= 100)
+        {
+            etapa++;
+            StartCoroutine(Etapa4());
+            return;
+        }
+        else if (etapa == 4 && kills >= 130)
+        {
+            etapa++;
+            StartCoroutine(Etapa5_Final());
+            return;
+        }
+        else
+        {
+            Debug.Log($"[Narrativa] Etapa atual: {etapa}, Kills: {kills}");
+
+            if (etapa < metas.Length)
+            {
+                int faltam = metas[etapa] - kills;
+                Debug.Log($"[Narrativa] Faltam {faltam} kills para atingir a meta da Etapa {etapa} (Meta acumulada: {metas[etapa]})");
+            }
+        }
+    }
+
     private IEnumerator Etapa0()
     {
         TextoNarrativa.Instance.Narrador("Mas o mago não encolhe o cavaleiro. Você não pode mudar a história assim!");
@@ -130,57 +181,14 @@ public class ControladorNarrativa : MonoBehaviour
         Fase_Etapa0();
     }
 
-    public void RegistrarKill()
-    {
-        kills++;
-        Debug.Log($"Kills: {kills}");
-
-        if (etapa == 0 && kills >= 10)
-        {
-            etapa++;
-            StartCoroutine(Etapa1());
-            return;
-        }
-        else if (etapa == 1 && kills >= 20)
-        {
-            etapa++;
-            StartCoroutine(Etapa2());
-            return;
-        }
-        else if (etapa == 2 && kills >= 40)
-        {
-            etapa++;
-            StartCoroutine(Etapa3());
-            return;
-        }
-        else if (etapa == 3 && kills >= 60)
-        {
-            etapa++;
-            StartCoroutine(Etapa4());
-            return;
-        }
-        else if (etapa == 4 && kills >= 75)
-        {
-            etapa++;
-            StartCoroutine(Etapa5_Final());
-            return;
-        }
-        else
-        {
-            if (etapa < metas.Length)
-            {
-                int faltam = metas[etapa] - kills;
-                Debug.Log($"Faltam {faltam} kills para a próxima etapa.");
-            }
-        }
-    }
-
     private IEnumerator Etapa1()
     {
         DesativarTodos();
         TextoNarrativa.Instance.Narrador("É o cabelo de uma princesa! Por que teria chiclete e piolho no cabelo dela?");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("Porque eu gosto de chiclete e acho piolhos legais, mas pensando bem, acho que nem todos seriam ruins, acho que deve ter alguns que são amigos. Né?");
+        yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
+        TextoNarrativa.Instance.Crianca("Então não pode atacar piolhos com LAÇO");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         yield return new WaitForSeconds(2f);
         MudarParaFase(FaseJogo.Etapa1);
@@ -199,7 +207,7 @@ public class ControladorNarrativa : MonoBehaviour
         TextoNarrativa.Instance.Narrador("Estou começando a sentir pena dessa princesa...");
         yield return new WaitUntil(() => !TextoNarrativa.Instance.EstaMostrandoTexto());
         TextoNarrativa.Instance.Crianca("*Risadinha*");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f); 
         MudarParaFase(FaseJogo.Etapa2);
     }
 
@@ -282,7 +290,7 @@ public class ControladorNarrativa : MonoBehaviour
             case FaseJogo.Etapa1: Fase_Etapa1(); break;
             case FaseJogo.Etapa2: Fase_Etapa2(); break;
             case FaseJogo.Etapa3: Fase_Etapa3(); break;
-            case FaseJogo.Etapa4: Fase_Etapa4(); break; // era DesativarTodos()
+            case FaseJogo.Etapa4: Fase_Etapa4(); break; 
         }
     }
 
@@ -308,10 +316,11 @@ public class ControladorNarrativa : MonoBehaviour
 
     void Fase_Etapa1()
     {
+        spawnerCavaleiro.enabled = false;
         spawnerPiolho.enabled = true;
         spawnerChiclete.enabled = true;
         spawnerPiolho.chanceSpawn = 0.9f;
-        spawnerPiolho.chanceDeLaco = 0.3f;
+        spawnerPiolho.chanceDeLaco = 0.35f;
         spawnerChiclete.chanceSpawn = 0.55f;
     }
 
@@ -323,31 +332,31 @@ public class ControladorNarrativa : MonoBehaviour
         spawnerCavaleiro.intervalo = 5f;
         spawnerPiolho.enabled = true;
         spawnerChiclete.enabled = true;
-        spawnerPiolho.chanceSpawn = 0.2f;
-        spawnerPiolho.chanceDeLaco = 0.05f;
+        spawnerPiolho.chanceSpawn = 1f;
+        spawnerPiolho.chanceDeLaco = 0.1f;
         spawnerChiclete.chanceSpawn = 0.3f;
     }
     void Fase_Etapa3()
     {
         spawnerCavaleiro.enabled = true;
         spawnerCavaleiro.chanceSpawn = 0.6f;
-        spawnerCavaleiro.chanceDeLaco = 0.1f;
+        spawnerCavaleiro.chanceDeLaco = 0f;
         spawnerCavaleiro.intervalo = 5f;
 
         spawnerFantasma.enabled = true;
         spawnerFantasma.chanceSpawn = 0.5f;
-        spawnerFantasma.chanceDeLaco = 0.1f;
+        spawnerFantasma.chanceDeLaco = 0f;
 
         spawnerMorcego1.enabled = true;
         spawnerMorcego1.chanceSpawn = 0.5f;
-        spawnerMorcego1.chanceDeLaco = 0.1f;
+        spawnerMorcego1.chanceDeLaco = 0f;
         spawnerMorcego2.enabled = true;
         spawnerMorcego2.chanceSpawn = 0.5f;
-        spawnerMorcego2.chanceDeLaco = 0.1f;
+        spawnerMorcego2.chanceDeLaco = 0f;
 
         spawnerMiragem.enabled = true;
         spawnerMiragem.chanceSpawn = 0.4f;
-        spawnerMiragem.chanceDeLaco = 0.1f;
+        spawnerMiragem.chanceDeLaco = 0f;
 
         spawnerPiolho.enabled = true;
         //spawnerChiclete.enabled = true;
@@ -362,7 +371,7 @@ public class ControladorNarrativa : MonoBehaviour
         spawnerCavaleiro.chanceSpawn = 0.2f;
 
         spawnerUnicornio.enabled = true;
-        spawnerUnicornio.chanceDeLaco = 0.4f;
+        spawnerUnicornio.chanceDeLaco = 0f;
         spawnerUnicornio.intervaloEntreSpawns = 4f;
 
         spawnerCarrinho.enabled = true;
@@ -370,7 +379,7 @@ public class ControladorNarrativa : MonoBehaviour
 
         spawnerUrsinho.enabled = true;
         spawnerUrsinho.chanceSpawn = 0.6f;
-        spawnerUrsinho.chanceDeLaco = 0.1f;
+        spawnerUrsinho.chanceDeLaco = 0f;
     }
 
 
@@ -513,6 +522,20 @@ public class ControladorNarrativa : MonoBehaviour
     public int Kills()
     {
         return kills;
+    }
+
+    public int FaltamParaProximaMeta()
+    {
+        if (etapa >= metas.Length) return 0;
+
+        int somaMetasAnteriores = 0;
+        for (int i = 0; i < etapa; i++)
+            somaMetasAnteriores += metas[i];
+
+        int metaAtual = metas[etapa];
+        int killsEtapaAtual = Mathf.Max(0, kills - somaMetasAnteriores);
+
+        return Mathf.Max(0, metaAtual - killsEtapaAtual);
     }
 
 

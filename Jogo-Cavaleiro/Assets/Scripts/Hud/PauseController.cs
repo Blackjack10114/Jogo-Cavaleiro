@@ -37,7 +37,6 @@ public class PauseController : MonoBehaviour
         Time.timeScale = 1f;
         pausado = false;
         painelPause.SetActive(false);
-        painelTexto.SetActive(true);
 
     }
 

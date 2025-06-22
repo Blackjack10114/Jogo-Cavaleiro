@@ -30,8 +30,8 @@ public class SomPlayer : MonoBehaviour
     }
 
 
-    public void TocarAtaque() => TocarSom(somAtaque, 0.5f);
-    public void TocarDano() => TocarSom(somDano, 0.5f);
-    public void TocarCura() => TocarSom(somCura);
-    public void TocarTrocarLinha() => TocarSom(somTrocarLinha);
+    public void TocarAtaque() => TocarSom(somAtaque, 0.25f);
+    public void TocarDano() => TocarSom(somDano, 0.25f);
+    public void TocarCura() => TocarSom(somCura, 0.5f);
+    public void TocarTrocarLinha() => TocarSom(somTrocarLinha, 0.25f);
 }

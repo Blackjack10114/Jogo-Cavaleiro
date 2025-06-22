@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3b4f10c114c4674ebfab69d16407362, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabMiragem: {fileID: 0}
+  prefabMiragem: {fileID: 535970734615629789, guid: 1540777645ecc0c44b25d148382b2fc9, type: 3}
   jogador: {fileID: 0}
   intervaloEntreSpawns: 1.5
   chanceSpawn: 0.5
@@ -52,3 +52,5 @@ MonoBehaviour:
   layerInimigos:
     serializedVersion: 2
     m_Bits: 128
+  chanceDeLaco: 0.3
+  tempoAutoDestruirComLaco: 2.5

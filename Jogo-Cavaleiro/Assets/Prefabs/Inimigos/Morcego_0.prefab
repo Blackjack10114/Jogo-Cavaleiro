@@ -131,7 +131,7 @@ MonoBehaviour:
   alcanceAtaque: 8
   tempoEntreAtaques: 1.5
   dano: 1
-  chancelaco: 0.6
+  chancelaco: 0
   AutoDestruircomlaco: 2
   comlaco: 0
   prefabLaco: {fileID: 0}

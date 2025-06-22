@@ -43,7 +43,7 @@ public class SpawnerChiclete : MonoBehaviour
             float y = jogador.position.y + (offsetY);
 
             Vector3 posicao = new Vector3(x, y, 0);
-            if (PodeSpawnar(posicao, 3f, "Chiclete")) //raio mínimo entre inimigos
+            if (PodeSpawnar(posicao, 8f, "Chiclete")) //raio mínimo entre inimigos
             {
                 GameObject inimigo = Instantiate(prefabInimigo, posicao, Quaternion.identity);
 

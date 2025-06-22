@@ -120,14 +120,29 @@ public class PlayerAtaque : MonoBehaviour
                     int vidaAntes = vida.VidaAtual();
                     bool morreuAntes = vida.Morreu;
 
+                    // Verifica se é um piolho com laço
+                    Inimigo_Piolho piolho = inimigo.GetComponent<Inimigo_Piolho>();
+                    if (piolho != null && piolho.comLaco)
+                    {
+                        // Punição: jogador leva dano e o inimigo não morre
+                        Vida vidaJogador = GetComponent<Vida>();
+                        if (vidaJogador != null)
+                        {
+                            vidaJogador.LevarDano(1); // ou outro valor de punição
+                            Debug.Log("Você atacou um piolho com laço! Tomou dano!");
+                        }
+
+                        return; // não continua, não mata o piolho
+                    }
+
+                    // Caso contrário, ataca normalmente
                     vida.LevarDano(dano);
 
-                    // Conta kill somente se o inimigo realmente morreu agora
                     if (vida.Morreu && !morreuAntes && vidaAntes > 0)
                     {
                         kills++;
-                        // ControladorNarrativa.Instance?.RegistrarKill(); // se estiver usando
                     }
+
                 }
             }
 
