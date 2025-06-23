@@ -45,8 +45,7 @@ public class ControladorNarrativa : MonoBehaviour
     private int kills = 0;
     private int etapa = 0;
     // Mude metas para não acumulativas
-    private int[] metas = new int[] { 20, 20, 20, 20, 20 }; // total 130
-
+    private int[] metas = new int[] { 20, 20, 20, 20, 20 }; 
 
     private CheckpointManager checkpointManager;
 
