@@ -322,7 +322,7 @@ public class ControladorNarrativa : MonoBehaviour
         spawnerPiolho.enabled = true;
         spawnerChiclete.enabled = true;
         spawnerPiolho.chanceSpawn = 0.9f;
-        spawnerPiolho.chanceDeLaco = 0.35f;
+        spawnerPiolho.chanceDeLaco = 0.10f;
         spawnerChiclete.chanceSpawn = 0.55f;
     }
 
