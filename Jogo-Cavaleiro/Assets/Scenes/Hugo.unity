@@ -2137,7 +2137,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2834128869368473940, guid: 3ebb9a4cd76fb0e4ea0657bbcc08790b, type: 3}
+  m_Sprite: {fileID: -9136181877773985153, guid: 0206bcdfe764c664e9ae70a5cccdc6b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8784,7 +8784,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2834128869368473940, guid: 3ebb9a4cd76fb0e4ea0657bbcc08790b, type: 3}
+  m_Sprite: {fileID: -9136181877773985153, guid: 0206bcdfe764c664e9ae70a5cccdc6b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9804,8 +9804,8 @@ MonoBehaviour:
   - {fileID: 1906132106}
   - {fileID: 452734520}
   - {fileID: 1590347807}
-  coracaoCheio: {fileID: -2834128869368473940, guid: 3ebb9a4cd76fb0e4ea0657bbcc08790b, type: 3}
-  coracaoVazio: {fileID: -1453742013716238193, guid: d267594475ca7214c863dd699beabc9c, type: 3}
+  coracaoCheio: {fileID: -9136181877773985153, guid: 0206bcdfe764c664e9ae70a5cccdc6b6, type: 3}
+  coracaoVazio: {fileID: -5086494392601071977, guid: 0aef592d8d862e2419f20caf0a841415, type: 3}
 --- !u!1 &1785562716
 GameObject:
   m_ObjectHideFlags: 0
@@ -10219,7 +10219,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2834128869368473940, guid: 3ebb9a4cd76fb0e4ea0657bbcc08790b, type: 3}
+  m_Sprite: {fileID: -9136181877773985153, guid: 0206bcdfe764c664e9ae70a5cccdc6b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
