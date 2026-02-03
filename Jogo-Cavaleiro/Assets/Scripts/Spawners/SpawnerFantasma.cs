@@ -5,7 +5,7 @@ public class SpawnerFantasma : MonoBehaviour
     [Header("Configuração do Spawner")]
     public GameObject prefabfantasma;
     public Transform jogador;
-    public float intervaloEntreSpawns = 1.5f;
+    public float intervaloEntreSpawns = 5f;
     private float tempoProximoSpawn = 0f;
     public float chanceSpawn = 0.2f; // 20%
     public float distanciaVertical = 10f;

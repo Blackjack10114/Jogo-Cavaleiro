@@ -347,6 +347,7 @@ public class ControladorNarrativa : MonoBehaviour
         spawnerFantasma.enabled = true;
         spawnerFantasma.chanceSpawn = 0.5f;
         spawnerFantasma.chanceDeLaco = 0f;
+        spawnerFantasma.intervaloEntreSpawns = 5f;
 
         spawnerMorcego1.enabled = true;
         spawnerMorcego1.chanceSpawn = 0.5f;
